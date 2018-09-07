@@ -1,0 +1,1805 @@
+{
+	"success": true,
+	"message": {
+		"disease100Arry": [{
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 0,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+096",
+			"CNum": 28,
+			"GPS": [106.60141991931553, 29.691649073065342]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 1,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+198",
+			"CNum": 77,
+			"GPS": [106.60188512893205, 29.690834937962425]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 2,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+298",
+			"CNum": 90,
+			"GPS": [106.60231232827698, 29.69001680658062]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 3,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+396",
+			"CNum": 23,
+			"GPS": [106.60271652390703, 29.689195678382585]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 4,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+488",
+			"CNum": 14,
+			"GPS": [106.60316976678699, 29.688495581865517]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 5,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+598",
+			"CNum": 15,
+			"GPS": [106.60365603350375, 29.687621461983387]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 6,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+698",
+			"CNum": 54,
+			"GPS": [106.6040662712151, 29.686924373965958]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 7,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+796",
+			"CNum": 43,
+			"GPS": [106.60457157278181, 29.685984256717575]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 8,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+896",
+			"CNum": 22,
+			"GPS": [106.6050538820113, 29.685234180203906]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 9,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+998",
+			"CNum": 5,
+			"GPS": [106.60553019649257, 29.68442209759823]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 10,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+096",
+			"CNum": 42,
+			"GPS": [106.60599951913427, 29.683627023696133]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 11,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+190",
+			"CNum": 16,
+			"GPS": [106.60643582962821, 29.682876958608325]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 12,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+298",
+			"CNum": 22,
+			"GPS": [106.60690116912872, 29.682008881723952]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 13,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+390",
+			"CNum": 44,
+			"GPS": [106.6073415071163, 29.681298836903746]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 14,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+482",
+			"CNum": 14,
+			"GPS": [106.6077808526515, 29.680541788109036]
+		}, {
+			"RoadID": "5a2603245bcba224242b61c9",
+			"groupNum": 15,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+594",
+			"CNum": 15,
+			"GPS": [106.60829326803025, 29.679635733585684]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 0,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+170",
+			"CNum": 8,
+			"GPS": [106.62322053256183, 29.718224970373946]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 1,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+390",
+			"CNum": 4,
+			"GPS": [106.62366539239169, 29.72013867767227]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 2,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+580",
+			"CNum": 10,
+			"GPS": [106.62421440874235, 29.721714421688713]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 3,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+660",
+			"CNum": 4,
+			"GPS": [106.62492561623014, 29.722020102465443]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 4,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+960",
+			"CNum": 4,
+			"GPS": [106.62726175133862, 29.72337653955162]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 5,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+170",
+			"CNum": 7,
+			"GPS": [106.62775076146481, 29.725254347939572]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 6,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+390",
+			"CNum": 12,
+			"GPS": [106.62826482693444, 29.727137188115876]
+		}, {
+			"RoadID": "5a2605275bcba224242b90b7",
+			"groupNum": 7,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+490",
+			"CNum": 1,
+			"GPS": [106.62905230650014, 29.727707106153257]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 0,
+			"Disease_Type": "Õ¯¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+090",
+			"CNum": 1,
+			"GPS": [106.60203277958064, 29.66311020321802]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 1,
+			"Disease_Type": "Õ¯¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+100",
+			"CNum": 1,
+			"GPS": [106.6021218311284, 29.663084201466006]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 3,
+			"Disease_Type": "Õ¯¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+380",
+			"CNum": 1,
+			"GPS": [106.60482859596297, 29.66221526206601]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 4,
+			"Disease_Type": "Õ¯¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+470",
+			"CNum": 2,
+			"GPS": [106.60569624176274, 29.66189232471326]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 5,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+580",
+			"CNum": 4,
+			"GPS": [106.60672005472236, 29.661513432221174]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 12,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+290",
+			"CNum": 1,
+			"GPS": [106.61324647698433, 29.65863485057349]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 49,
+			"Disease_Type": "∞˛¬‰",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0004+940",
+			"CNum": 1,
+			"GPS": [106.64914943244854, 29.650815724769554]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 56,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+650",
+			"CNum": 1,
+			"GPS": [106.65644579604381, 29.650994701520595]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 59,
+			"Disease_Type": "∞˛¬‰",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+900",
+			"CNum": 1,
+			"GPS": [106.65900447615044, 29.650794352050642]
+		}, {
+			"RoadID": "5a26062e5bcba224242b9a63",
+			"groupNum": 72,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0007+290",
+			"CNum": 2,
+			"GPS": [106.67321831007311, 29.649350464603195]
+		}, {
+			"RoadID": "5a2607645bcba224242c08dc",
+			"groupNum": 1,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0000+110",
+			"CNum": 4,
+			"GPS": [106.64841518602472, 29.761068904734852]
+		}, {
+			"RoadID": "5a2607645bcba224242c08dc",
+			"groupNum": 2,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+260",
+			"CNum": 3,
+			"GPS": [106.64973033806305, 29.76035806932661]
+		}, {
+			"RoadID": "5a2607645bcba224242c08dc",
+			"groupNum": 9,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+980",
+			"CNum": 3,
+			"GPS": [106.65614629678626, 29.7571840879702]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 6,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0000+660",
+			"CNum": 4,
+			"GPS": [106.59836549975776, 29.72223435888324]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 7,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+780",
+			"CNum": 2,
+			"GPS": [106.5940764555763, 29.72365328125705]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 8,
+			"Disease_Type": "Õ¯¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+850",
+			"CNum": 2,
+			"GPS": [106.59335836279934, 29.723688477183288]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 15,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+570",
+			"CNum": 1,
+			"GPS": [106.58597396115695, 29.723701780990066]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 29,
+			"Disease_Type": "πÍ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0002+930",
+			"CNum": 1,
+			"GPS": [106.57200666960041, 29.723730493341044]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 47,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0004+730",
+			"CNum": 1,
+			"GPS": [106.55429818559927, 29.725838878488105]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 55,
+			"Disease_Type": "∞˛¬‰",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+590",
+			"CNum": 1,
+			"GPS": [106.54556143503636, 29.726709446884737]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 56,
+			"Disease_Type": "∞˛¬‰",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+640",
+			"CNum": 2,
+			"GPS": [106.54513635118373, 29.72667243558168]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 58,
+			"Disease_Type": "∞˛¬‰",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+840",
+			"CNum": 1,
+			"GPS": [106.5429960735356, 29.7265414837612]
+		}, {
+			"RoadID": "5a2607f15bcba224242c0c4b",
+			"groupNum": 59,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+900",
+			"CNum": 2,
+			"GPS": [106.54238146207192, 29.72650595214185]
+		}, {
+			"RoadID": "5a2608e45bcba224242c3aee",
+			"groupNum": 11,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+170",
+			"CNum": 3,
+			"GPS": [106.49336879879395, 29.598538608197185]
+		}, {
+			"RoadID": "5a2608e45bcba224242c3aee",
+			"groupNum": 13,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+360",
+			"CNum": 1,
+			"GPS": [106.49330680968438, 29.596224087112766]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 0,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+086",
+			"CNum": 23,
+			"GPS": [106.5176702786315, 29.647864294248027]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 1,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0000+182",
+			"CNum": 17,
+			"GPS": [106.51718573099737, 29.64856687646827]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 2,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0000+246",
+			"CNum": 19,
+			"GPS": [106.51667825466686, 29.649309539770705]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 3,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0000+394",
+			"CNum": 9,
+			"GPS": [106.51609004035771, 29.650467542259392]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 4,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+480",
+			"CNum": 3,
+			"GPS": [106.51590361995596, 29.65106723180122]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 5,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+598",
+			"CNum": 21,
+			"GPS": [106.51582289830189, 29.65181164211895]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 6,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+608",
+			"CNum": 1,
+			"GPS": [106.51577209979745, 29.652754008900295]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 9,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0000+936",
+			"CNum": 1,
+			"GPS": [106.51583109044239, 29.655723511303997]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 10,
+			"Disease_Type": "ø”≤€",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+034",
+			"CNum": 1,
+			"GPS": [106.51601061208146, 29.656584174984083]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 11,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+124",
+			"CNum": 1,
+			"GPS": [106.51627787137878, 29.65732755305868]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 12,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+296",
+			"CNum": 15,
+			"GPS": [106.51717632347447, 29.65864220355024]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 13,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+392",
+			"CNum": 7,
+			"GPS": [106.5178085226046, 29.65931050136379]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 15,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+572",
+			"CNum": 2,
+			"GPS": [106.51897421431376, 29.660520377895843]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 16,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+690",
+			"CNum": 2,
+			"GPS": [106.51975800016473, 29.661328291687614]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 17,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0001+738",
+			"CNum": 3,
+			"GPS": [106.52006713011122, 29.661660475333207]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 18,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+872",
+			"CNum": 4,
+			"GPS": [106.52093968201422, 29.66259318068544]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 19,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0001+996",
+			"CNum": 11,
+			"GPS": [106.52159386927786, 29.663558529878962]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 20,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+096",
+			"CNum": 13,
+			"GPS": [106.52193494668224, 29.664418751886917]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 21,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+198",
+			"CNum": 24,
+			"GPS": [106.52221121101796, 29.665299164095842]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 22,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+280",
+			"CNum": 14,
+			"GPS": [106.52241866256078, 29.66601573593991]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 23,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+388",
+			"CNum": 7,
+			"GPS": [106.52271088752906, 29.666955118751964]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 24,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+488",
+			"CNum": 12,
+			"GPS": [106.52310880964005, 29.66777417955589]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 25,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+568",
+			"CNum": 10,
+			"GPS": [106.52350074093368, 29.66839721733281]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 26,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+680",
+			"CNum": 8,
+			"GPS": [106.52416193100308, 29.669195546042307]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 27,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+798",
+			"CNum": 16,
+			"GPS": [106.52499664555678, 29.669966397879286]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 28,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+862",
+			"CNum": 10,
+			"GPS": [106.52547932688182, 29.670346148295987]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 29,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0002+990",
+			"CNum": 18,
+			"GPS": [106.52640082804847, 29.671155795966563]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 30,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+096",
+			"CNum": 11,
+			"GPS": [106.52715479939611, 29.671848892337987]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 31,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+166",
+			"CNum": 10,
+			"GPS": [106.52761955856506, 29.672329737144015]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 32,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+234",
+			"CNum": 3,
+			"GPS": [106.52806936112684, 29.672769618149886]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 33,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+386",
+			"CNum": 4,
+			"GPS": [106.52913155166776, 29.673781987966557]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 34,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+494",
+			"CNum": 8,
+			"GPS": [106.52984069557581, 29.67451925964307]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 35,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+580",
+			"CNum": 13,
+			"GPS": [106.53043016090372, 29.675099824430273]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 36,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+698",
+			"CNum": 14,
+			"GPS": [106.53120715388773, 29.67589095013943]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 37,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+794",
+			"CNum": 40,
+			"GPS": [106.53187543891359, 29.676535340800637]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 38,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+896",
+			"CNum": 22,
+			"GPS": [106.53257665351741, 29.677218664294347]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 39,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0003+996",
+			"CNum": 8,
+			"GPS": [106.53323698645067, 29.67788109952108]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 40,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+098",
+			"CNum": 20,
+			"GPS": [106.53392526315777, 29.67857948033443]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 41,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+196",
+			"CNum": 14,
+			"GPS": [106.53460656890708, 29.679227878144687]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 42,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+270",
+			"CNum": 41,
+			"GPS": [106.53509336977882, 29.679733748824535]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 43,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+396",
+			"CNum": 18,
+			"GPS": [106.53596623451523, 29.68057672240886]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 44,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+492",
+			"CNum": 30,
+			"GPS": [106.53669047204566, 29.681124019889648]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 45,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+596",
+			"CNum": 15,
+			"GPS": [106.53760525908025, 29.681632845322127]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 46,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+688",
+			"CNum": 4,
+			"GPS": [106.53845621509264, 29.681938801817637]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 47,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0004+792",
+			"CNum": 5,
+			"GPS": [106.53945484482061, 29.682250413088898]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 48,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0004+894",
+			"CNum": 2,
+			"GPS": [106.5404415374794, 29.682566075718157]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 49,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0004+996",
+			"CNum": 3,
+			"GPS": [106.54143724476954, 29.6828927401882]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 50,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+094",
+			"CNum": 16,
+			"GPS": [106.54236414450668, 29.6832205907665]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 51,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+188",
+			"CNum": 28,
+			"GPS": [106.54315937943912, 29.68367679990309]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 52,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+296",
+			"CNum": 21,
+			"GPS": [106.54390476615933, 29.684401198426965]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 53,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+398",
+			"CNum": 31,
+			"GPS": [106.54438077050558, 29.685223259770382]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 54,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0005+484",
+			"CNum": 14,
+			"GPS": [106.54472706008283, 29.68595160781178]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 55,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+590",
+			"CNum": 30,
+			"GPS": [106.54513423244896, 29.68683685025053]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 56,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+694",
+			"CNum": 23,
+			"GPS": [106.54551347057787, 29.687713158422575]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 57,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+798",
+			"CNum": 18,
+			"GPS": [106.54592763686283, 29.68854637939008]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 58,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+898",
+			"CNum": 17,
+			"GPS": [106.54629890052115, 29.689378701861614]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 59,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0005+990",
+			"CNum": 19,
+			"GPS": [106.54664022906665, 29.690158084069893]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 60,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+098",
+			"CNum": 8,
+			"GPS": [106.54706639188795, 29.6910502985669]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 61,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+188",
+			"CNum": 20,
+			"GPS": [106.54740673017773, 29.69179267984975]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 62,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+266",
+			"CNum": 13,
+			"GPS": [106.54769317845285, 29.69244616664267]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 63,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+396",
+			"CNum": 6,
+			"GPS": [106.54819521511031, 29.693527257284064]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 64,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 1,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+448",
+			"CNum": 3,
+			"GPS": [106.5483948351746, 29.69396389834465]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 65,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+576",
+			"CNum": 5,
+			"GPS": [106.54890287117175, 29.695008974478103]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 66,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+680",
+			"CNum": 5,
+			"GPS": [106.54942787046205, 29.695835973440705]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 67,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0006+796",
+			"CNum": 4,
+			"GPS": [106.55000178768674, 29.696714880823478]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 68,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0006+864",
+			"CNum": 5,
+			"GPS": [106.55035712385938, 29.69725720759764]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 69,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0006+968",
+			"CNum": 4,
+			"GPS": [106.55091409074477, 29.698057148048086]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 70,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0007+096",
+			"CNum": 10,
+			"GPS": [106.55155092960965, 29.69905096102122]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 71,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0007+108",
+			"CNum": 5,
+			"GPS": [106.551586866416, 29.69913890060494]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 72,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0007+280",
+			"CNum": 19,
+			"GPS": [106.55223971887798, 29.700591778720423]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 73,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "À……¢¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0007+394",
+			"CNum": 43,
+			"GPS": [106.5525821351946, 29.70155923336037]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 74,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 2,
+			"Up_And_Down": "…œ",
+			"Disease_ZH": "K0007+496",
+			"CNum": 5,
+			"GPS": [106.55292455141048, 29.702445674156035]
+		}, {
+			"RoadID": "5aaf5dfacee3210a302024ff",
+			"groupNum": 75,
+			"Disease_Type": "œﬂ¡—",
+			"Damage_Type": "¡—∑Ï¿‡",
+			"Lane_Number": 3,
+			"Up_And_Down": "œ¬",
+			"Disease_ZH": "K0007+564",
+			"CNum": 9,
+			"GPS": [106.55312022344998, 29.70301836813822]
+		}],
+		"disease500Arry": [{
+			"GPS": [106.60316976678699, 29.688495581865517],
+			"DiseaseArry": {
+				"œﬂ¡—": 208,
+				"Õ¯¡—": 4,
+				"πÍ¡—": 11,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 8,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.60553019649257, 29.68442209759823],
+			"DiseaseArry": {
+				"œﬂ¡—": 124,
+				"Õ¯¡—": 2,
+				"πÍ¡—": 8,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 5,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.6077808526515, 29.680541788109036],
+			"DiseaseArry": {
+				"œﬂ¡—": 133,
+				"Õ¯¡—": 1,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 3,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.60829326803025, 29.679635733585684],
+			"DiseaseArry": {
+				"œﬂ¡—": 15,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.62726175133862, 29.72337653955162],
+			"DiseaseArry": {
+				"œﬂ¡—": 28,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.62905230650014, 29.727707106153257],
+			"DiseaseArry": {
+				"œﬂ¡—": 20,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.60569624176274, 29.66189232471326],
+			"DiseaseArry": {
+				"œﬂ¡—": 0,
+				"Õ¯¡—": 5,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.60654291039182, 29.661584412322895],
+			"DiseaseArry": {
+				"œﬂ¡—": 3,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.61324647698433, 29.65863485057349],
+			"DiseaseArry": {
+				"œﬂ¡—": 1,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.64914943244854, 29.650815724769554],
+			"DiseaseArry": {
+				"œﬂ¡—": 0,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.65644579604381, 29.650994701520595],
+			"DiseaseArry": {
+				"œﬂ¡—": 1,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.67321831007311, 29.649350464603195],
+			"DiseaseArry": {
+				"œﬂ¡—": 1,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.64973033806305, 29.76035806932661],
+			"DiseaseArry": {
+				"œﬂ¡—": 3,
+				"Õ¯¡—": 3,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.59836549975776, 29.72223435888324],
+			"DiseaseArry": {
+				"œﬂ¡—": 5,
+				"Õ¯¡—": 3,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.58597396115695, 29.723701780990066],
+			"DiseaseArry": {
+				"œﬂ¡—": 1,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.57200666960041, 29.723730493341044],
+			"DiseaseArry": {
+				"œﬂ¡—": 0,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.55429818559927, 29.725838878488105],
+			"DiseaseArry": {
+				"œﬂ¡—": 1,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.54238146207192, 29.72650595214185],
+			"DiseaseArry": {
+				"œﬂ¡—": 1,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 5,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.49336879879395, 29.598538608197185],
+			"DiseaseArry": {
+				"œﬂ¡—": 4,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.5176702786315, 29.647864294248027],
+			"DiseaseArry": {
+				"œﬂ¡—": 65,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 6,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.51583109044239, 29.655723511303997],
+			"DiseaseArry": {
+				"œﬂ¡—": 23,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.5178085226046, 29.65931050136379],
+			"DiseaseArry": {
+				"œﬂ¡—": 21,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 1,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.52159386927786, 29.663558529878962],
+			"DiseaseArry": {
+				"œﬂ¡—": 22,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.52296121052916, 29.667496533304668],
+			"DiseaseArry": {
+				"œﬂ¡—": 64,
+				"Õ¯¡—": 5,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.5263768922691, 29.67112685508007],
+			"DiseaseArry": {
+				"œﬂ¡—": 56,
+				"Õ¯¡—": 1,
+				"πÍ¡—": 4,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 1,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.52984069557581, 29.67451925964307],
+			"DiseaseArry": {
+				"œﬂ¡—": 33,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 3,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.53323698645067, 29.67788109952108],
+			"DiseaseArry": {
+				"œﬂ¡—": 93,
+				"Õ¯¡—": 1,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 2,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.53669047204566, 29.681124019889648],
+			"DiseaseArry": {
+				"œﬂ¡—": 119,
+				"Õ¯¡—": 3,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 1,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.54143724476954, 29.6828927401882],
+			"DiseaseArry": {
+				"œﬂ¡—": 26,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 2,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.54472706008283, 29.68595160781178],
+			"DiseaseArry": {
+				"œﬂ¡—": 108,
+				"Õ¯¡—": 1,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.54664022906665, 29.690158084069893],
+			"DiseaseArry": {
+				"œﬂ¡—": 105,
+				"Õ¯¡—": 0,
+				"πÍ¡—": 2,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.5483948351746, 29.69396389834465],
+			"DiseaseArry": {
+				"œﬂ¡—": 46,
+				"Õ¯¡—": 3,
+				"πÍ¡—": 1,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 0,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.55091409074477, 29.698057148048086],
+			"DiseaseArry": {
+				"œﬂ¡—": 19,
+				"Õ¯¡—": 2,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 1,
+				"ø”≤€": 1,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}, {
+			"GPS": [106.55292455141048, 29.702445674156035],
+			"DiseaseArry": {
+				"œﬂ¡—": 65,
+				"Õ¯¡—": 12,
+				"πÍ¡—": 0,
+				"”µ∞¸": 0,
+				"≥µ’ﬁ": 0,
+				"≥¡œ›": 0,
+				"∑≠Ω¨": 0,
+				"∞˛¬‰": 0,
+				"ø”≤€": 5,
+				"ø–±ﬂ": 0,
+				"¬∑øÚ≤Ó": 0,
+				"ﬂÛΩ¨": 0,
+				"∑∫”Õ": 0
+			}
+		}]
+	}
+}

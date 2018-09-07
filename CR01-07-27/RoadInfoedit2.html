@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .form-header{
+            padding-top: 10px;
+        }
+        body{
+            overflow:hidden;
+        }
+        body, html,.RoadInfoedit-content{width: 100%;height: 100%;overflow-y:auto;margin:0;font-family:"微软雅黑";
+            background-color: #404866;
+            position: relative;
+        }
+        .RoadInfoedit-content{
+            overflow-x: hidden;
+        }
+        .RoadInfoedit-content table{
+            background-color: #353c66;
+            border:#9a9a9a ;
+        }
+        .RoadInfoedit-content table input{
+            background-color: inherit;
+            color: white;
+        }
+        .layui-table td{
+            border: 1px solid #9a9a9a;
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:#404866!important}
+        .tdeven{
+            background-color: #404866;
+        }
+        form input{
+            border:none;
+        }
+        .baseinfo-title {
+            color:#ff5140;
+        }
+        .layui-tab-title{
+            color: white;
+        }
+        .layui-tab-title .layui-this {
+            color: #ff5140;
+            /*background-color: rgba(255,81,64,0.4);*/
+        }
+        .layui-form-up{
+
+        }
+        .layui-form-item{
+            width:1366px;
+            margin:0 auto;
+        }
+        .layui-form-item>.layui-inline{
+            margin:0 auto;
+            width: 520px;
+        }
+        .layui-form-item .layui-inline{
+            margin-bottom: 10px;
+        }
+        .layui-form-item .layui-inline .layui-form-label{
+            width: 120px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed layui-this">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" id="selectroad"  lay-filter="aaa">
+                        </select>
+                    </div>
+                </div>
+                
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="RoadInfoedit-content">
+            <div class="layui-tab RoadInfoedit-content-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">基础资料</li>
+                    <li>资料上传</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <!--静态数据-->
+                        <div class="baseinfo">
+                            <form class="layui-form" action="">
+                                <table class="layui-table baseinfo-table">
+                                    <tbody>
+                                    <tr style="display: none">
+                                        <td>道路id：</td>
+                                        <td><input name="RoadID"></td>
+                                        <td>所属乡镇：</td>
+                                        <td><input name="CT_UserInfoID"></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>道路名称：</td>
+                                        <td class="td"><input name="BI_RoadName"></td>
+                                        <td>设计单位：</td>
+                                        <td class="td"><input name="BI_DesignUnit"></td>
+                                        <td>路幅宽度范围：</td>
+                                        <td class="td"><input name="BI_RoadWidth"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>所属乡镇：</td>
+                                        <td class="td"><input name="BI_SmallTowns"></td>
+                                        <td >道路编号：</td>
+                                        <td class="td"><input name="BI_RoadNumber"></td>
+                                        <td>施工单位：</td>
+                                        <td class="td"><input name="BI_Builder"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>道路长度：</td>
+                                        <td class="td"><input name="BI_RoadLength"></td>
+                                        <td>管理分类：</td>
+                                        <td class="td"><input name="BI_ManageType"></td>
+                                        <td>道路走向：</td>
+                                        <td class="td"><input name="BI_RoadTrend"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>道路等级：</td>
+                                        <td class="td"><input name="BI_RoadLevel"></td>
+                                        <td>道路面积：</td>
+                                        <td class="td"><input name="BI_RoadArea"></td>
+                                        <td>管理单位：</td>
+                                        <td class="td"><input name="BI_ManageUnit"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>起点：</td>
+                                        <td class="td"><input name="BI_RoadStar"></td>
+                                        <td>路面等级：</td>
+                                        <td class="td"><input name="BI_PavementLevel"></td>
+                                        <td>AADT：</td>
+                                        <td class="td"><input name="BI_RoadAADT"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>养护单位：</td>
+                                        <td class="td"><input name="BI_CuringUnit"></td>
+                                        <td>终点：</td>
+                                        <td class="td"><input name="BI_RoadEnd"></td>
+                                        <td>设计时速：</td>
+                                        <td class="td"><input name="BI_DesignSpeed"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>交通量等级：</td>
+                                        <td class="td"><input name="BI_TrafficLevel"></td>
+                                        <td>建造年月：</td>
+                                        <td class="td"><input name="BI_BuiltYear"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--车行道-->
+                                <div class="RoadWay">
+                                    <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                                        <legend>车行道</legend>
+                                    </fieldset>
+                                    <table class="layui-table RoadWay-table">
+                                        <tbody>
+                                        <tr>
+                                            <td>路面类型：</td>
+                                            <td class="td"><input name="RW_PavementType"></td>
+                                            <td>路面厚度：</td>
+                                            <td class="td"><input name="RW_PavementThickness"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>基层类型：</td>
+                                            <td class="td"><input name="RW_BaseType"></td>
+                                            <td>基层厚度：</td>
+                                            <td class="td"><input name="RW_BaseThickness"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>车道数：</td>
+                                            <td class="td"><input name="RW_LaneNumber"></td>
+                                            <td>同行方向：</td>
+                                            <td class="td"><input name="RW_PeerDirection"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>机动车道宽度范围：</td>
+                                            <td class="td"><input name="RW_MotorWidth"></td>
+                                            <td>左侧非机动车道宽度范围：</td>
+                                            <td class="td"><input name="RW_MotorWidth_LeftNo"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>右侧非机动车道宽度范围：</td>
+                                            <td class="td"><input name="RW_MotorWidth_RightNo"></td>
+                                            <td>车行道面积：</td>
+                                            <td class="td"><input name="RW_RoadWayArea"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>有无公交车专用道：</td>
+                                            <td class="td"><input name="RW_IsBusLane"></td>
+                                            <td>侧石类型：</td>
+                                            <td class="td"><input name="RW_SideStoneType"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>侧石长度：</td>
+                                            <td class="td"><input name="RW_SideStoneLength"></td>
+                                            <td>平石类型：</td>
+                                            <td class="td"><input name="RW_FlatStoneType"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>平石长度：</td>
+                                            <td class="td"><input name="RW_FlatStoneLength"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--人行道-->
+                                <div class="SideWalk">
+                                    <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                                        <legend>人行道</legend>
+                                    </fieldset>
+                                    <table class="layui-table SideWalk-table">
+                                        <tbody>
+                                        <tr>
+                                            <td style="background: url(image/左.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                            <td></td>
+                                            <td style="background: url(image/右.png) no-repeat left;min-height: 20px;"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>铺面类型：</td>
+                                            <td  class="td"><input name="SWL_PavementType"></td>
+                                            <td>铺面类型：</td>
+                                            <td  class="td"><input name="SWR_PavementType"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>长度：</td>
+                                            <td  class="td"><input name="SWL_Length"></td>
+                                            <td>长度：</td>
+                                            <td  class="td"><input name="SWR_Length"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>宽度范围：</td>
+                                            <td  class="td"><input name="SWL_Width"></td>
+                                            <td>宽度范围：</td>
+                                            <td  class="td"><input name="SWR_Width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>直线面积：</td>
+                                            <td  class="td"><input name="SWL_LinearArea"></td>
+                                            <td>直线面积：</td>
+                                            <td  class="td"><input name="SWR_LinearArea"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>交叉口面积：</td>
+                                            <td  class="td"><input name="SWL_CrossingsArea"></td>
+                                            <td>交叉口面积：</td>
+                                            <td  class="td"><input name="SWR_CrossingsArea"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>盲道长度：</td>
+                                            <td  class="td"><input name="SWL_TyphosoleLength"></td>
+                                            <td>盲道长度：</td>
+                                            <td  class="td"><input name="SWR_TyphosoleLength"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>无障碍通道面积：</td>
+                                            <td  class="td"><input name="SWL_WheelChairAccessibleArea"></td>
+                                            <td>无障碍通道面积：</td>
+                                            <td  class="td"><input name="SWR_WheelChairAccessibleArea"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>绿化带面积：</td>
+                                            <td  class="td"><input name="SWL_GreenBeltArea"></td>
+                                            <td>绿化带面积：</td>
+                                            <td  class="td"><input name="SWR_GreenBeltArea"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>侧石类型：</td>
+                                            <td  class="td"><input name="SWL_SideStoneType"></td>
+                                            <td>侧石类型：</td>
+                                            <td  class="td"><input name="SWR_SideStoneType"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>平石类型：</td>
+                                            <td  class="td"><input name="SWL_FlatStoneType"></td>
+                                            <td>平石类型：</td>
+                                            <td  class="td"><input name="SWR_FlatStoneType"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!--分隔带-->
+                                <div class="Divider">
+                                    <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                                        <legend>分隔带</legend>
+                                    </fieldset>
+                                    <table class="layui-table Divider-table">
+                                        <tbody>
+                                        <tr>
+                                            <td style="background: url(image/左.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                            <td></td>
+                                            <td style="background: url(image/中.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                            <td></td>
+                                            <td style="background: url(image/右.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>人行护栏长度：</td>
+                                            <td class="td"><input name="DL_GuardBarLength"></td>
+                                            <td>护栏高度：</td>
+                                            <td class="td"><input name="DC_GuardBarWidth"></td>
+                                            <td>人行护栏长度：</td>
+                                            <td class="td"><input name="DR_GuardBarLength"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>人行护栏高度：</td>
+                                            <td class="td"><input name="DL_GuardBarWidth"></td>
+                                            <td>护栏类型：</td>
+                                            <td class="td"> <input name="DC_GuardBarType"></td>
+                                            <td>人行护栏高度：</td>
+                                            <td class="td"><input name="DR_GuardBarWidth"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>人行护栏类型：</td>
+                                            <td class="td"><input name="DL_GuardBarType"></td>
+                                            <td>长度：</td>
+                                            <td class="td"><input name="DC_Length"></td>
+                                            <td>人行护栏类型：</td>
+                                            <td class="td"><input name="DR_GuardBarType"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>长度：</td>
+                                            <td class="td"><input name="DL_Length"></td>
+                                            <td>宽度范围：</td>
+                                            <td class="td"><input name="DC_Width"></td>
+                                            <td>长度：</td>
+                                            <td class="td"><input name="DR_Length"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>宽度范围：</td>
+                                            <td class="td"><input name="DL_Width"></td>
+                                            <td>面积：</td>
+                                            <td class="td"><input name="DC_Area"></td>
+                                            <td>宽度范围：</td>
+                                            <td class="td"><input name="DR_Width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>面积：</td>
+                                            <td class="td"><input name="DL_Area"></td>
+                                            <td>类型：</td>
+                                            <td class="td"><input name="DC_Type"></td>
+                                            <td>面积：</td>
+                                            <td class="td"><input name="DR_Area"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>类型：</td>
+                                            <td class="td"><input name="DL_Type"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>类型：</td>
+                                            <td class="td"><input name="DR_Type"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--附属设施-->
+                                <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                                    <legend>附属设施</legend>
+                                </fieldset>
+                                <table class="layui-table AncillaryFacilities-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>检查井数量：</td>
+                                        <td class="td"><input name="AF_InspectionWellNumber"></td>
+                                        <td>标志牌数量：</td>
+                                        <td class="td"><input name="AF_SignBoardNumber"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>雨水口数量：</td>
+                                        <td class="td"><input name="AF_GullyNumber"></td>
+                                        <td>树池面积：</td>
+                                        <td class="td"><input name="AF_TreePoolArea"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>路名牌数量：</td>
+                                        <td class="td"><input name="AF_NameplateNumber"></td>
+                                        <td>其它：</td>
+                                        <td class="td"><input name="AF_Other"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="layui-btn layui-btn-danger edit" style="margin-left: 42%">确定修改</button>
+                                <button type="reset" class="layui-btn layui-btn-primary noedit">取消</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="baseinfo">
+                            <form class="layui-form layui-form-up" action="">
+                                <div class="layui-form-item">
+
+                                    <div class="layui-inline" style="width:700px;">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">桩号-GPS对照表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test2"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo2"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">平整度表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo3"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">车辙度表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test4"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo4"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">病害信息:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test17"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo17"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">路面破损表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test6"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo6"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">层厚表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test7"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo7"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">空洞表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test8"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo8"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">管线表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test9"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo9"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">路况检测报告:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test10"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo10"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">养护建议:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test11"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo11"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">养护工程:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test12"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo12"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">抗滑表:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test13"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo13"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">破损分布情况图:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test14"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo14"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">人行道检测记录:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test15"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo15"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">维修记录:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test16"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo16"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">病害成因分析:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test19"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo19"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">养护报告:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test20"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo20"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline" >
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">评定结果:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test18"><i class="layui-icon"></i>上传文件</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo18"></p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <div class="layui-inline" >
+                                            <label class="layui-form-label" style="">项目图片:</label>
+                                        </div>
+                                        <div class="layui-inline layui-upload">
+                                            <button type="button" class="layui-btn" id="test1"><i class="layui-icon"></i>上传图片</button>
+                                        </div>
+                                        <div class=" layui-inline">
+                                            <p id="demo1"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['element','form','table','upload'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var table = layui.table
+        ,upload = layui.upload;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+         * 单元格换色
+         * */
+        $(".baseinfo table tr td:nth-child(odd)").addClass("tdeven");
+        for(var i = 0;i<$('.baseinfo-table tr .td').length;i++){
+            var baseinfo = $('.baseinfo-table tr .td:eq('+i+')').width();
+            $('.baseinfo-table tr td input').css('width',baseinfo-12);
+        }
+        for(var i = 0;i<$('.RoadWay-table tr .td').length;i++){
+            var RoadWay = $('.RoadWay-table tr .td:eq('+i+')').width();
+            $('.RoadWay-table tr td input').css('width',RoadWay-12);
+        }
+        for(var i = 0;i<$('.SideWalk-table tr .td').length;i++){
+            var SideWalk = $('.SideWalk-table tr .td:eq('+i+')').width();
+            $('.SideWalk-table tr td input').css('width',SideWalk-12);
+        }
+        for(var i = 0;i<$('.Divider-table tr .td').length;i++){
+            var Divider = $('.Divider-table tr .td:eq('+i+')').width();
+            $('.Divider-table tr td input').css('width',Divider-12);
+        }
+        for(var i = 0;i<$('.AncillaryFacilities-table tr .td').length;i++){
+            var AncillaryFacilities = $('.AncillaryFacilities-table tr .td:eq('+i+')').width();
+            $('.AncillaryFacilities-table tr td input').css('width',AncillaryFacilities-12);
+        }
+
+        /*
+         * 获取当前用户下的所有道路
+         * */
+        loadAjaxRoad();
+        function loadAjaxRoad() {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/RoadInfo/getRoadlist',
+                data:{
+                    "UserID":localStorage.getItem("_id")
+                },
+                success:function (data){
+                    console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for(var i = 0;i<roadLength;i++){
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="'+RoadID+'">'+BI_RoadName+'</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    selectChange();
+                    form.on('select(aaa)', function(a){
+                        selectChange();
+                        var selectRoadID = $('select option:selected').val();/*变量selectRoadID 为  当前选中的道路ID*/
+                        getUpload(selectRoadID);
+                    });
+                }
+            });
+        }
+
+
+        /*
+         * 静态资料卡
+         * */
+        function selectChange() {
+            var selectRoadID = $('select option:selected').val();/*变量selectRoadID 为  当前选中的道路ID*/
+            localStorage.setItem("selectId",selectRoadID);
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/RoadInfo/getRoadInfo',
+                data:{
+                    "RoadID": selectRoadID
+                },
+                success:function (data) {
+                    /*  选中道路的数据key*/
+                    console.log(data);
+                    $('form  input[name*="RoadID"]').val(data.message[0]._id);
+                    for(var dataInput in data.message[0]){
+                        if($('form input[name*="'+dataInput+'"]')){
+                            var value = data.message[0][dataInput];
+                            $('form input[name="'+dataInput+'"]').val(value);
+                        }
+                    }
+                }
+            });
+            getGPStime(selectRoadID);
+        }
+
+
+        /*
+        * 确认修改道路信息
+        * */
+        $('.edit').on('click',function () {
+            var data = $('form').serializeJSON();
+            console.log(data);
+            $.ajax({
+                type:'post',
+                url:'http://'+ip+'/api/RoadInfo/edit',
+                data:data,
+                success:function (data) {
+                    console.log(data);
+                    if(data.success){
+                        layer.open({
+                            type:1
+                            ,title:"提示消息"
+                            ,closeBtn:1
+                            ,area: ['380px', '170px']
+                            ,shade:0.8
+                            ,btn:'确定'
+                            ,btnAlign:'c'
+                            ,moveType:0.5
+                            ,content:'<div style="padding:20px 30px">'+data.message+'</div>'
+                            ,success:function(layero, index){
+
+                            }
+                            ,yes:function(index,layero){
+                                selectChange();
+                                layer.closeAll();
+                            }
+                            ,cancel:function(index,layero){
+                                layer.closeAll();
+                            }
+                        });
+                    }else{
+                        layer.open({
+                            type:1
+                            ,title:"提示消息"
+                            ,closeBtn:1
+                            ,area: ['380px', '170px']
+                            ,shade:0.8
+                            ,btn:'确定'
+                            ,btnAlign:'c'
+                            ,moveType:0.5
+                            ,content:'<div style="padding:20px 30px">'+data.message+'</div>'
+                            ,success:function(layero, index){
+
+                            }
+                            ,yes:function(index,layero){
+                                //selectChange();
+                                layer.closeAll();
+                            }
+                            ,cancel:function(index,layero){
+                                layer.closeAll();
+                            }
+                        });
+                    }
+                }
+            })
+        })
+
+        $('.noedit').on('click',function () {
+            loadAjaxRoad();
+        });
+
+
+        /*
+         * gps时间
+         * */
+        var getGPStime = function (selectRoadID) {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/RoadInfoUp/GetNearUpDate',
+                data:{
+                    "RoadID": selectRoadID
+                },
+                success:function (data) {
+                    console.log(data);
+                    $('#demo2').html('<span style="color: #FF5722;">最近上传时间：'+data.message+'</span>')
+                }
+            })
+        }
+
+        /*
+         * 判断上传数据
+         * */
+        function ifUpTrue(res,demoText) {
+            if(res.success){
+                console.log('res.success');
+                demoText.html('<span style="color: #FF5722;">上传成功！</span>');
+            }else{
+                console.log('res.false');
+                layer.open({
+                    type:1
+                    ,title:"提示消息"
+                    ,closeBtn:1
+                    ,area: ['380px', '170px']
+                    ,shade:0.8
+                    ,btn:'确定'
+                    ,btnAlign:'c'
+                    ,moveType:0.5
+                    ,content:'<div style="padding:20px 30px">'+res.message+'</div>'
+                    ,success:function(layero, index){
+                        demoText.html('<span style="color: #FF5722;">上传失败！</span>');
+                    }
+                    ,yes:function(index,layero){
+                        layer.closeAll();
+                    }
+                    ,cancel:function(index,layero){
+                        layer.closeAll();
+                    }
+                });
+            }
+        }
+
+        /*
+         * 上传
+         * */
+        //指定允许上传的图片
+        var PicRoadID = localStorage.getItem("selectId");/*PicRoadID 为  当前选中的道路ID*/
+        var selectRoadID = localStorage.getItem("selectId");/*变量selectRoadID 为  当前选中的道路ID*/
+        getUpload(selectRoadID);
+        function getUpload(selectRoadID) {
+            if(selectRoadID == undefined || selectRoadID == null || selectRoadID == ''){
+                $('.layui-form-up button').attr('disabled','disabled');
+                console.log(1111);
+                layer.open({
+                    type:1
+                    ,title:"提示消息"
+                    ,closeBtn:1
+                    ,area: ['380px', '170px']
+                    ,shade:0.8
+                    ,btn:'确定'
+                    ,btnAlign:'c'
+                    ,moveType:0.5
+                    ,content:'<div style="padding:20px 30px">请先选择道路！</div>'
+                    ,success:function(layero, index){
+
+                    }
+                    ,yes:function(index,layero){
+                        layer.closeAll();
+                    }
+                    ,cancel:function(index,layero){
+                        layer.closeAll();
+                    }
+                });
+                return false;
+            }else{
+                $('.layui-form-up button').attr('disabled',false);
+                console.log(222);
+                var UpRoadPic = upload.render({
+                    elem: '#test1'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadPic?RoadID='+PicRoadID
+                    ,before: function(obj){
+                        var demoText = $('#demo1');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo1');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo1');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadPic.upload();
+                        });
+                    }
+                });
+                //gps
+                var UploadPzd = upload.render({
+                    elem: '#test2'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpExcelGPS?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        console.log(obj);
+                        var demoText = $('#demo2');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo2');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo2');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UploadPzd.upload();
+                        });
+                    }
+                });
+                //管线
+                var UpRoadPipelineInfo = upload.render({
+                    elem: '#test9'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadPipelineInfo?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo9');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo9');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo9');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadPipelineInfo.upload();
+                        });
+                    }
+                });
+                //路况检测报告
+                var UpTestReport = upload.render({
+                    elem: '#test10'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpTestReport?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'pdf|PDF'
+                    ,before: function(obj){
+                        var demoText = $('#demo10');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo10');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo10');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpTestReport.upload();
+                        });
+                    }
+                });
+                //病害信息
+                var UploadDise = upload.render({
+                    elem: '#test17'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpExcelDisease?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo17');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo17');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo17');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UploadDise.upload();
+                        });
+                    }
+                });
+                //评定结果
+                var UpRoadData = upload.render({
+                    elem: '#test18'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadData?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo18');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo18');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo18');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadData.upload();
+                        });
+                    }
+                });
+                //路面破损表
+                var UpRoadPCI = upload.render({
+                    elem: '#test6'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadPCI?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo6');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo6');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo6');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadPCI.upload();
+                        });
+                    }
+                });
+                //平整度表
+                var UpRoadPlaneness = upload.render({
+                    elem: '#test3'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadPlaneness?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo3');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo3');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo3');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadPlaneness.upload();
+                        });
+                    }
+                });
+                //车辙表
+                var UpRoadRut = upload.render({
+                    elem: '#test4'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadRut?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo4');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo4');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo4');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadRut.upload();
+                        });
+                    }
+                });
+                //层厚表
+                var RoadDepth = upload.render({
+                    elem: '#test7'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadDepth?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo7');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo7');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo7');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            RoadDepth.upload();
+                        });
+                    }
+                });
+                //空洞表
+                var UpRoadEmpty = upload.render({
+                    elem: '#test8'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadEmpty?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo8');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo8');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo8');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadEmpty.upload();
+                        });
+                    }
+                });
+                //抗滑表
+                var UpRoadSFC = upload.render({
+                    elem: '#test13'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadSFC?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo13');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo13');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo13');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadSFC.upload();
+                        });
+                    }
+                });
+                //养护建议
+                var UpMaintenanceSuggestion = upload.render({
+                    elem: '#test11'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadDiseaseCuring?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo11');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo11');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo11');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpMaintenanceSuggestion.upload();
+                        });
+                    }
+                });
+                //养护工程
+                var UpMaintenanceProject = upload.render({
+                    elem: '#test12'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpMaintenanceProject?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'pdf'
+                    ,before: function(obj){
+                        var demoText = $('#demo12');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo12');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo12');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpMaintenanceProject.upload();
+                        });
+                    }
+                });
+                //破损情况分布图
+                var UpDamageDistributionMap = upload.render({
+                    elem: '#test14'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpDamageDistributionMap?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'jpg|jpeg|png'
+                    ,before: function(obj){
+                        var demoText = $('#demo14');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo14');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo14');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpDamageDistributionMap.upload();
+                        });
+                    }
+                });
+                //人行道检测记录
+                var UpRoadSideWalk = upload.render({
+                    elem: '#test15'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadSideWalk?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo15');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo15');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo15');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadSideWalk.upload();
+                        });
+                    }
+                });
+                //维修记录
+                var UpRoadEditInfo = upload.render({
+                    elem: '#test16'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadEditInfo?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo16');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo16');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo16');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadEditInfo.upload();
+                        });
+                    }
+                });
+                //成因分析
+                var UpRoadDiseaseOrigin = upload.render({
+                    elem: '#test19'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpRoadDiseaseOrigin?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'xlsx|xls'
+                    ,before: function(obj){
+                        var demoText = $('#demo19');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo19');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo19');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpRoadDiseaseOrigin.upload();
+                        });
+                    }
+                });
+                //养护报告
+                var UpMaintenanceAssessment = upload.render({
+                    elem: '#test20'
+                    ,url: 'http://'+ip+'/api/RoadInfoUp/UpMaintenanceAssessment?RoadID='+PicRoadID
+                    ,accept: 'file' //普通文件
+                    ,exts: 'pdf|PDF'
+                    ,before: function(obj){
+                        var demoText = $('#demo20');
+                        demoText.html('<span style="color: #FF5722;">上传中，请等待..</span>');
+                    }
+                    ,done: function(res){
+                        console.log(res);
+                        var demoText = $('#demo20');
+                        ifUpTrue(res,demoText);
+                    }
+                    ,error: function(){
+                        var demoText = $('#demo20');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            UpMaintenanceAssessment.upload();
+                        });
+                    }
+                });
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

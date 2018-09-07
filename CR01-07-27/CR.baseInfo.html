@@ -1,0 +1,678 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;position: relative;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+        }
+        body{
+            overflow:hidden;
+        }
+        body, html,.baseinfo-content{width: 100%;height: 100%;background-color: #404866;overflow-y:auto;margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .baseinfo-content table{
+            background-color: #404866;
+            border:#9a9a9a ;
+            color: white;
+        }
+        .baseinfo-title1{
+            color: white;
+        }
+         .baseinfo-title {
+            color:#ff5140;
+        }
+        .baseinfo-content table td{
+            border: none;
+        }
+        .baseinfo-content table td input{
+            background-color: inherit;
+            border:none;
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:inherit!important}
+        .baseinfo-table-item{
+            width:100%;
+            margin:0 auto;
+        }
+        .baseinfo-table-item-content img{
+            width: 29%;
+            height:162px;
+            float: left;
+            margin:33px 3%;
+            box-shadow:0 0 2px #fff;
+        }
+        .baseinfo-content .hhh td{
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #9a9a9a;
+        }
+        .baseinfo-table-item-content .layui-form{
+            width: 61%;
+            height:88%;
+            float: left;
+            margin:2% auto;
+        }
+        .baseinfo-content{
+            background-color: #404866;
+            height:100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .layui-table td, .layui-table th {
+            padding: 4px 6px;
+        }
+        .layui-nav-tree .layui-nav-child a{
+            height:40px;
+        }
+        .layui-nav-tree .layui-nav-itemed a i{
+            display: inline-block;
+            color:white;
+            position: absolute;
+            top:30px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-this"><a href="#">静态数据</a></dd>
+                            <dd><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="baseinfo"></select>
+                    </div>
+                </div>
+               
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="baseinfo-content">
+            <!--静态数据-->
+            <div class="baseinfo">
+                <fieldset class="layui-elem-field layui-field-title baseinfo-title1">
+                    <legend>静态资料</legend>
+                </fieldset>
+                <div class="layui-fluid roadinfo-table">
+                    <div class="layui-row">
+                    </div>
+                </div>
+                <form class="layui-form" action="" style="padding-left: 10px;">
+                    <table class="layui-table baseinfo-table">
+                        <tbody>
+                        <tr>
+                            <td>道路名称：</td>
+                            <td class="td"><input name="BI_RoadName"></td>
+                            <td>设计单位：</td>
+                            <td class="td"><input name="BI_DesignUnit"></td>
+                            <td>路幅宽度范围：</td>
+                            <td class="td"><input name="BI_RoadWidth"></td>
+                        </tr>
+                        <tr>
+                            <td>所属乡镇：</td>
+                            <td class="td"><input name="BI_SmallTowns"></td>
+
+                            <td>道路编号：</td>
+                            <td class="td"><input name="BI_RoadNumber"></td>
+                            <td>施工单位：</td>
+                            <td class="td"><input name="BI_Builder"></td>
+                        </tr>
+                        <tr>
+                            <td>道路长度：</td>
+                            <td class="td"><input name="BI_RoadLength"></td>
+                            <td>管理分类：</td>
+                            <td class="td"><input name="BI_ManageType"></td>
+                            <td>道路走向：</td>
+                            <td class="td"><input name="BI_RoadTrend"></td>
+                        </tr>
+                        <tr>
+                            <td>道路等级：</td>
+                            <td class="td"><input name="BI_RoadLevel"></td>
+                            <td>道路面积：</td>
+                            <td class="td"><input name="BI_RoadArea"></td>
+                            <td>管理单位：</td>
+                            <td class="td"><input name="BI_ManageUnit"></td>
+                        </tr>
+                        <tr>
+                            <td>起点：</td>
+                            <td class="td"><input name="BI_RoadStar"></td>
+                            <td>路面等级：</td>
+                            <td class="td"><input name="BI_PavementLevel"></td>
+                            <td>AADT：</td>
+                            <td class="td"><input name="BI_RoadAADT"></td>
+                        </tr>
+                        <tr>
+                            <td>养护单位：</td>
+                            <td class="td"><input name="BI_CuringUnit"></td>
+                            <td>终点：</td>
+                            <td class="td"> <input name="BI_RoadEnd"></td>
+                            <td>设计时速：</td>
+                            <td class="td"><input name="BI_DesignSpeed"></td>
+                        </tr>
+                        <tr>
+                            <td>交通量等级：</td>
+                            <td class="td"><input name="BI_TrafficLevel"></td>
+                            <td>建造年月：</td>
+                            <td class="td"><input name="BI_BuiltYear"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--车行道-->
+                    <div class="RoadWay">
+                        <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                            <legend>车行道</legend>
+                        </fieldset>
+                        <table class="layui-table RoadWay-table">
+                            <tbody>
+                            <tr>
+                                <td>路面类型：</td>
+                                <td class="td"><input name="RW_PavementType"></td>
+                                <td>路面厚度：</td>
+                                <td class="td"><input name="RW_PavementThickness"></td>
+                            </tr>
+                            <tr>
+                                <td>基层类型：</td>
+                                <td class="td"><input name="RW_BaseType"></td>
+                                <td>基层厚度：</td>
+                                <td class="td"><input name="RW_BaseThickness"></td>
+                            </tr>
+                            <tr>
+                                <td>车道数：</td>
+                                <td class="td"><input name="RW_LaneNumber"></td>
+                                <td>同行方向：</td>
+                                <td class="td"><input name="RW_PeerDirection"></td>
+                            </tr>
+                            <tr>
+                                <td>机动车道宽度范围：</td>
+                                <td class="td"><input name="RW_MotorWidth"></td>
+                                <td>左侧非机动车道宽度范围：</td>
+                                <td class="td"><input name="RW_MotorWidth_LeftNo"></td>
+                            </tr>
+                            <tr>
+                                <td>右侧非机动车道宽度范围：</td>
+                                <td class="td"><input name="RW_MotorWidth_RightNo"></td>
+                                <td>车行道面积：</td>
+                                <td class="td"><input name="RW_RoadWayArea"></td>
+                            </tr>
+                            <tr>
+                                <td>有无公交车专用道：</td>
+                                <td class="td"><input name="RW_IsBusLane"></td>
+                                <td>侧石类型：</td>
+                                <td class="td"><input name="RW_SideStoneType"></td>
+                            </tr>
+                            <tr>
+                                <td>侧石长度：</td>
+                                <td class="td"><input name="RW_SideStoneLength"></td>
+                                <td>平石类型：</td>
+                                <td class="td"><input name="RW_FlatStoneType"></td>
+                            </tr>
+                            <tr>
+                                <td>平石长度：</td>
+                                <td class="td"><input name="RW_FlatStoneLength"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--人行道-->
+                    <div class="SideWalk">
+                        <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                            <legend>人行道</legend>
+                        </fieldset>
+                        <div style="clear: both"></div>
+                        <table class="layui-table SideWalk-table">
+                            <tbody>
+                            <tr>
+                                <td style="background: url(image/左.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                <td></td>
+                                <td style="background: url(image/右.png) no-repeat left;min-height: 20px;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>铺面类型：</td>
+                                <td class="td"><input name="SWL_PavementType"></td>
+                                <td>铺面类型：</td>
+                                <td class="td"><input name="SWR_PavementType"></td>
+                            </tr>
+                            <tr>
+                                <td>长度：</td>
+                                <td class="td"><input name="SWL_Length"></td>
+                                <td>长度：</td>
+                                <td class="td"><input name="SWR_Length"></td>
+                            </tr>
+                            <tr>
+                                <td>宽度范围：</td>
+                                <td class="td"><input name="SWL_Width"></td>
+                                <td>宽度范围：</td>
+                                <td class="td"><input name="SWR_Width"></td>
+                            </tr>
+                            <tr>
+                                <td>直线面积：</td>
+                                <td class="td"><input name="SWL_LinearArea"></td>
+                                <td>直线面积：</td>
+                                <td class="td"><input name="SWR_LinearArea"></td>
+                            </tr>
+                            <tr>
+                                <td>交叉口面积：</td>
+                                <td class="td"><input name="SWL_CrossingsArea"></td>
+                                <td>交叉口面积：</td>
+                                <td class="td"><input name="SWR_CrossingsArea"></td>
+                            </tr>
+                            <tr>
+                                <td>盲道长度：</td>
+                                <td class="td"><input name="SWL_TyphosoleLength"></td>
+                                <td>盲道长度：</td>
+                                <td class="td"><input name="SWR_TyphosoleLength"></td>
+                            </tr>
+                            <tr>
+                                <td>无障碍通道面积：</td>
+                                <td class="td"><input name="SWL_WheelChairAccessibleArea"></td>
+                                <td>无障碍通道面积：</td>
+                                <td class="td"><input name="SWR_WheelChairAccessibleArea"></td>
+                            </tr>
+                            <tr>
+                                <td>绿化带面积：</td>
+                                <td class="td"><input name="SWL_GreenBeltArea"></td>
+                                <td>绿化带面积：</td>
+                                <td class="td"><input name="SWR_GreenBeltArea"></td>
+                            </tr>
+                            <tr>
+                                <td>侧石类型：</td>
+                                <td class="td"><input name="SWL_SideStoneType"></td>
+                                <td>侧石类型：</td>
+                                <td class="td"><input name="SWR_SideStoneType"></td>
+                            </tr>
+                            <tr>
+                                <td>平石类型：</td>
+                                <td class="td"><input name="SWL_FlatStoneType"></td>
+                                <td>平石类型：</td>
+                                <td class="td"><input name="SWR_FlatStoneType"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--分隔带-->
+                    <div class="Divider">
+                        <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                            <legend>分隔带</legend>
+                        </fieldset>
+                        <div style="clear: both"></div>
+                        <table class="layui-table Divider-table">
+                            <tbody>
+                            <tr>
+                                <td style="background: url(image/左.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                <td></td>
+                                <td style="background: url(image/中.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                <td></td>
+                                <td style="background: url(image/右.png) no-repeat left;min-height: 20px;height: 28px;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>人行护栏长度：</td>
+                                <td class="td"><input name="DL_GuardBarLength"></td>
+                                <td>护栏高度：</td>
+                                <td class="td"><input name="DC_GuardBarWidth"></td>
+                                <td>人行护栏长度：</td>
+                                <td class="td"><input name="DR_GuardBarLength"></td>
+                            </tr>
+                            <tr>
+                                <td>人行护栏高度：</td>
+                                <td class="td"><input name="DL_GuardBarWidth"></td>
+                                <td>护栏类型：</td>
+                                <td class="td"><input name="DC_GuardBarType"></td>
+                                <td>人行护栏高度：</td>
+                                <td class="td"><input name="DR_GuardBarWidth"></td>
+                            </tr>
+                            <tr>
+                                <td>人行护栏类型：</td>
+                                <td class="td"><input name="DL_GuardBarType"></td>
+                                <td>长度：</td>
+                                <td class="td"><input name="DC_Length"></td>
+                                <td>人行护栏类型：</td>
+                                <td class="td"> <input name="DR_GuardBarType"></td>
+                            </tr>
+                            <tr>
+                                <td>长度：</td>
+                                <td class="td"><input name="DL_Length"></td>
+                                <td>宽度范围：</td>
+                                <td class="td"><input name="DC_Width"></td>
+                                <td>长度：</td>
+                                <td class="td"><input name="DR_Length"></td>
+                            </tr>
+                            <tr>
+                                <td>宽度范围：</td>
+                                <td class="td"><input name="DL_Width"></td>
+                                <td>面积：</td>
+                                <td class="td"><input name="DC_Area"></td>
+                                <td>宽度范围：</td>
+                                <td class="td"><input name="DR_Width"></td>
+                            </tr>
+                            <tr>
+                                <td>面积：</td>
+                                <td class="td"><input name="DL_Area"></td>
+                                <td>类型：</td>
+                                <td class="td"><input name="DC_Type"></td>
+                                <td>面积：</td>
+                                <td class="td"><input name="DR_Area"></td>
+                            </tr>
+                            <tr>
+                                <td>类型：</td>
+                                <td class="td"><input name="DL_Type"></td>
+                                <td></td>
+                                <td></td>
+                                <td>类型：</td>
+                                <td class="td"><input name="DR_Type"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--附属设施-->
+                    <fieldset class="layui-elem-field layui-field-title baseinfo-title">
+                        <legend>附属设施</legend>
+                    </fieldset>
+                    <table class="layui-table AncillaryFacilities-table">
+                        <tbody>
+                        <tr>
+                            <td>检查井数量：</td>
+                            <td class="td"><input name="AF_InspectionWellNumber"></td>
+                            <td>标志牌数量：</td>
+                            <td class="td"><input name="AF_SignBoardNumber"></td>
+                        </tr>
+                        <tr>
+                            <td>雨水口数量：</td>
+                            <td class="td"><input name="AF_GullyNumber"></td>
+                            <td>树池面积：</td>
+                            <td class="td"><input name="AF_TreePoolArea"></td>
+                        </tr>
+                        <tr>
+                            <td>路名牌数量：</td>
+                            <td class="td"><input name="AF_NameplateNumber"></td>
+                            <td>其它：</td>
+                            <td class="td"><input name="AF_Other"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['element','form','table'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var table = layui.table;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+        * input宽度
+        * */
+        $('.baseinfo .layui-form tr td input').css('disabled','disabled');
+        for(var i = 0;i<$('.baseinfo-table tr .td').length;i++){
+            var baseinfo = $('.baseinfo-table tr .td:eq('+i+')').width();
+            $('.baseinfo-table tr td input').css('width',baseinfo-12);
+        }
+        for(var i = 0;i<$('.RoadWay-table tr .td').length;i++){
+            var RoadWay = $('.RoadWay-table tr .td:eq('+i+')').width();
+            $('.RoadWay-table tr td input').css('width',RoadWay-12);
+        }
+        for(var i = 0;i<$('.SideWalk-table tr .td').length;i++){
+            var SideWalk = $('.SideWalk-table tr .td:eq('+i+')').width();
+            $('.SideWalk-table tr td input').css('width',SideWalk-12);
+        }
+        for(var i = 0;i<$('.Divider-table tr .td').length;i++){
+            var Divider = $('.Divider-table tr .td:eq('+i+')').width();
+            $('.Divider-table tr td input').css('width',Divider-12);
+        }
+        for(var i = 0;i<$('.AncillaryFacilities-table tr .td').length;i++){
+            var AncillaryFacilities = $('.AncillaryFacilities-table tr .td:eq('+i+')').width();
+            $('.AncillaryFacilities-table tr td input').css('width',AncillaryFacilities-12);
+        }
+
+        /*
+        * 获取当前用户下的道路
+        * */
+
+        $.ajax({
+           type:'get',
+            url:'http://'+ip+'/api/RoadInfo/getRoadlist',
+            data:{
+                "UserID":localStorage.getItem("_id")//_id为普通用户的登录id
+            },
+            success:function (data){
+               var roadLength = data.message.length;
+               var roadName = '';
+               for(var i = 0;i<roadLength;i++){
+                   //获取所有道路名称
+                   var BI_RoadName = data.message[i].BI_RoadName;
+                   var RoadID = data.message[i]._id;
+                    roadName += '<option value="'+RoadID+'">'+BI_RoadName+'</option>';
+               }
+               console.log(111111111111);
+               console.log($('select option:selected').val());
+                $('select[name="getRoadlist"]').append(roadName);
+                if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                    $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                    localStorage.setItem("selectId",$('select option:selected').val());
+                }else{
+                    $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                }
+                form.render('select');
+                form.on('select(baseinfo)', function(a){
+                    baseI();
+                });
+                baseI();
+
+            }
+        });
+
+        function baseI() {
+            /*
+             * 静态资料卡
+             * */
+            var selectRoadID = $('select option:selected').val();/*变量selectRoadID 为  当前选中的道路ID*/
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/RoadInfo/getRoadInfo',
+                data:{
+                    "RoadID": selectRoadID
+                },
+                success:function (data) {
+                    console.log(data);
+                    if(!data.success){
+                        return false;
+                    }
+                    /*  选中道路的数据key   */
+                    localStorage.setItem("selectId",$('select option:selected').val());
+                    for(var dataInput in data.message[0]){
+                        if($('form input[name*="'+dataInput+'"]')){
+                            var value = data.message[0][dataInput];
+                            $('form input[name*="'+dataInput+'"]').val(value);
+                        }
+                    }
+                    var div = '';
+                    div += '<div class="layui-col-lg4 layui-col-md6">'+
+                        '<div class="grid-demo grid-demo-bg1">'+
+                        '<div class="baseinfo-table-item">'+
+                        '<div class="baseinfo-table-item-content">'+
+                        '<div class="baseinfo-table-item-content">'+'<img src="http://'+ip+'/api/imageview?url='+data.message[0].CT_RoadPic+'" >'+
+                        ' <div class="layui-form">'+
+                        '<table class="layui-table hhh">'+'<colgroup>'+'<col width="150">'+'<col>'+'</colgroup>'+
+                        '<tbody>'+
+                        '<tr>'+ '<td colspan="2" style="background: url(image/路标.png) no-repeat left;text-indent: 20px;">'+data.message[0].BI_RoadName+'</td>'+ '</tr>'+
+                        ' <tr>'+ '<td class="BI_RoadLength">全长：</td>'+'<td>'+data.message[0].BI_RoadLength+'</td>'+ '</tr>'+
+                        '<tr>'+ '<td>车道数：</td>'+ '<td>'+data.message[0].RW_LaneNumber+'</td>'+'</tr>'+
+                        '<tr>'+ '<td>最近评定日期：</td>'+' <td>'+data.message[0].RoadLastTimeN+'</td>'+'</tr>'+
+                        '<tr>'+'<td>评定等级：</td>'+'<td>'+data.message[0].RoadLastPQI+'</td>'+' </tr>'+
+                        '<tr>'+'<td>最近养护日期：</td>'+' <td>'+data.message[0].RoadLastTimeN+'</td>'+'</tr>'+
+                        '</tbody>'+
+                        '</table>'+
+                        '</div>'+
+                        '</div>'+
+                        ' </div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+                    $('.layui-row').html(div);
+                }
+            })
+        }
+
+    });
+</script>
+</body>
+</html>

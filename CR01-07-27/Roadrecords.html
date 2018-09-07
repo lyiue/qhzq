@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,.situation-content{width: 100%;height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: #404866;
+            margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .situation-content legend{
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:#404866!important}
+        .layui-table thead  tr,.layui-table tbody  tr{
+            background-color: #404866;
+            color: white;
+        }
+        .layui-table th,.layui-table td{
+            border:1px solid #353c66;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd ><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd class="layui-this"><a href="#">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="getRoad">
+                        </select>
+                    </div>
+                </div>
+                
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="situation-content">
+            <div id="situationContainer">
+                <div class="layui-collapse" lay-accordion="">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">道路行车道检测记录</h2>
+                        <div class="layui-colla-content layui-show">
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th  colspan="6">道路名称</th>
+                                    <th  colspan="7">道路编号</th>
+                                </tr>
+                                <tr>
+                                    <th  colspan="1">评价内容</th>
+                                    <th  colspan="2">综合评价指数</th>
+                                    <th  colspan="2">平整度</th>
+                                    <th  colspan="2">破损状况</th>
+                                    <th  colspan="2">抗滑能力</th>
+                                    <th  colspan="2">交通量</th>
+                                    <th  colspan="2">强度</th>
+                                </tr>
+                                <tr>
+                                    <th  colspan="1">评价指标</th>
+                                    <th  colspan="1">PQI</th>
+                                    <th  colspan="1">等级</th>
+                                    <th  colspan="1">RQI/IRI</th>
+                                    <th  colspan="1">等级</th>
+                                    <th  colspan="1">PCI</th>
+                                    <th  colspan="1">等级</th>
+                                    <th  colspan="1">BPN/SFC</th>
+                                    <th  colspan="1">等级</th>
+                                    <th  colspan="1">AADT</th>
+                                    <th  colspan="1">等级</th>
+                                    <th  colspan="1">弯沉值</th>
+                                    <th  colspan="1">等级</th>
+                                </tr>
+                                </thead>
+                                <tbody class="tbody1"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">道路人行道检测记录</h2>
+                        <div class="layui-colla-content">
+                            <table class="layui-table">
+                                <tbody class="tbody3">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">城市道路设备维修卡</h2>
+                        <div class="layui-colla-content">
+                            <table class="layui-table">
+                                <thead>
+                                <tr>
+                                    <th  rowspan="3">损坏发现日期</th>
+                                    <th  rowspan="3">维修性质</th>
+                                    <th  rowspan="2">维修日期</th>
+                                    <th  rowspan="1" colspan="14">维修项目</th>
+                                    <th  rowspan="3">备注</th>
+                                </tr>
+                                <tr>
+                                    <th  colspan="2">坑洞</th>
+                                    <th  colspan="2">坑洞</th>
+                                    <th  colspan="2">坑洞</th>
+                                    <th  colspan="2">坑洞</th>
+                                    <th  colspan="2">坑洞</th>
+                                    <th  colspan="2">坑洞</th>
+                                    <th  colspan="2">坑洞</th>
+                                </tr>
+                                <tr>
+                                    <th class="RE_KD_Unit">开工/竣工</th>
+                                    <th class="RE_KD_Unit">工程量(m^2)</th>
+                                    <th class="RE_KD_Invest">投资(万元)</th>
+                                    <th class="RE_JPY_Unit">工程量(m^2)</th>
+                                    <th class="RE_JPY_Invest">投资(万元)</th>
+                                    <th class="RE_JPN_Unit">工程量(m^2)</th>
+                                    <th class="RE_JPN_Invest">投资(万元)</th>
+                                    <th class="RE_BD_Unit">工程量(m^2)</th>
+                                    <th class="RE_BD_Invest">投资(万元)</th>
+                                    <th class="RE_YS_Unit">工程量(m^2)</th>
+                                    <th class="RE_YS_Invest">投资(万元)</th>
+                                    <th class="RE_BG_Unit">工程量(m^2)</th>
+                                    <th class="RE_BG_Invest">投资(万元)</th>
+                                    <th class="RE_HD_Unit">工程量(m^2)</th>
+                                    <th class="RE_HD_Invest">投资(万元)</th>
+                                </tr>
+                                </thead>
+                                <tbody class="tbody2">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['element','form','layer','table'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var table = layui.table;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+         * 单元格换色
+         * */
+        $(".layui-table  thead  tr:odd").css("backgroundColor",'rgb(68,77,110)');
+
+        /*
+         * 获取所有道路
+         * */
+        getRoadlist();
+
+        function getRoadlist() {
+            $.ajax({
+                type: 'get',
+                url: 'http://'+ip+ '/api/RoadInfo/getRoadlist',
+                data: {
+                    "UserID": localStorage.getItem("_id")
+                },
+                success: function (data) {
+                    //console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for (var i = 0; i < roadLength; i++) {
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="' + RoadID + '">' + BI_RoadName + '</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(getRoad)', function(a){
+                        getRoadCarInfo();
+                        getRoadEditInfo();
+                        getRoadSideWalk();
+                    });
+                    getRoadCarInfo();
+                    getRoadEditInfo();
+                    getRoadSideWalk();
+                }
+            });
+        }
+
+        /*
+        * 获取道路档案 车道检测记录
+        * */
+        function getRoadCarInfo(){
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/GetRoadData/getRoadCarInfo',
+                data:{
+                    RoadID:$('select option:selected').val()
+                },
+                success:function (data) {
+                    //console.log(data);
+                    localStorage.setItem("selectId",$('select option:selected').val());
+                    var tr  = '';
+                    for(var i=0;i<data.message.CT_Road_Data.length;i++){
+                        tr +='<tr>' +
+                            '<td class="RoadCheckTime">'+data.message.CT_Road_Data[i].RoadCheckTime+'</td>'+
+                            '<td class="RoadPQI">'+data.message.CT_Road_Data[i].RoadPQI+'</td>'+
+                            '<td class="RoadPQILevel">'+data.message.CT_Road_Data[i].RoadPQILevel+'</td>'+
+                            '<td class="RoadRQI">'+data.message.CT_Road_Data[i].RoadRQI+'</td>'+
+                            '<td class="RoadRQILevel">'+data.message.CT_Road_Data[i].RoadRQILevel+'</td>'+
+                            '<td class="RoadPCI">'+data.message.CT_Road_Data[i].RoadPCI+'</td>'+
+                            '<td class="RoadPCILevel">'+data.message.CT_Road_Data[i].RoadPCILevel+'</td>'+
+                            '<td class="RoadSFC">'+data.message.CT_Road_Data[i].RoadSFC+'</td>'+
+                            '<td class="RoadSFCLevel">'+data.message.CT_Road_Data[i].RoadSFCLevel+'</td>'+
+                            '<td class=""></td>'+
+                            '<td class=""></td>'+
+                            '<td class=""></td>'+
+                            '<td class=""></td>'+
+                            '</tr>'
+                    }
+                    $('.tbody1').html(tr);
+                }
+            })
+        }
+        
+        /*
+        * 道路人行道检测记录
+        * */
+        function getRoadSideWalk() {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/GetRoadData/getRoadSideWalk',
+                data:{
+                    RoadID:$('select option:selected').val()
+                },
+                success:function (data) {
+                    console.log(data);
+                    localStorage.setItem("selectId",$('select option:selected').val());
+                    var tr1  = '';
+                    tr1 += '<tr>' +
+                        '<td>道路名称</td>' +'<td colspan="2" class="BI_RoadName">'+data.message.BI_RoadName+'</td>' +
+                        '<td>道路编号</td>' +'<td colspan="2" class="BI_RoadNumber">'+data.message.BI_RoadNumber+'</td>' +
+                        '</tr>';
+                    var tr2 = '';
+                    tr2 += '<tr>' +
+                        '<td>评价内容</td>' +'<td colspan="3" style="text-align: center">平整度</td>' +'<td colspan="2">损坏情况</td>'+
+                        '</tr>';
+                    var tr3 = '';
+                    tr3 += '<tr>' +
+                        '<td>评价指标</td>' +'<td colspan="2" style="text-align: center">平整度标准差/间隙度平均值</td>'+
+                        '<td>等级</td>'+'<td>FCI</td>'+'<td>等级</td>'+
+                        '</tr>'
+                    var tr4 = '';
+                    for(var i=0;i<data.message.RoadSideWalk.length;i++){
+                        tr4 += '<tr>' +
+                            '<td class="RSW_EvaluationDate">'+data.message.RoadSideWalk[i].RSW_EvaluationDate+'</td>' +
+                            '<td class="RSW_PlanenessAvg" colspan="2">'+data.message.RoadSideWalk[i].RSW_PlanenessAvg+'</td>' +
+                            '<td class="RSW_PlanenessLevel">'+data.message.RoadSideWalk[i].RSW_PlanenessLevel+'</td>' +
+                            '<td class="RSW_FCI">'+data.message.RoadSideWalk[i].RSW_FCI+'</td>' +
+                            '<td class="RSW_FCILevel">'+data.message.RoadSideWalk[i].RSW_FCILevel+'</td>' +
+                            '</tr>'
+                    }
+                    $('.tbody3').html(tr1+tr2+tr3+tr4);
+                }
+            })
+        }
+
+        function getRoadEditInfo() {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/GetRoadData/getRoadEditInfo',
+                data:{
+                    RoadID:$('select option:selected').val()
+                },
+                success:function (data) {
+                    //console.log(data);
+                    localStorage.setItem("selectId",$('select option:selected').val());
+                    var tr  = '';
+                    for(var i=0;i<data.message.CT_RoadEditInfo.length;i++){
+                        tr +='<tr>' +
+                                '<td class="RE_FindDate">'+data.message.CT_RoadEditInfo[i].RE_FindDate+'</td>'+
+                                '<td class="RE_Service">'+data.message.CT_RoadEditInfo[i].RE_Service+'</td>'+
+                                '<td class="RE_StarAndEnd">'+data.message.CT_RoadEditInfo[i].RE_StarAndEnd+'</td>'+
+                                '<td class="RE_KD_Unit">'+data.message.CT_RoadEditInfo[i].RE_KD_Unit+'</td>'+
+                                '<td class="RE_KD_Invest">'+data.message.CT_RoadEditInfo[i].RE_KD_Invest+'</td>'+
+                                '<td class="RE_JPY_Unit">'+data.message.CT_RoadEditInfo[i].RE_JPY_Unit+'</td>'+
+                                '<td class="RE_JPY_Invest">'+data.message.CT_RoadEditInfo[i].RE_JPY_Invest+'</td>'+
+                                '<td class="RE_JPN_Unit">'+data.message.CT_RoadEditInfo[i].RE_JPN_Unit+'</td>'+
+                                '<td class="RE_JPN_Invest">'+data.message.CT_RoadEditInfo[i].RE_JPN_Invest+'</td>'+
+                                '<td class="RE_BD_Unit">'+data.message.CT_RoadEditInfo[i].RE_BD_Unit+'</td>'+
+                                '<td class="RE_BD_Invest">'+data.message.CT_RoadEditInfo[i].RE_BD_Invest+'</td>'+
+                                '<td class="RE_YS_Unit">'+data.message.CT_RoadEditInfo[i].RE_YS_Unit+'</td>'+
+                                '<td class="RE_YS_Invest">'+data.message.CT_RoadEditInfo[i].RE_YS_Invest+'</td>'+
+                                '<td class="RE_BG_Unit">'+data.message.CT_RoadEditInfo[i].RE_BG_Unit+'</td>'+
+                                '<td class="RE_BG_Invest">'+data.message.CT_RoadEditInfo[i].RE_BG_Invest+'</td>'+
+                                '<td class="RE_HD_Unit">'+data.message.CT_RoadEditInfo[i].RE_HD_Unit+'</td>'+
+                                '<td class="RE_HD_Invest">'+data.message.CT_RoadEditInfo[i].RE_HD_Invest+'</td>'+
+                                '<td class="RE_Mark">'+data.message.CT_RoadEditInfo[i].RE_Mark+'</td>'+
+                            '</tr>'
+                    }
+                    $('.tbody2').html(tr);
+                }
+            })
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>高德地图test</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,#mapContainer{width: 100%;height: 100%;overflow-y: auto;margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <!--创建地图-->
+        
+        <div class="map-content">
+            <div id="tip">可以缩放地图，得到缩放级别哦！<br><span id="info"></span></div>
+            <div id="mapContainer"></div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.5&key=b95d3be25490ad3d518b206f97756dad'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+<script>
+    //创建地图
+    var map = new AMap.Map('mapContainer', {
+        zoom: 4
+    });
+
+    //just some colors
+    var colors = [
+        "#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00",
+        "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707",
+        "#651067", "#329262", "#5574a6", "#3b3eac"
+    ];
+
+
+    function initPage(PointSimplifier, $) {
+
+        var pointSimplifierIns, groupStyleMap;
+
+        pointSimplifierIns = new PointSimplifier({
+            zIndex: 115,
+            //autoSetFitView: false,
+            map: map, //所属的地图实例
+
+            getPosition: function(item) {
+
+                var lngLatLine = item.lngLatLine;
+
+                if (!lngLatLine) {
+                    return null;
+                }
+
+                var parts = lngLatLine.split(',');
+
+                return [parseFloat(parts[0]), parseFloat(parts[1])];
+            },
+            getHoverTitle: function(dataItem, idx) {
+                return '序号: ' + idx;
+            },
+            //使用GroupStyleRender
+            renderConstructor: PointSimplifier.Render.Canvas.GroupStyleRender,
+            renderOptions: {
+                //点的样式
+                pointStyle: {
+                    width: 5,
+                    height: 5,
+                    fillStyle:'#A2D0FA'
+                },
+                getGroupId: function(item, idx) {
+
+                    return item.groupId;
+                },
+                groupStyleOptions: function(gid) {
+
+                    return groupStyleMap[gid];
+                }
+
+            }
+        });
+
+        function onIconLoad() {
+            pointSimplifierIns.renderLater();
+        }
+
+        function onIconError(e) {
+            alert('图片加载失败！');
+        }
+
+        groupStyleMap = {
+            '0': {
+                pointStyle: {
+                    //绘制点占据的矩形区域
+                    content: PointSimplifier.Render.Canvas.getImageContent(
+                        'http://120.26.227.120:3000/api/imageview?url=RoadPic/2017_12_5_10_40_446.jpg', onIconLoad, onIconError),
+                    //宽度
+                    width: 16,
+                    //高度
+                    height: 16,
+                    //定位点为中心
+                    offset: ['-50%', '-50%'],
+                    fillStyle: null,
+                    // strokeStyle: null
+                }
+            },
+            '1': {
+                pointStyle: {
+                    //绘制点占据的矩形区域
+                    content: PointSimplifier.Render.Canvas.getImageContent(
+                        'http://120.26.227.120:3000/api/imageview?url=RoadPic/2017_12_5_10_24_919.jpg', onIconLoad, onIconError),
+                    //宽度
+                    width: 26,
+                    //高度
+                    height: 26,
+                    //定位点为中心
+                    offset: ['-50%', '-50%'],
+                    fillStyle: null,
+                    //strokeStyle: null
+                }
+            }
+        };
+
+        $('<div id="loadingTip">加载数据，请稍候...</div>').appendTo(document.body);
+        $.get('http://a.amap.com/amap-ui/static/data/10w.txt', function(csv) {
+
+            $('#loadingTip').remove();
+
+            var lines = csv.split('\n'),
+                data = [];
+
+            for (var i = 0, len = lines.length; i < len; i++) {
+
+                data.push({
+                    lngLatLine: lines[i],
+                    groupId: i % 2
+                });
+            }
+
+            pointSimplifierIns.setData(data);
+        });
+    }
+
+    AMapUI.load(['ui/misc/PointSimplifier', 'lib/$'], function(PointSimplifier, $) {
+
+        if (!PointSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+
+        initPage(PointSimplifier, $);
+    });
+</script>
+</body>
+</html>

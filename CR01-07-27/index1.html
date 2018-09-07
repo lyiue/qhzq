@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,#mapContainer{width: 100%;height: 100%;overflow-y: auto;margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+    </style>
+    <script>
+
+
+
+        function saveword()
+        {
+
+        }
+
+        var filePath = "C:\Users\nph\Documents\Tencent Files\1034594265\FileRecv\FileRecv";
+
+
+        var word;
+        function ActiveXObject() {
+            if(window.ActiveXObject)
+            {
+                var oWordApp=new ActiveXObject("Word.Application");
+                var oDocument=oWordApp.Documents.Open("C:\Users\nph\Documents\Tencent Files\1034594265\FileRecv\养护评估.docx");
+                oDocument.SaveAs("C:\Users\nph\Documents\Tencent Files\1034594265\FileRecv\养护评估.html", 8);
+                oWordApp.Quit();
+            }
+            else
+            {
+                alert("导出数据失败，需要在客户机器安装Microsoft Office Word(不限版本)，将当前站点加入信任站点，允许在IE中运行ActiveX控件。");
+            }
+        }
+        ActiveXObject();
+
+
+
+    </script>
+</head>
+<body>
+
+
+    <input type=button onclick="exportWord()" value=保存>
+    <P> </P>
+
+</body>
+</html>

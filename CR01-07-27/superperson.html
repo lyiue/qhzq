@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all"> <meta charset="UTF-8">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .login-form{
+            height:400px;
+        }
+        .login-success{
+            width:550px;
+            height:230px;
+        }
+        h1{
+            color:white;
+            text-align: center;
+            font-size: 18px;
+            width:100%;
+            margin:35px 0;
+        }
+        .posi-padding{
+            margin:0 25px;
+        }
+        .no-margin-left{
+            margin-left: 0;
+        }
+        .login-form form  .superperson-btn-bg{
+            margin-top: 20px;
+            margin-bottom: 13px;
+        }
+        .login-form form  .superperson-btn-con{
+            margin-left: 0;
+        }
+        .superperson-btn{
+            margin-left: 43%;
+            padding:0 34px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-content">
+    <div class="login">
+        <div class="login-form">
+            <div class="login-title">
+                <img src="image/person.do.2.png" style="width:550px;margin:15px auto;">
+            </div>
+            <div class="login-success">
+                <h1>工作用户你好！请选择你要管理的账户</h1>
+                <form class="layui-form" action="">
+                    <div class="layui-form-item posi-padding">
+                        <div class="layui-input-block no-margin-left">
+                            <select name="userlist" lay-filter="userlist">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item superperson-btn-bg" style="margin-top: 50px;">
+                        <div class="layui-input-block superperson-btn-con">
+                            <button type="button" class="layui-btn superperson-btn setuser" lay-filter="setuser">确认</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/login.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['form','layer'], function(){
+        var form = layui.form
+            ,layer = layui.layer;
+
+        $.ajax({
+            type:'get',
+            url:'http://'+ip+'/api/User/getuserlist',
+            success:function (data) {
+                console.log(data);
+                var opt = '';
+                for(var i=0;i<data.message.length;i++){
+                    opt += '<option value="'+data.message[i]._id+'">'+data.message[i].UserName+"&nbsp&nbsp:&nbsp&nbsp"+data.message[i].UserUnitName+'</option>';
+                }
+                $('select[name=userlist]').append(opt);
+                form.render();
+                $('select[name="userlist"]').val($('select').children().eq(0).val());
+            }
+        });
+        $('.setuser').on('click',function () {
+            if($('select[name="userlist"]').val() == ""){
+                layer.open({
+                    type:1
+                    ,title:"提示消息"
+                    ,closeBtn:1
+                    ,area: ['380px', '170px']
+                    ,shade:0.1
+                    ,btn:'确定'
+                    ,btnAlign:'c'
+                    ,moveType:0.5
+                    ,content:"<p style='text-align: center;padding-top: 15px;'>请选择需要管理的用户</p>"
+                    ,success:function(layero, index){
+
+                    }
+                    ,yes:function(index,layero){
+                        layer.closeAll();
+                    }
+                    ,cancel:function(index,layero){
+                        layer.closeAll();
+                    }
+                });
+                return false;
+            }
+            localStorage.setItem("_id",$(' select option:selected').val());
+            location.href="index.html";
+        })
+    });
+</script>
+</body>
+</html>

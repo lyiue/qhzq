@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title></title>
+    <style type="text/css">
+        body {
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="layui-table situation-table">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>单位名称</td>
+                <td>操作</td>
+                <td>次数</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/IP.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/jquery.serializejson.js"></script>
+    <script>
+        var width = $(window).width() + "px";
+        var height = $(window).height() + "px";
+        $('body').css("width",width);
+        $('body').css("height",height);
+        $.ajax({
+            type: 'get',
+            url: 'http://' + ip + '/api/RoadInfo/log',
+            success: function (data) {
+                $('tbody').html('');
+                var tr = ''
+                for (var i = 0; i < data.length; i++) {
+                    tr += '<tr><td class="">' + (i + 1) + '</td>' +
+                        '<td class="RPZ_ZH">' + data[i].username + '</td>' +
+                        '<td class="RPZ_Depth">' + data[i].UserUnitName + '</td>' +
+                        ' <td class="RPY_ZH">' + data[i].Name + '</td>' +
+                        '<td class="RPY_Depth">' + data[i].num_tutorial + '</td></tr>'
+                }
+                $('tbody').html(tr);
+            }
+        })
+    </script>
+</body>
+
+</html>

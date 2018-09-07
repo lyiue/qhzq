@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+    <html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,.situation-content{width: 100%;height: 100%;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            background-color: #404866;
+            margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .situation-content legend{
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:#404866!important}
+        .layui-table thead  tr,.layui-table tbody  tr{
+            background-color: #404866;
+            color: white;
+        }
+        .layui-table thead  tr,.layui-table tbody  tr td{
+            background-color: #404866;
+        }
+        .layui-table th,.layui-table td{
+            border:1px solid #353c66;
+        }
+        #mapContainer{width: 100%;height: 100%;overflow-y: hidden;margin:0;font-family:"微软雅黑";position: relative;}
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd ><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd class="layui-this"><a href="#">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="getRoad">
+                        </select>
+                    </div>
+                </div>
+                
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="situation-content">
+            <div id="situationContainer">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>病害成因分析</legend>
+                </fieldset>
+                <!--创建地图-->
+                <div id="mapContainer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lnj2r20rbxBN1GGYBLmiqelbHCGGr7vK"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script>
+    layui.use(['element','form','layer','table'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var table = layui.table;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+         * 单元格换色
+         * */
+        $(".layui-table  thead  tr:odd").css("backgroundColor",'rgb(68,77,110)');
+
+        /*
+         * 获取所有道路
+         * */
+        getRoadlist();
+
+        function getRoadlist() {
+            $.ajax({
+                type: 'get',
+                url: 'http://'+ip+ '/api/RoadInfo/getRoadlist',
+                data: {
+                    "UserID": localStorage.getItem("_id")
+                },
+                success: function (data) {
+                    //console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for (var i = 0; i < roadLength; i++) {
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="' + RoadID + '">' + BI_RoadName + '</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(getRoad)', function(a){
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                        initmap();
+                    });
+                    initmap();
+                }
+            });
+        }
+
+        /*
+         * 调取道路病害点及成因
+         * */
+        var mp = new BMap.Map("mapContainer",{minZoom:13,maxZoom:17,enableMapClick:false}); // 创建地图实例
+        mp.enableScrollWheelZoom(true);
+        mp.addControl(new BMap.MapTypeControl());//三维 混合
+        var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT});   //设置版权控件位置
+        mp.addControl(cr); //添加版权控件
+        var bs = mp.getBounds();   //返回地图可视区域
+        cr.addCopyright({ id: 1,
+            content: "<a href='#' style='font-size:12px;color:black'>重庆亲禾智千科技有限公司</a>",
+            bounds: bs});
+        var myStyleJson = [
+            {
+                "featureType": "all",
+                "elementType": "all",
+                "stylers": {
+                    "lightness": 10,
+                    "saturation": -100
+                }
+            }
+        ];
+        mp.setMapStyle({styleJson: myStyleJson});
+
+        function initmap() {
+            $.ajax({
+                type: 'get',
+                url: 'http://' + ip + '/api/GetRoadData/getRoadDiseaseOrigin',
+                data: {
+                    RoadID: localStorage.getItem("selectId")
+                },
+                success: function (data) {
+                    console.log(data);
+                    mp.clearOverlays();
+                    var point = new BMap.Point(data.message.Center[0], data.message.Center[1]);
+                    mp.centerAndZoom(point,15);
+                    /*  获取所有路段节点  */
+                    //上行
+                    var startX1U = data.message.RoadUp[0][0];
+                    var startX2U = data.message.RoadUp[1][0];
+                    var starty1U = data.message.RoadUp[0][1];
+                    var starty2U = data.message.RoadUp[1][1];
+                    var startX1 = new BMap.Point(startX1U, starty1U);
+                    var startY1 = new BMap.Point(startX2U, starty2U);
+                    getLine(startX1,startY1);
+                    function getLine(startX1, startY1) {
+                        var driving = new BMap.DrivingRoute(mp, {
+                            onSearchComplete: function (results) {
+                                if (driving.getStatus() == BMAP_STATUS_SUCCESS) {
+                                    var plan = results.getPlan(0);
+                                    var arrPois = [];
+                                    for (var j = 0; j < plan.getNumRoutes(); j++) {
+                                        var route = plan.getRoute(j);
+                                        arrPois = arrPois.concat(route.getPath());
+                                    }
+                                    var polyline = new BMap.Polyline(arrPois, {
+                                        strokeColor: "blue",
+                                        strokeWeight: 5
+                                    });
+                                    mp.addOverlay(polyline);
+                                }
+                            }
+                        });
+                        driving.search(startX1, startY1);
+                    }
+
+
+
+                    function ComplexCustomOverlay(point, text, mouseoverText){
+                        this._point = point;
+                        this._text = text;
+                        this._overText = mouseoverText;
+                    }
+                    ComplexCustomOverlay.prototype = new BMap.Overlay();
+                    ComplexCustomOverlay.prototype.initialize = function(map){
+                        this._map = map;
+                        var div = this._div = document.createElement("div");
+                        div.style.position = "absolute";
+                        div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+                        div.style.backgroundColor = "#EE5D5B";
+                        div.style.border = "1px solid #BC3B3A";
+                        div.style.color = "white";
+                        div.style.height = "18px";
+                        div.style.padding = "2px";
+                        div.style.lineHeight = "18px";
+                        div.style.whiteSpace = "nowrap";
+                        div.style.MozUserSelect = "none";
+                        div.style.fontSize = "12px";
+                        var span = this._span = document.createElement("span");
+                        div.appendChild(span);
+                        span.appendChild(document.createTextNode(this._text));
+                        var that = this;
+
+                        var arrow = this._arrow = document.createElement("div");
+                        arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+                        arrow.style.position = "absolute";
+                        arrow.style.width = "11px";
+                        arrow.style.height = "10px";
+                        arrow.style.top = "22px";
+                        arrow.style.left = "10px";
+                        arrow.style.overflow = "hidden";
+                        div.appendChild(arrow);
+
+                        div.onmouseover = function(){
+                            this.style.backgroundColor = "white";
+                            this.style.borderColor = "black";
+                            this.style.color = "black";
+                            this.style.minHeight = "110px";
+                            this.style.fontSize = "14px";
+                            this.style.overflow = "auto";
+                            this.style.zIndex = "99999";
+                            this.getElementsByTagName("span")[0].innerHTML = that._overText;
+                            this.getElementsByTagName("span")[0].style.display = "block";
+                            this.getElementsByTagName("span")[0].style.zIndex = "99999";
+                            this.getElementsByTagName("span")[0].style.minWidth = "400px";
+                            this.getElementsByTagName("span")[0].style.minHeight = "110px";
+                            //this.getElementsByTagName("span")[0].style.overflow = "auto";
+                            this.getElementsByTagName("span")[0].style.whiteSpace = "normal";
+                            this.style.backgroundPosition = "0px 40px";
+                            arrow.style.backgroundPosition = "0px -60px";
+                        }
+
+                        div.onmouseout = function(){
+                            this.style.backgroundColor = "#EE5D5B";
+                            this.style.borderColor = "#ff5140";
+                            this.style.color = "white";
+                            this.style.fontSize = "12px";
+                            this.style.overflow = "hidden";
+                            this.style.zIndex = "1";
+                            this.getElementsByTagName("span")[0].style.display = "inline";
+                            this.getElementsByTagName("span")[0].style.zIndex = "1";
+                            this.style.minHeight = "18px";
+                            this.getElementsByTagName("span")[0].style.whiteSpace = "nowrap";
+                            this.getElementsByTagName("span")[0].innerHTML = that._text;
+                            arrow.style.backgroundPosition = "0px 0px";
+                        }
+
+                        mp.getPanes().labelPane.appendChild(div);
+
+                        return div;
+                    }
+                    ComplexCustomOverlay.prototype.draw = function(){
+                        var mp = this._map;
+                        var pixel = mp.pointToOverlayPixel(this._point);
+                        this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+                        this._div.style.top  = pixel.y - 30 + "px";
+                    }
+
+
+
+                    /*获取所有分析点*/
+                    for(var i = 0;i<data.message.Origin.length;i++){
+                        var poi1 = data.message.Origin[i].GPS[0];
+                        var poi2 = data.message.Origin[i].GPS[1];
+                        var content =  data.message.Origin[i].RDO_DiseaseOrigin;
+                        var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(poi1,poi2), data.message.Origin[i].RDO_DiseaseOriginType,content);
+                        mp.addOverlay(myCompOverlay);
+                    }
+                }
+            })
+        }
+
+    });
+</script>
+</body>
+</html>

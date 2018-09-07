@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>高德地图test</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,#mapContainer{width: 100%;height: 100%;overflow-y: auto;margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .floatBord{
+            width:200px;
+            height:320px;
+            position: absolute;
+            top:20px;
+            right:50px;
+            background: #e2e2e2;
+            display: none;
+        }
+        .map-content{
+            position: relative;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed layui-this">
+                        <a href="#">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护评估</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--创建地图-->
+        <div class="map-content">
+            <div id="mapContainer"></div>
+            <div class="floatBord"></div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.5&key=b95d3be25490ad3d518b206f97756dad'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+<script>
+    var map = new AMap.Map('mapContainer', {
+        zoom: 12,
+        center: [106.576884,29.646889],      
+    });
+    map.setMapStyle('http://amap://styles/light');
+    function initLine(PathSimplifier, $) {
+        type = 100;
+        var level = ['总','A','B','C','D'];
+        var colors = [
+            '',"#2aa515",'#ea9518','#e0620d','#d81e06'
+        ]; 
+        function ajaxMap(type,level,thiscolor){
+
+            var pathSimplifierIns = new PathSimplifier({
+                zIndex: 100,
+                autoSetFitView:false,
+                map: map, //所属的地图实例
+                
+                getPath: function(pathData, pathIndex) {
+                    return pathData.path;
+                },
+                getHoverTitle: function(pathData, pathIndex, pointIndex) {
+                
+                    if (pointIndex >= 0) {
+                        //point 
+                        
+                        return pathData.name 
+                        //+ '，点：' + pointIndex + '/' + pathData.path.length;
+                    }
+
+                    return pathData.name;
+                },
+                renderOptions: {
+                    startPointStyle: {
+                        radius: 0.5,
+                        fillStyle: thiscolor,
+                        lineWidth: 1,
+                        strokeStyle: thiscolor
+                    },
+                    endPointStyle: {
+                        radius: 0.5,
+                        fillStyle: thiscolor,
+                        lineWidth: 1,
+                        strokeStyle: thiscolor
+                    },
+                    pathLineStyle: {
+                        dirArrowStyle: false
+                    },
+                    getPathStyle: function(pathItem, zoom) {
+
+                        var color = colors[pathItem.pathIndex % colors.length],
+                            lineWidth = 3
+
+                        return {
+                            pathLineStyle: {
+                                strokeStyle: thiscolor,
+                                lineWidth: lineWidth,
+                                borderStyle:0,
+                                borderWidth:0
+                            },
+                            pathLineSelectedStyle: {
+                                // lineWidth: lineWidth + 2
+                                
+                            },
+                            pathNavigatorStyle: {
+                                fillStyle: thiscolor
+                            }
+                        };
+                    }
+                },
+            });
+            window.pathSimplifierIns = pathSimplifierIns; 
+            pathSimplifierIns.on('pathClick pointClick', function(e, info){
+                console.log(info.pathData)
+            }); 
+                $.ajax({
+                type:'get',
+                url:'http://192.168.1.84:3000/api/GetRoadData/getRoadGPSTest',
+                data:{
+                    'type':type,
+                    'level':level
+                },
+                //async:false,
+                success:function(d){
+                    //alert(map.getZoom())
+                    var flyRoutes = [];
+                    var d = d.message;
+                    for (var i = 0, len = d.length; i < len; i++) {
+
+                        //if (d[i].name.indexOf('乌鲁木齐') >= 0) {
+
+                            d.splice(i, 0, {
+                                name: d[i].name,
+                                // path: PathSimplifier.getGeodesicPath(
+                                //     d[i].path[0], d[i].path[d[i].path.length - 1], 100)
+                                path:d[i].path
+                            });
+
+                            i++;
+                            len++;
+                        //}
+                    }
+
+                    d.push.apply(d, flyRoutes);
+
+                    pathSimplifierIns.setData(d);
+                    pathSimplifierIns.renderLater();
+                    //map.setZoom(12);
+                }
+            })
+        }
+              ajaxMap(type,level[0],colors[1]);  
+              //setTimeout(ajaxMap(type,level[1],colors[1]),1000);
+              setTimeout(ajaxMap(type,level[2],colors[2]),1000);
+              setTimeout(ajaxMap(type,level[3],colors[3]),2000);
+              setTimeout(ajaxMap(type,level[4],colors[4]),3000);
+              
+    }
+
+    function initPoint100(PointSimplifier, $){
+        var pointSimplifierIns, groupStyleMap;
+        pointSimplifierIns = new PointSimplifier({
+            zIndex: 115,
+            autoSetFitView: false,
+            map: map, //所属的地图实例
+
+            getPosition: function(item) {
+
+                var lngLatLine = item.lngLatLine;
+
+                if (!lngLatLine) {
+                    return null;
+                }
+
+                var parts = lngLatLine;
+
+                return [parseFloat(parts[0]), parseFloat(parts[1])];
+            },
+            getHoverTitle: function(dataItem, idx) {
+                return '主要病害点: ' + idx;
+            },
+            //使用GroupStyleRender
+            renderConstructor: PointSimplifier.Render.Canvas.GroupStyleRender,
+            renderOptions: {
+                //点的样式
+                pointStyle: {
+                    width: 7,
+                    height: 7,
+                    fillStyle:null
+                },
+                getGroupId: function(item, idx) {
+
+                    return item.groupId;
+                },
+                groupStyleOptions: function(gid) {
+
+                    //随机设置大小
+                    var radius = 2 + 10 * Math.random();
+
+                    return {
+
+                        pointStyle: radius > 0 ? {
+                            content: function(ctx, x, y, width, height) {
+
+                                var p = {
+                                    x: x + width / 2,
+                                    y: y + height / 2,
+                                    radius: radius
+                                };
+
+                                ctx.beginPath();
+                                var gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+                                gradient.addColorStop(0, "rgba(7,120,249,0.8)");
+                                gradient.addColorStop(1, "rgba(7,120,249,0.1)");
+                                ctx.fillStyle = gradient;
+                                ctx.arc(p.x, p.y, p.radius, Math.PI * 2, false);
+                                ctx.fill();
+
+                            },
+
+                            //fillStyle: colors[gid % colors.length],
+                            width: radius * 2,
+                            height: radius * 2
+                        } : null,
+                        pointHardcoreStyle: {
+                            width: radius * 2 + 3,
+                            height: radius * 2 + 3
+                        }
+                    };         
+                }
+
+            }
+        });
+
+
+
+        function onIconLoad() {
+            pointSimplifierIns.renderLater();
+        }
+
+        function onIconError(e) {
+            alert('加载失败！');
+        }
+        var line100;
+        $.get('http://192.168.1.84:3000/api/GetRoadData/getRoadGPSTestDis', function(csv) {
+            //alert(map.getZoom())
+            line100 = csv.message.disease100Arry;
+            var point100 = [];
+            for(var j=0;j<line100.length;j++){ 
+                point100.push({
+                    0:line100[j].GPS[0],
+                    1:line100[j].GPS[1]
+                })
+                data100 = [];
+                for (var i = 0, len = point100.length; i < len; i++) {
+
+                    data100.push({
+                        lngLatLine: point100[i],
+                    });
+                }
+            }
+            setInterval(function() {
+                pointSimplifierIns.render();
+            }, 500)
+            pointSimplifierIns.setData(data100);
+        });
+        //监听事件
+        pointSimplifierIns.on('pointClick', function(e, record) {
+            var index = record.index;
+            var v = line100[index];
+            var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                                    "<p style='line-height:25px;width:100%;font-size: 16px;color:#ff5140'>病害信息</p>" +
+                                    '<img src="image/'+v.Disease_Type+'.jpg" alt="" style="zoom:1;overflow:hidden;width:200px;height:100px;"/>' +
+                                    "<p style='line-height:25px;width:100%;border-bottom:1px dashed #ff5140;text-indent:2em'>病害类型："+v.Damage_Type+':'+v.Disease_Type+"</p>" +
+                                    "<p style='line-height:25px;width:100%;border-bottom:1px dashed #ff5140;text-indent:2em'>路段："+v.Disease_ZH+"</p>" +
+                                    "<p style='line-height:25px;width:100%;border-bottom:1px dashed #ff5140;text-indent:2em'>车道号："+v.Lane_Number+"</p>" +
+                                    "<p style='line-height:25px;width:100%;border-bottom:1px dashed #ff5140;text-indent:2em'>上下行："+v.Up_And_Down+"</p>" +
+                                    '</div>';
+                                    $('.floatBord').css('display','block');
+            $('.floatBord').html(content);
+        });
+    }
+    function initPoint500(PointSimplifier, $){
+        var pointSimplifierIns, groupStyleMap;
+        pointSimplifierIns = new PointSimplifier({
+            zIndex: 115,
+            autoSetFitView: false,
+            map: map, //所属的地图实例
+            getPosition: function(item) {
+
+                 var lngLatLine = item.lngLatLine;
+
+                 if (!lngLatLine) {
+                     return null;
+                 }
+
+                 var parts = lngLatLine;
+
+                return [parseFloat(parts[0]), parseFloat(parts[1])];
+            },
+            getHoverTitle: function(dataItem, idx) {
+                return '次要病害点: ' + idx;
+            },
+            //使用GroupStyleRender
+            renderConstructor: PointSimplifier.Render.Canvas.GroupStyleRender,
+            renderOptions: {
+                // //点的样式
+                pointStyle: {
+                    width: 7,
+                    height: 7,
+                    fillStyle:null
+                },
+                topNAreaStyle: null,
+                getGroupId: function(item, idx) {
+                    //console.log(idx);
+                    return  item.groupId;
+                },
+                // groupStyleOptions: function(gid) {
+                //     var radius = 2 + 10 * Math.random();
+                //     return groupStyleMap[gid];
+                // },
+                groupStyleOptions: function(gid) {
+
+                    //随机设置大小
+                    var radius = 2 + 10 * Math.random();
+
+                    return {
+
+                        pointStyle: radius > 0 ? {
+                            content: function(ctx, x, y, width, height) {
+
+                                var p = {
+                                    x: x + width / 2,
+                                    y: y + height / 2,
+                                    radius: radius
+                                };
+
+                                ctx.beginPath();
+                                var gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+                                gradient.addColorStop(0, "rgba(7,120,249,0.8)");
+                                gradient.addColorStop(1, "rgba(7,120,249,0.1)");
+                                ctx.fillStyle = gradient;
+                                ctx.arc(p.x, p.y, p.radius, Math.PI * 2, false);
+                                ctx.fill();
+
+                            },
+
+                            //fillStyle: colors[gid % colors.length],
+                            width: radius * 2,
+                            height: radius * 2
+                        } : null,
+                        pointHardcoreStyle: {
+                            width: radius * 2 + 3,
+                            height: radius * 2 + 3
+                        }
+                    };         
+                }
+
+            }
+        });
+
+        function onIconLoad() {
+            pointSimplifierIns.renderLater();
+        }
+
+        function onIconError(e) {
+            alert('图片加载失败！');
+        }
+        $.get('http://192.168.1.84:3000/api/GetRoadData/getRoadGPSTestDis', function(csv) {
+            var line500 = csv.message.disease500Arry;
+            var point500 = [];
+            for(var j=0;j<line500.length;j++){ 
+                point500.push({
+                    0:line500[j].GPS[0],
+                    1:line500[j].GPS[1]
+                })
+                data500 = [];
+                for (var i = 0, len = point500.length; i < len; i++) {
+
+                     data500.push({
+                         lngLatLine: point500[i],
+                     });
+                }
+            }
+            //重复render
+            setInterval(function() {
+                pointSimplifierIns.render();
+            }, 500)
+           pointSimplifierIns.setData(data500);
+          
+        })
+    }
+
+    AMapUI.load(['ui/misc/PointSimplifier', 'lib/$'], function(PointSimplifier, $) {
+
+        if (!PointSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+        initPoint100(PointSimplifier, $);
+        //initPoint500(PointSimplifier, $);
+    });
+    
+    
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+        initLine(PathSimplifier, $);
+        
+    });
+</script>
+</body>
+</html>

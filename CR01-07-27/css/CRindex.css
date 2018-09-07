@@ -1,0 +1,77 @@
+*{
+    margin:0;
+    padding: 0;
+
+}
+html{
+    overflow: hidden;
+}
+body{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.login-content{
+    width:100%;
+}
+.login{
+    width:100%;
+    margin:0 auto;
+    background: url("../image/background.jpg") no-repeat center;
+    position: relative;
+}
+.login-form{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin:auto;
+    width:550px;
+    height:480px;
+    background-color: #393D49;
+    border-radius: 10px;
+    opacity:0.9;
+}
+.login-logo>img{
+    display: block;
+    margin:35px auto;
+}
+.layui-fluid{
+    padding:0;
+}
+.layui-nav-tree .layui-nav-item>a{
+    height:100px;
+    text-align: center;
+}
+.layui-nav-tree .layui-nav-item a img{
+    display: inline-block;
+    padding-top: 20px;
+
+}
+.layui-nav-tree .layui-nav-item a p{
+    text-align: center;
+}
+.layui-nav-itemed .layui-nav-more {
+    top: 44px;
+}
+.layui-nav-tree .layui-nav-more {
+    top: 40px;
+    right: 10px;
+}
+.layui-nav-tree .layui-nav-child a {
+    height: 35px;
+    line-height: 40px;
+    color: #fff;
+    color: rgba(255,255,255,.7);
+    text-align: center;
+}
+.layui-btn-danger {
+    background-color: #ff5140;
+}
+.layui-elem-field legend{
+    color: white;
+}
+
+
+
+

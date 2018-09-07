@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,.situation-content{width: 100%;height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: #404866;
+            margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .situation-content legend{
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:#404866!important}
+        .layui-table thead  tr,.layui-table tbody  tr{
+            background-color: #404866;
+            color: white;
+        }
+        .layui-table thead  tr,.layui-table tbody  tr td{
+            background-color: #404866;
+        }
+        .layui-table th,.layui-table td{
+            border:1px solid #353c66;
+        }
+        #road2 {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd ><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class="layui-this"><a href="#">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="getRoad">
+                        </select>
+                    </div>
+                </div>
+               
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="situation-content">
+            <div id="situationContainer">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>病害统计图</legend>
+                </fieldset>
+                <form class="layui-form">
+                    <table class="layui-table" style="background-color: inherit;">
+                        <tbody>
+                        <tr>
+                            <td style="width: 100%;border:0">
+                                <div id="diseasePie" style="width:100%;height:400px;"></div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>路上病害统计</legend>
+                </fieldset>
+                <form class="layui-form" action="">
+                    <table class="layui-table baseinfo-table pci-table" id="road1">
+                        <thead>
+                            <tr>
+                                <th>损坏类型</th>
+                                <th>损坏形式</th>
+                                <th>单项扣分值</th>
+                                <th>单项权重</th>
+                                <th>单项扣分</th>
+                                <th>单类权重</th>
+                                <th>综合扣分值</th>
+                                <th>PCI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3">（a）裂缝类</td>
+                                <td>线裂（a1）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                                <td rowspan="3" name="PCI_Points"></td>
+                                <td rowspan="3" name="PCI_SingleClassWeight"></td>
+                                <td rowspan="13" name="PCI_Tatol"></td>
+                                <td rowspan="13" name="PCI_Value"></td>
+                            </tr>
+                            <tr>
+                                <td>网裂（a2）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>龟裂（a3）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">（b）变形类</td>
+                                <td>拥包（b1）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                                <td rowspan="4" name="PCI_Points"></td>
+                                <td rowspan="4" name="PCI_SingleClassWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>车辙（b2）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>沉陷（b3）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>翻浆（b4）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">（c）松散类</td>
+                                <td>剥落（c1）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                                <td rowspan="3" name="PCI_Points"></td>
+                                <td rowspan="3" name="PCI_SingleClassWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>坑槽（c2）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>啃边（c3）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">（d）其他类</td>
+                                <td>路框差（d1）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                                <td rowspan="3" name="PCI_Points"></td>
+                                <td rowspan="3" name="PCI_SingleClassWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>唧浆（d2）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                            <tr>
+                                <td>泛油（d3）</td>
+                                <td name="PCI_PointsValue"></td>
+                                <td name="PCI_SingleWeight"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+                <!--混凝土-->
+                <table class="layui-table baseinfo-table pci-table" id="road2">
+                    <thead>
+                    <tr>
+                        <th>损坏类型</th>
+                        <th>损坏形式</th>
+                        <th>单项扣分值</th>
+                        <th>单项权重</th>
+                        <th>单项扣分</th>
+                        <th>单类权重</th>
+                        <th>综合扣分值</th>
+                        <th>PCI</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td rowspan="4">（a）裂缝类</td>
+                        <td>线裂（a1）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                        <td rowspan="4" name="PCI_Points"></td>
+                        <td rowspan="4" name="PCI_SingleClassWeight"></td>
+                        <td rowspan="14" name="PCI_Tatol"></td>
+                        <td rowspan="14" name="PCI_Value"></td>
+                    </tr>
+                    <tr>
+                        <td>板角断裂（a4）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>边角裂缝（a5）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>拥包交叉裂缝和破碎板（a6）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">（e）接缝破坏类</td>
+                        <td>接缝料损坏（e1）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                        <td rowspan="2" name="PCI_Points"></td>
+                        <td rowspan="2" name="PCI_SingleClassWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>边角剥落（e2）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">（f）表面破坏类</td>
+                        <td>坑洞（f1）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                        <td rowspan="3" name="PCI_Points"></td>
+                        <td rowspan="3" name="PCI_SingleClassWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>表面裂纹（f2）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>层状剥落（f3）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5">（d）其他类</td>
+                        <td>路框差（d1）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                        <td rowspan="5" name="PCI_Points"></td>
+                        <td rowspan="5" name="PCI_SingleClassWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>唧浆（d2）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>错台（d4）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>拱胀（d5）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    <tr>
+                        <td>沉陷（d6）</td>
+                        <td name="PCI_PointsValue"></td>
+                        <td name="PCI_SingleWeight"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['element','form','layer','table'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var table = layui.table;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+         * 单元格换色
+         * */
+        $(".layui-table  thead  tr:odd").css("backgroundColor",'rgb(68,77,110)');
+
+        /*
+         * 获取所有道路
+         * */
+        getRoadlist();
+
+        function getRoadlist() {
+            $.ajax({
+                type: 'get',
+                url: 'http://'+ip+ '/api/RoadInfo/getRoadlist',
+                data: {
+                    "UserID": localStorage.getItem("_id")
+                },
+                success: function (data) {
+                    //console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for (var i = 0; i < roadLength; i++) {
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="' + RoadID + '">' + BI_RoadName + '</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(getRoad)', function(a){
+                        getRoadPCI();
+                        getDiseasePie();
+                    });
+                    getRoadPCI();
+                    getDiseasePie();
+                }
+            });
+        }
+
+        /*
+         * 获取道路PCI
+         * */
+        function getRoadPCI(){
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/GetRoadData/getRoadPCI',
+                data:{
+                    RoadID:$('select option:selected').val()
+                },
+                success:function (data) {
+                    localStorage.setItem("selectId",$('select option:selected').val());
+//                    console.log(data.message);
+                    var mianTable = $("#road1");
+                    if(data.message.RoadBedType === '混凝土路面'){
+                        $("#road1").hide();
+                        $("#road2").show();
+                        mianTable = $("#road2");
+                    }else {
+                        $("#road1").show();
+                        $("#road2").hide();
+                        mianTable = $("#road1");
+                    }
+                    if(data.message==null){
+                        $('tbody td[name*="PCI_"]').text('');
+                        return;
+                    }
+                    mianTable.find('td[name="PCI_Tatol"]').html(data.message.PCI_Tatol);
+                    mianTable.find('td[name="PCI_Value"]').html(data.message.PCI_Value);
+
+                    var PCI_PointsArry=data.message.PCI_Points.split('|');
+                    var PCI_PointsTd=mianTable.find('td[name="PCI_Points"]');
+                    var PCI_SingleClassWeightArry=data.message.PCI_SingleClassWeight.split('|');
+                    var PCI_SingleClassWeightTd=mianTable.find('td[name="PCI_SingleClassWeight"]');
+                    for(var i=0;i<PCI_PointsArry.length;i++){
+                        $(PCI_PointsTd[i]).html(PCI_PointsArry[i]);
+                        $(PCI_SingleClassWeightTd[i]).html(PCI_SingleClassWeightArry[i]);
+                    }
+
+                    var PCI_PointsValueArry=data.message.PCI_PointsValue.split('|');
+                    var PCI_PointsValueTd=mianTable.find('td[name="PCI_PointsValue"]');
+                    var PCI_SingleWeightArry=data.message.PCI_SingleWeight.split('|');
+                    var PCI_SingleWeightTd=mianTable.find('td[name="PCI_SingleWeight"]');
+                    for(var i=0;i<PCI_PointsValueArry.length;i++){
+                        $(PCI_PointsValueTd[i]).html(PCI_PointsValueArry[i]);
+                        $(PCI_SingleWeightTd[i]).html(PCI_SingleWeightArry[i]);
+                    }
+                }
+            })
+        }
+        //获取病害
+        function getDiseasePie() {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/GetRoadData/getDiseasePie',
+                data:{
+                    RoadID:$('select option:selected').val()
+                },
+                success:function (data) {
+                    localStorage.setItem("selectId",$('select option:selected').val());
+//                    console.log(data);
+                    $('.woc').css('display','none');
+                    $('.DiseasePie').css('display','block');
+                    var myChart = echarts.init(document.getElementById('diseasePie'));
+                    option = {
+                        tooltip : {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            textStyle:{
+                                fontSize:15,
+                                color:'#fff'
+                            },
+                            orient: 'vertical',
+                            left: 'left',
+                            data: data.message.data1
+                        },
+                        series : [
+                            {
+                                name: '',
+                                type: 'pie',
+                                radius : '55%',
+                                center: ['50%', '60%'],
+                                data:data.message.data2,
+                                itemStyle: {
+                                    emphasis: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    myChart.setOption(option,true);
+                }
+            })
+        }
+
+    });
+</script>
+</body>
+</html>

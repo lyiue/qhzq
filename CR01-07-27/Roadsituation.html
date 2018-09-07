@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,.situation-content{width: 100%;height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: #404866;
+            margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .situation-content legend{
+            color: white;
+        }
+        .echart1{
+            width:97%;
+            margin:0 auto;
+            border:1px solid black;
+        }
+        .layui-table{
+            background-color: inherit;
+        }
+        .layui-form .layui-table tbody tr:hover{background-color:#404866!important}
+        .situation-form .layui-table  td{
+            height:60px;
+            border-left: none;
+            border-top: none;
+            border-bottom: none;
+            color: white;
+            margin:auto;
+        }
+        .situation-form .layui-table  td img{
+            display: inline-block;float: left;
+        }
+        .situation-form .layui-table  td div{
+            float: left;height: 57px;
+            width:50%;
+            text-indent: 24px;
+        }
+        .situation-form .layui-table  td div>p{
+            font-size: 16px;line-height: 30px;
+        }
+        .situation-form .layui-table  td div p{
+            table-layout:fixed;
+        }
+        .situation-form table td input{
+            background-color: inherit;
+            border:none;
+
+            color: white;
+            text-overflow:ellipsis;overflow:hidden;white-space: nowrap;
+        }
+        .jiegoutable td{
+            border: none;
+            color: white;
+        }
+        .jiegoutable td img{
+            margin-bottom: 10px;
+        }
+        .jiegoutable td p{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a  class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd class="layui-this"><a href="#">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="getRoad">
+                        </select>
+                    </div>
+                </div>
+                
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="situation-content">
+            <div id="situationContainer">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>道路评分等级</legend>
+                </fieldset>
+                <div id="echart1" style="width:100%;height: 360px;"></div>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>行政识别数据</legend>
+                </fieldset>
+                <form class="layui-form situation-form" action="">
+                    <table class="layui-table situation-table">
+                        <tbody>
+                        <tr>
+                            <td style="display: none">
+                                <img src="image/道路编号.png">
+                                <div>
+                                    <p>道路id</p>
+                                    <p class=""><input name="RoadID"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/道路编号.png">
+                                <div>
+                                    <p>道路编号</p>
+                                    <p class=""><input name="BI_RoadNumber"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/道路等级.png">
+                                <div>
+                                    <p>道路等级</p>
+                                    <p class=""><input name="BI_RoadLevel"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/道路起点.png" >
+                                <div>
+                                    <p>道路起点</p>
+                                    <p class=""><input name="BI_RoadStar"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/道路止点.png">
+                                <div >
+                                    <p >道路止点</p>
+                                    <p class=""><input name="BI_RoadEnd"></p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="image/道路长度.png" >
+                                <div >
+                                    <p>道路长度</p>
+                                    <p class=""><input name="BI_RoadLength"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/道路宽度.png" >
+                                <div >
+                                    <p>道路宽度</p>
+                                    <p class=""><input name="BI_RoadWidth"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/行车速度.png" >
+                                <div >
+                                    <p >行车速度</p>
+                                    <p class=""><input name="BI_DesignSpeed"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/面层类型.png" >
+                                <div >
+                                    <p >面层类型</p>
+                                    <p class=""><input name="RW_PavementType"></p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="image/区属.png" >
+                                <div >
+                                    <p >区属</p>
+                                    <p class=""><input name="BI_DesignUnit"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/设计寿命.png" >
+                                <div >
+                                    <p>设计寿命</p>
+                                    <p></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/建成年限.png" >
+                                <div>
+                                    <p>建成年限</p>
+                                    <p class=""><input name="BI_BuiltYear"></p>
+                                </div>
+                            </td>
+                            <td>
+                                <img src="image/管养单位.png" >
+                                <div >
+                                    <p >管养单位</p>
+                                    <p class=""><input name="BI_ManageUnit" MULTIPLE="multiple"></p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>结构技术数据</legend>
+                </fieldset>
+                <form class="layui-form" action="">
+                    <table class="layui-table jiegoutable" style="margin:0">
+                        <tbody>
+                        <tr>
+                            <td style="background-color: rgb(157,160,175);border:0;text-align: center">
+                                <img src="image/路线.png" style="">
+                                <div>
+                                    <p>平整度</p>
+                                    <p class="RS_Planeness"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(122,127,147);border:0;text-align: center">
+                                <img src="image/路线.png">
+                                <div>
+                                    <p>车辙</p>
+                                    <p class="RS_Rut"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(157,160,175);border:0;text-align: center">
+                                <img src="image/路线.png">
+                                <div>
+                                    <p>构造深度</p>
+                                    <p class="RS_TectonicDepth"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(122,127,147);border:0;text-align: center">
+                                <img src="image/路线.png" >
+                                <div>
+                                    <p>路面破损</p>
+                                    <p class="RS_PavementDamage"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(157,160,175);border:0;text-align: center">
+                                <img src="image/路线.png">
+                                <div >
+                                    <p>横向力系数</p>
+                                    <p class="RS_CorneringRatio"></p>
+                                </div>
+                            </td>
+
+                            <td style="background-color: rgb(122,127,147);border:0;text-align: center">
+                                <img src="image/路线.png" >
+                                <div>
+                                    <p>弯沉</p>
+                                    <p class="RS_Deflection"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(157,160,175);border:0;text-align: center">
+                                <img src="image/路线.png" >
+                                <div>
+                                    <p>层厚</p>
+                                    <p class="RS_ThickLayer"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(122,127,147);border:0;text-align: center">
+                                <img src="image/路线.png" >
+                                <div >
+                                    <p>沉降</p>
+                                    <p class="RS_Settlement"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(157,160,175);border:0;text-align: center">
+                                <img src="image/路线.png" >
+                                <div >
+                                    <p>结构层内缺陷</p>
+                                    <p class="RS_SheafBug"></p>
+                                </div>
+                            </td>
+                            <td style="background-color: rgb(122,127,147);border:0;text-align: center">
+                                <img src="image/路线.png" >
+                                <div >
+                                    <p>管线</p>
+                                    <p class="RS_Pipeline"></p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['element','form'], function(){
+        var element = layui.element;
+        var form = layui.form;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        $('input').attr('disabled',true);
+
+        $(window).resize(function () {
+            getRoadNowInfo();
+        })
+
+        /*
+         * 获取所有道路
+         * */
+        getRoadlist();
+
+        function getRoadlist() {
+            $.ajax({
+                type: 'get',
+                url: 'http://'+ip+ '/api/RoadInfo/getRoadlist',
+                data: {
+                    "UserID": localStorage.getItem("_id")
+                },
+                success: function (data) {
+                    //console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for (var i = 0; i < roadLength; i++) {
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="' + RoadID + '">' + BI_RoadName + '</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(getRoad)', function(a){
+                        getRoadNowInfo();
+                    });
+                    getRoadNowInfo();
+                }
+            });
+        }
+
+
+        function getRoadNowInfo() {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/GetRoadData/getRoadNowInfo',
+                data:{
+                    RoadID:$('select option:selected').val()
+                },
+                success:function (data) {
+                    console.log(data);
+                    localStorage.setItem("selectId",$('select option:selected').val());
+                    $('input[name*="RoadID"]').val(data.message.CT_Road._id);
+                    for(var dataInput in data.message.CT_Road){
+                        if($('input[name*="'+dataInput+'"]')){
+                            var value = data.message.CT_Road[dataInput];
+                            $('input[name="'+dataInput+'"]').val(value);
+                        }
+                    }
+                    if(data.message.CT_RoadSkillInfo == null){
+                        $('.RS_Planeness').text('暂无数据');
+                        $('.RS_Rut').text('暂无数据');
+                        $('.RS_TectonicDepth').text('暂无数据');
+                        $('.RS_PavementDamage').text('暂无数据');
+                        $('.RS_CorneringRatio').text('暂无数据');
+                        $('.RS_Deflection').text('暂无数据');
+                        $('.RS_ThickLayer').text('暂无数据');
+                        $('.RS_Settlement').text('暂无数据');
+                        $('.RS_SheafBug').text('暂无数据');
+                        $('.RS_Pipeline').text('暂无数据');
+                    }
+                    $('.RS_Planeness').text(data.message.CT_RoadSkillInfo.RS_Planeness);
+                    $('.RS_Rut').text(data.message.CT_RoadSkillInfo.RS_Rut);
+                    $('.RS_TectonicDepth').text(data.message.CT_RoadSkillInfo.RS_TectonicDepth);
+                    $('.RS_PavementDamage').text(data.message.CT_RoadSkillInfo.RS_PavementDamage);
+                    $('.RS_CorneringRatio').text(data.message.CT_RoadSkillInfo.RS_CorneringRatio);
+                    $('.RS_Deflection').text(data.message.CT_RoadSkillInfo.RS_Deflection);
+                    $('.RS_ThickLayer').text(data.message.CT_RoadSkillInfo.RS_ThickLayer);
+                    $('.RS_Settlement').text(data.message.CT_RoadSkillInfo.RS_Settlement);
+                    $('.RS_SheafBug').text(data.message.CT_RoadSkillInfo.RS_SheafBug);
+                    $('.RS_Pipeline').text(data.message.CT_RoadSkillInfo.RS_Pipeline);
+                    var myChart = echarts.init(document.getElementById('echart1'));
+                    option = {
+                        title: {
+                        },
+                        tooltip: {
+                        },
+                        animationDurationUpdate: 1500,
+                        animationEasingUpdate: 'quinticInOut',
+                        geo:{
+                            roam:false
+                        },
+                        series: [
+                            {
+                                type: 'graph',
+                                layout: 'none',
+                                roam: false,
+                                edgeSymbol: ['circle', ''],
+                                edgeSymbolSize: [5, 10],
+                                label: {
+                                    normal: {
+                                        show: true,
+                                    }
+                                },
+                                data: [
+                                    {
+                                        name: 'PCI' + data.message.CT_Road_Data.RoadPCI,
+                                        x: 1000,
+                                        y: 300,
+                                        symbolSize: 60,
+                                        label: {
+                                            normal: {
+                                                formatter: "PCI\n" + data.message.CT_Road_Data.RoadPCI,
+                                                textStyle: {
+                                                    fontSize:16
+                                                }
+
+                                            }
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(166,80,169)'
+                                            }
+                                        }
+                                    }, {
+                                        name: '道路评分',
+                                        x: 550,
+                                        y: 300,
+                                        symbolSize: 100,
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(82,130,230)'
+                                            }
+                                        },
+                                        label: {
+                                            normal: {
+                                                formatter: "道路评分\n"+data.message.CT_Road_Data.RoadPQI,
+                                                textStyle: {
+                                                    fontSize: 20
+                                                }
+
+                                            }
+                                        },
+                                    }, {
+                                        name: 'SFC' + data.message.CT_Road_Data.RoadSFC,
+                                        x: 400,
+                                        y: 250,
+                                        symbolSize: 70,
+                                        label: {
+                                            normal: {
+                                                //formatter: "SFC\n" + data.message.CT_Road_Data.RoadSFC,
+                                                formatter: "SFC\n" + "-",
+                                                textStyle: {
+                                                    fontSize: 16
+                                                }
+                                            }
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(255,133,74)'
+                                            }
+                                        }
+                                    }, {
+                                        name: 'TD' + data.message.CT_Road_Data.RoadTD,
+                                        x: 325,
+                                        y: 400,
+                                        symbolSize: 70,
+                                        label: {
+                                            normal: {
+                                                formatter: "TD\n" + data.message.CT_Road_Data.RoadTD,
+                                                textStyle: {
+                                                    fontSize:16
+                                                }
+                                            }
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(236,196,85)'
+                                            }
+                                        }
+                                    }, {
+                                        name: 'RQI' + data.message.CT_Road_Data.RoadRQI,
+                                        x: 850,
+                                        y: 370,
+                                        symbolSize: 60,
+                                        label: {
+                                            normal: {
+                                                formatter: "RQI\n" + data.message.CT_Road_Data.RoadRQI,
+                                                textStyle: {
+                                                    fontSize: 16
+                                                }
+                                            }
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(255,102,104)'
+                                            }
+                                        }
+                                    }, {
+                                        name: '弯沉' + data.message.CT_Road_Data.RoadDEF,
+                                        x: 700,
+                                        y: 390,
+                                        symbolSize: 70,
+                                        label: {
+                                            normal: {
+                                                //formatter: "弯沉\n" + data.message.CT_Road_Data.RoadDEF,
+                                                formatter: "弯沉\n"  + "-",
+                                                textStyle: {
+                                                    fontSize: 16
+                                                }
+                                            }
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(62,179,127)'
+                                            }
+                                        }
+                                    }
+                                    , {
+                                        name: 'PQI' + data.message.CT_Road_Data.RoadPQI,
+                                        x: 775,
+                                        y: 200,
+                                        symbolSize: 70,
+                                        label: {
+                                            normal: {
+                                                formatter: "PQI\n" + data.message.CT_Road_Data.RoadPQI,
+                                                textStyle: {
+                                                    fontSize: 16
+                                                }
+                                            }
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: 'rgb(104,94,235)'
+                                            }
+                                        }
+                                    }
+                                ],
+                                // links: [],
+                                links: [
+                                    {
+                                        source: 'SFC' +  data.message.CT_Road_Data.RoadSFC,
+                                        target: '道路评分',
+                                        symbol: ['', 'arrow']
+                                    }, {
+                                        source: 'PQI' + data.message.CT_Road_Data.RoadPQI,
+                                        target: '道路评分',
+                                        symbol: ['', 'arrow']
+                                    }, {
+                                        source: 'TD' + data.message.CT_Road_Data.RoadTD,
+                                        target: '道路评分',
+                                        symbol: ['', 'arrow']
+                                    }, {
+                                        source: '弯沉' + data.message.CT_Road_Data.RoadDEF,
+                                        target: '道路评分',
+                                        symbol: ['', 'arrow']
+                                    }, {
+                                        source: 'RQI' + data.message.CT_Road_Data.RoadRQI,
+                                        target: 'PQI' + data.message.CT_Road_Data.RoadPQI,
+                                        symbol: ['', 'arrow']
+                                    }, {
+                                        source: 'PCI' + data.message.CT_Road_Data.RoadPCI,
+                                        target: 'PQI' + data.message.CT_Road_Data.RoadPQI,
+                                        symbol: ['', 'arrow']
+                                    }
+                                ],
+                                lineStyle: {
+                                    normal: {
+                                        opacity: 0.9,
+                                        width: 2,
+                                        curveness: 0
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    myChart.setOption(option,true);
+                }
+            })
+        }
+
+
+    });
+</script>
+</body>
+</html>

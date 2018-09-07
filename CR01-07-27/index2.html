@@ -1,0 +1,615 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,#mapContainer{width: 100%;height: 100%;overflow-y: auto;margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed layui-this">
+                        <a href="#">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护评估</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="getRoad">
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="layui-btn layui-btn-danger">+</button>
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <!--创建地图-->
+        <div class="map-content">
+            <div id="mapContainer"></div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lnj2r20rbxBN1GGYBLmiqelbHCGGr7vK"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script>
+    layui.use(['element','form'], function(){
+        var element = layui.element;
+        var form = layui.form;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        function Dictionary() {
+            var items = {};
+
+            this.has = function (key) {
+                return key in items;
+            };
+
+            this.set = function (key, value) {
+                items[key] = value;
+            };
+
+            this.remove = function (key) {
+                if (this.has(key)) {
+                    delete items[key];
+                    return true;
+                }
+                return false;
+            };
+
+            this.get = function (key) {
+                return this.has(key) ? items[key] : undefined;
+            };
+
+            this.values = function () {
+                var values = [];
+                for (var k in items) {
+                    if (this.has(k)) {
+                        values.push(items[k]);
+                    }
+                }
+                return values;
+            };
+
+            this.clear = function () {
+                items = {};
+            };
+
+            this.size = function () {
+                var count = 0;
+                for (var prop in items) {
+                    if (items.hasOwnProperty(prop)) {
+                        ++count;
+                    }
+                }
+                return count;
+            };
+
+            this.getItems = function () {
+                return items;
+            };
+        }
+
+        var dictionary_line = new Dictionary();
+        var dictionary_point = new Dictionary();
+
+        /*
+         * 获取所有道路
+         * */
+        getRoadlist();
+        function getRoadlist() {
+            $.ajax({
+                type: 'get',
+                url: 'http://'+ip+ '/api/RoadInfo/getRoadlist',
+                data: {
+                    "UserID": localStorage.getItem("_id")
+                },
+                success: function (data) {
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for (var i = 0; i < roadLength; i++) {
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="' + RoadID + '">' + BI_RoadName + '</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",'');
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(getRoad)', function(a){
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                        getdragend(13, 0);
+                    });
+                    getdragend(13, 0);
+                }
+            });
+        }
+
+        var map = new BMap.Map("mapContainer",{minZoom:13,maxZoom:17,enableMapClick:false}); // 创建地图实例
+        map.enableScrollWheelZoom(true);
+        map.addControl(new BMap.MapTypeControl());//三维 混合
+        var bs = map.getBounds();   //返回地图可视区域
+        var bc = bs.getCenter();
+        var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT});   //设置版权控件位置
+        map.addControl(cr); //添加版权控件
+        cr.addCopyright({
+            id: 1,
+            content: "<a href='#' style='font-size:12px;color:black'>重庆亲禾智千科技有限公司</a>",
+            bounds: bs
+        });
+        var myStyleJson = [
+            {
+                "featureType": "all",
+                "elementType": "all",
+                "stylers": {
+                    "lightness": 10,
+                    "saturation": -100
+                }
+            }
+        ];
+        map.setMapStyle({styleJson: myStyleJson});
+
+
+        var timeoutflag = null;
+        map.addEventListener('dragend', function(){
+            var zoom = map.getZoom();
+            if(timeoutflag != null){
+                clearTimeout(timeoutflag);
+            }
+            timeoutflag=setTimeout(function(){
+                getdragend(zoom, 1);
+            },500);
+        });
+
+        map.addEventListener("zoomend", function () {
+            
+            var zoom = map.getZoom();
+            if(timeoutflag != null){
+                clearTimeout(timeoutflag);
+            }
+            timeoutflag=setTimeout(function(){
+                getZoom(zoom,1);
+            },500);
+        });
+
+        var lastleve = 1;
+        function getZoom(zoom, type) {
+
+            var RoadSelectType = 0;
+            var center = [map.getCenter().lng ,+ map.getCenter().lat];
+
+            if (zoom <= 13 && lastleve != 1) {
+                map.clearOverlays();
+                dictionary_line = new Dictionary();
+                map.enableScrollWheelZoom();
+                RoadSelectType = 0;
+                initmap(RoadSelectType, zoom, type, center);
+                lastleve = 1;
+
+            }
+            else if (zoom == 14 && lastleve != 2) {
+                map.clearOverlays();
+                dictionary_line = new Dictionary();
+                map.enableScrollWheelZoom();
+                RoadSelectType = 1000;
+                initmap(RoadSelectType, zoom, type, center);
+                lastleve = 2;
+
+            }
+            else if (zoom == 15 && lastleve != 3) {
+                lastleve = 3;
+                map.clearOverlays();
+                dictionary_line = new Dictionary();
+                map.enableScrollWheelZoom();
+                RoadSelectType = 500;
+                initmap(RoadSelectType, zoom, type, center);
+
+            }
+            else if (zoom > 15 && zoom < 18 && lastleve != 4) {
+                map.clearOverlays();
+                dictionary_line = new Dictionary();
+                map.enableScrollWheelZoom();
+                RoadSelectType = 100;
+                initmap(RoadSelectType, zoom, type, center);
+                lastleve = 4;
+
+            }
+            else{
+            }
+        }
+
+        function getdragend(zoom, type) {
+
+            var RoadSelectType = 0;
+            var center = [map.getCenter().lng, +map.getCenter().lat];
+
+            if (zoom <= 13) {
+                map.enableScrollWheelZoom();
+                RoadSelectType = 0;
+                initmap(RoadSelectType, zoom, type, center);
+            }
+            else if (zoom == 14) {
+                map.enableScrollWheelZoom();
+                RoadSelectType = 1000;
+                initmap(RoadSelectType, zoom, type, center);
+            }
+            else if (zoom == 15) {
+                map.enableScrollWheelZoom();
+                RoadSelectType = 500;
+                initmap(RoadSelectType, zoom, type, center);
+            }
+            else if (zoom > 15 && zoom < 18) {
+                map.enableScrollWheelZoom();
+                RoadSelectType = 100;
+                initmap(RoadSelectType, zoom, type, center);
+            }
+            else {
+            }
+        }
+
+        function initmap(RoadSelectType,zoom,type,center) {
+            console.log(center);
+            var selectRoadID = $('select option:selected').val();//道路选中Id
+            //console.log(selectRoadID);
+            $.ajax({
+                type: 'get',
+                url: 'http://' + ip + '/api/GetRoadData/getRoadGPSAll',
+                data: {
+                    UserID: localStorage.getItem("_id"),
+                    RoadID: localStorage.getItem("selectId"),
+                    zoom:zoom,
+                    center:center
+                },
+                success: function (data) {
+                    
+                    console.log(data);
+                    if (type == 0) {
+                        var point = new BMap.Point(data.message.Center[0], data.message.Center[1]);  // 创建点坐标
+                        getdragend(zoom,1);
+                        return map.centerAndZoom(point, zoom);                 // 初始化地图，设置中心点坐标和地图级别
+                    }
+
+
+                    map.enableScrollWheelZoom(true);
+                    /*  获取所有路段节点  */
+                    var gps = data.message.GPSALL;
+                    for (var i = 0; i < gps.length; i++) {
+                        var sontent =
+                            "<p style='width:100%;height:60px;background-color:#353c66;font-size: 22px;color: white;text-align: center;line-height: 60px;'>"+gps[i]["CT_Road_Data"].RoadPQI+"" +
+                            "<a href='CR.baseInfo.html' value="+gps[i]["CT_Road_Data"]._id+" style='color: white;font-size: 12px;text-decoration: underline'>详细</a>" +
+                            "</p>" +
+                            "<p style='line-height:35px;width:100%;border-bottom:1px dashed black;'>得分详情：</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>RQI："+gps[i]["CT_Road_Data"].RoadRQI+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>PCI："+gps[i]["CT_Road_Data"].RoadPCI+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>沉降："+gps[i]["CT_Road_Data"].RoadCH+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>SFC："+gps[i]["CT_Road_Data"].RoadSFC+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>TD："+gps[i]["CT_Road_Data"].RoadTD+"</p>" +
+                            "</div>";
+                        for (var j = 0; j < gps[i]["CT_GPS"].length; j++) {
+                            
+                            if (dictionary_line.has(gps[i]["CT_GPS"][j][0]["RoadID"] + gps[i]["CT_GPS"][j][0]["ZH"] + gps[i]["CT_GPS"][j][0]["Up_And_Down"])) {
+                            } else { 
+                            var startX = gps[i]["CT_GPS"][j][0]["GPS"];
+                            var startY = gps[i]["CT_GPS"][j][1]["GPS"];
+                            var Level = gps[i]["CT_GPS"][j][1].Level;
+                            var startX1 = new BMap.Point(startX[0], startX[1]);
+                            var startY1 = new BMap.Point(startY[0], startY[1]);
+                            getLine(startX1, startY1, Level, sontent,zoom);
+                            dictionary_line.set(gps[i]["CT_GPS"][j][0]["RoadID"] + gps[i]["CT_GPS"][j][0]["ZH"] + gps[i]["CT_GPS"][j][0]["Up_And_Down"], 1)
+                            }
+                        }
+                    }
+                    function getLine(startX1, startY1, Level,sontent,zoom) {
+                        var color = {
+                            A: '#16bf00',
+                            B: '#ff9f18',
+                            C: '#f33030',
+                            D: '#bb0000'
+                        };
+                        if(zoom<=13){
+                                var driving = new BMap.DrivingRoute(map, {
+                                onSearchComplete: function (results) {
+                                    if (driving.getStatus() == BMAP_STATUS_SUCCESS) {
+                                        var plan = results.getPlan(0);
+                                        var arrPois = [];
+                                        for (var j = 0; j < plan.getNumRoutes(); j++) {
+                                            var route = plan.getRoute(j);
+                                            arrPois = arrPois.concat(route.getPath());
+                                        }
+                                        var polyline = new BMap.Polyline(arrPois, {
+                                            strokeColor: color[Level],
+                                            strokeWeight: 5
+                                        });
+                                        addClickHandler1(sontent,polyline);
+                                        map.addOverlay(polyline);
+                                    }
+                                }
+                            });
+                            driving.search(startX1, startY1);
+                        }else{
+                            var polyline = new BMap.Polyline([
+                                startX1,  startY1
+                            ], {strokeColor:color[Level], strokeWeight:5});   //创建折线
+                            addClickHandler1(sontent,polyline);
+                            map.addOverlay(polyline);   //增加折线
+                        }
+
+
+
+
+                    }
+                    // 增加道路评分
+                    var opl = {
+                        width : 250,     // 信息窗口宽度
+                        height: 270,     // 信息窗口高度
+                        title:"道路评级"
+                    };
+                    function addClickHandler1(sontent,polyline){
+                        polyline.addEventListener("click",function (e) {
+                            openInfo1(sontent,e)
+                        })
+                    }
+                    function openInfo1(sontent,e){
+                        var p = e;
+                        console.log(p);
+                        var point = new BMap.Point(p.point.lng, p.point.lat);
+                        var infoWindow = new BMap.InfoWindow(sontent,opl);  // 创建信息窗口对象
+                        map.openInfoWindow(infoWindow,point); //开启信息窗口
+                    }
+
+
+                    if(RoadSelectType == 500){
+                        //病害
+
+                        for (var a = 0; a < gps.length; a++) {
+                            for(var b = 0;b < gps[a]["CT_Disease0"].length;b++){
+                                var json = gps[a]["CT_Disease0"][b].Json;
+                                var content = '';
+                                for(var key in json){
+                                    content += '<div style="margin:0;line-height:20px;padding:2px;overflow: auto">' +
+                                        '次要病害：'+key+':'+json[key]+'<br/>'+
+                                        '</div>';
+                                }
+                                var disease = gps[a]["CT_Disease0"][b]["GPS"];
+                                getPoint(disease[0],disease[1],content,"CT_Disease0");
+                            }
+                        }
+                    }
+                    if(RoadSelectType == 100){
+
+                        for (var a = 0; a < gps.length; a++) {
+                            for(var b = 0;b < gps[a]["CT_Disease0"].length;b++){
+                                var json = gps[a]["CT_Disease0"][b];
+                                var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                                    '<img src="../image/'+json.Disease_Type+'.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                                    '病害类型：'+json.Damage_Type+':'+json.Disease_Type+'<br/>'+
+                                    '路段：'+json.Disease_ZH+'<br/>'+
+//                                '坐标：'+data.message.CT_Disease[j].GPSX+','+data.message.CT_Disease[j].GPSY+'<br/>'+
+                                    '车道号：'+json.Lane_Number+'<br/>'+
+                                    '上下行：'+json.Up_And_Down+'<br/>'+
+                                    '</div>';
+                                var disease = gps[a]["CT_Disease0"][b]["GPS"];
+                                getPoint(disease[0],disease[1],content,"CT_Disease0");
+                            }
+                        }
+                    }
+                    if(RoadSelectType == 100||RoadSelectType == 500){
+
+                        for (var a = 0; a < gps.length; a++) {
+                            for(var b = 0;b < gps[a]["CT_Disease1"].length;b++){
+                                var json = gps[a]["CT_Disease1"][b];
+                                var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                                    '<img src="../image/'+json.Disease_Type+'.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                                    '病害类型：'+json.Damage_Type+':'+json.Disease_Type+'<br/>'+
+                                    '路段：'+json.Disease_ZH+'<br/>'+
+    //                                '坐标：'+data.message.CT_Disease[j].GPSX+','+data.message.CT_Disease[j].GPSY+'<br/>'+
+                                    '车道号：'+json.Lane_Number+'<br/>'+
+                                    '上下行：'+json.Up_And_Down+'<br/>'+
+                                    '</div>';
+                                var disease = gps[a]["CT_Disease1"][b]["GPS"];
+                                getPoint(disease[0],disease[1],content,"CT_Disease1");
+                            }
+                        }
+                    }
+
+
+                    function getPoint(x,y,content,type) {
+                        var pt = new BMap.Point(x, y);
+                        var marker;
+                        if (type == "CT_Disease1") {
+                            //var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300,157));
+                            marker = new BMap.Marker(pt);
+                        }
+                        else {
+                            marker = new BMap.Marker(pt);
+                        }
+                        map.addOverlay(marker);               // 将标注添加到地图中
+                        addClickHandler(content, marker);
+                    }
+                    function addClickHandler(content,marker){
+                        marker.addEventListener("click",function(e){
+                            openInfo(content,e)}
+                        );
+                    }
+                    function openInfo(content,e){
+                        var p = e.target;
+                        console.log(p);
+                        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+                        var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象
+                        map.openInfoWindow(infoWindow,point); //开启信息窗口
+                    }
+                    // 增加病害点
+                    var opts = {
+                        width : 300,     // 信息窗口宽度
+                        height: 0,     // 信息窗口高度
+                        title : "病害信息"  // 信息窗口标题
+                    };
+                }
+            })
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .login-form form{
+            width:450px;
+            height:400px;
+            margin:0 auto;
+            font-size: 16px;
+            color:white;
+        }
+        .layui-form-label{
+            text-align: center;
+        }
+        .login-form form  .person-btn-bg{
+            margin-top: 20px;
+            margin-bottom: 13px;
+        }
+        .login-form form  .person-btn-con{
+            margin-left: 0;
+        }
+        .person-btn{
+           margin-left: 48%;
+
+        }
+        .person-return-btn{
+            margin-left: 33%;
+            padding: 0 26px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-content">
+    <div class="login">
+        <div class="login-form">
+            <div class="login-title">
+                <img src="image/person.do1.png" style="width:600px;margin:15px auto;">
+            </div>
+            <form class="layui-form login-form1" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserName" lay-verify="username|required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码:</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="UserPwd" lay-verify="pass|required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码:</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="UserPwd2" lay-verify="pass2|required" placeholder="请输入.." class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">授权号:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserSeriesNum" lay-verify="number|required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电子邮箱:</label>
+                    <div class="layui-input-block"  >
+                        <input type="text" name="UserEmail" lay-verify="email|required" placeholder="请输入.."  class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码:</label>
+                    <div class="layui-input-inline" style="width:212px;">
+                        <input type="text" name="emailcheck" lay-verify="emailcheck|required" placeholder="请输入.."  class="layui-input">
+                    </div>
+                    <button  type="button" class="layui-btn layui-btn-primary EmailCheck"  lay-filter="check">获取验证码</button>
+                </div>
+                <div class="layui-form-item person-btn-bg">
+                    <div class="layui-input-block person-btn-con">
+                        <button class="layui-btn person-btn" lay-submit="" lay-filter="first">下一步</button>
+                    </div>
+                </div>
+            </form>
+            <form class="layui-form login-form2" action="" style="display: none">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">真实姓名:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserRealName" lay-verify="required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">工作职位:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserJob" lay-verify="required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单位名称:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserUnitName" lay-verify="required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单位地址:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserUnitAddr" lay-verify="required" placeholder="请输入.." autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单位电话:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="UserTel" lay-verify="required" placeholder="请输入.." class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item person-btn-bg">
+                    <div class="layui-input-block person-btn-con">
+                        <button  class="layui-btn person-return-btn" lay-submit="" lay-filter="">上一步</button>
+                        <button  class="layui-btn person-finish-btn" lay-submit="" lay-filter="allform">完成</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/login.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['form','layer'], function(){
+        var form = layui.form
+            ,layer = layui.layer;
+
+        //用户名已存在
+        var data1;
+        $('input[name="UserName"]').on('blur',function () {
+            var username = $('input[name="UserName"]').val();
+            $.ajax({
+                type:'post',
+                url:'http://'+ip+'/api/User/checkuser',
+                data:{UserName:username},
+                success:function (data) {
+                    //console.log(data);
+                    data1 = data;
+                }
+            })
+        });
+        //授权号
+        var dataSeriesNum;
+        $('input[name="UserSeriesNum"]').on('blur',function () {
+            var UserSeriesNum = $('input[name="UserSeriesNum"]').val();
+            $.ajax({
+                type:'post',
+                url:'http://'+ip+'/api/User/checkUserSeriesNum',
+                data:{UserSeriesNum:UserSeriesNum},
+                success:function (data) {
+                    console.log(data);
+                    dataSeriesNum = data;
+                }
+            });
+        });
+
+
+
+        var check;
+        var check1;
+        $('.EmailCheck').on('click',function () {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/Email/EmailCheck',
+                data:{
+                    "UserEmail":$('input[name="UserEmail"]').val()
+                },
+                success:function (data) {
+                    console.log(data);
+                    if(data.success == false){
+                        check1 = data.message;
+                        layer.msg('<div style="padding:10px 10px">'+data.message+'</div>', {
+                            time: 2000
+                        });
+                    }
+                    else{
+                        check = data.message;
+                        $('.EmailCheck').attr('disabled','disabled');
+                        var count = 60;
+                        var timer = setInterval(function(){
+                            if(count>0){
+                                count--;
+                                $('.EmailCheck').text("剩余时间"+ count +"s");
+                            }else{
+                                $('.EmailCheck').text("获取验证码");
+                                $('.EmailCheck').attr('disabled',false);
+                                clearInterval(timer); //清除计时器
+                            }
+                        },1000);
+
+                    }
+                }
+            });
+        });
+        //自定义验证规则
+        form.verify({
+            username: function(value, item){
+                if(value == ''){
+                    return '用户名不能为空'
+                }
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '用户名不能有特殊字符';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '用户名首尾不能出现下划线\'_\'';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '用户名不能全为数字';
+                }
+                if(data1.success == false){
+                    return data1.message;
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,pass2:function (value, item) {
+                var pass = $('input[name="UserPwd"]').val();
+                if(value != pass){
+                    return '密码两次输入不一致';
+                }
+            }
+            ,email:function (value, item) {
+                if(value == ''){
+                    return '邮箱不能为空'
+                }
+                if(!new RegExp("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$").test(value)){
+                    return '请输入正确邮箱账号';
+                }
+            }
+            ,number:function (value,item) {
+                if(value == ''){
+                    return '授权号不能为空'
+                }
+                if(!dataSeriesNum.success){
+                    return dataSeriesNum.message;
+                }
+            }
+            ,emailcheck:function (value,item) {
+                if(value == '' ){
+                    return '验证码不能为空'
+                }
+                if(value !=check ){
+                    return '验证码不正确'
+                }
+                console.log(check);
+    }
+        });
+
+
+        //监听提交
+        $('.person-return-btn').on('click',function () {
+            $('.login-form1').css('display','block');
+            $('.login-form2').css('display','none');
+        })
+        form.on('submit(first)', function(subdata){
+            $('.login-form1').css('display','none');
+            $('.login-form2').css('display','block');
+            return false;
+        });
+
+
+        form.on('submit(allform)', function(data){
+            $('.person-finish-btn').attr('disabled','true');
+            var data1 = $('form').serializeJSON();
+                $.ajax({
+                    type:'post',
+                    url:'http://'+ip+'/api/User/register',
+                    data:data1,
+                    beforeSend:function () {
+                        $('.person-finish-btn').html('<i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63d;</i>').attr('disabled','false');
+                    },
+                    success:function (data1) {
+                        console.log(data1);
+                        $('.person-finish-btn').html('完成');
+                        layer.msg('<div style="padding:20px 30px">注册成功！</div>', {
+                            time: 20000, //20s后自动关闭
+                            btn: [ '确定']
+                        });
+                        layer.open({
+                            type:1
+                            ,title:"提示消息"
+                            ,closeBtn:1
+                            ,area: ['380px', '170px']
+                            ,shade:0.1
+                            ,btn:'确定'
+                            ,btnAlign:'c'
+                            ,moveType:0.5
+                            ,content:''
+                            ,success:function(layero, index){
+
+                            }
+                            ,yes:function(index,layero){
+                                layer.closeAll();
+                                location.href='login.html';
+                            }
+                            ,cancel:function(index,layero){
+                                layer.closeAll();
+                                location.href='login.html';
+                            }
+                        });
+                    }
+                });
+            return false;
+        });
+    });
+
+</script>
+</body>
+</html>

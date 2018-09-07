@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .form-header{
+            padding-top: 10px;
+        }
+        body{
+            overflow:hidden;
+        }
+        body, html,.RoadInfoedit-content{width: 100%;height: 100%;overflow-y:hidden;margin:0;font-family:"微软雅黑";
+            background-color: #404866;
+            position: relative;
+        }
+        .RoadInfoedit-content{
+            overflow-x: hidden;
+        }
+        .RoadInfoedit-content table{
+            background-color: #353c66;
+            border:#9a9a9a ;
+        }
+        .RoadInfoedit-content table input{
+            background-color: inherit;
+            color: white;
+        }
+        .layui-table td{
+            border: 1px solid #9a9a9a;
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:#404866!important}
+        .tdeven{
+            background-color: #404866;
+        }
+        form input{
+            border:none;
+        }
+        .baseinfo-title {
+            color:#ff5140;
+        }
+        .layui-tab-title{
+            color: white;
+        }
+        .layui-tab-title .layui-this {
+            color: #ff5140;
+            /*background-color: rgba(255,81,64,0.4);*/
+        }
+        .layui-form-up{
+
+        }
+        .layui-form-item{
+            width:1366px;
+            margin:0 auto;
+        }
+        .layui-form-item>.layui-inline{
+            margin:0 auto;
+            width: 520px;
+        }
+        .layui-form-item .layui-inline{
+            margin-bottom: 40px;
+        }
+        .layui-form-item .layui-inline .layui-form-label{
+            width: 120px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="RoadInfo.html">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd><a href="Maintenanceadvice.html">养护建议</a></dd>
+                            <dd class="layui-this"><a href="#">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" id="selectroad"  lay-filter="aaa"></select>
+                    </div>
+                </div>
+
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="RoadInfoedit-content">
+
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script>
+    layui.use(['element','form','table','upload'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var table = layui.table
+            ,upload = layui.upload;
+
+
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+         * 单元格换色
+         * */
+        $(".baseinfo table tr td:nth-child(odd)").addClass("tdeven");
+
+        /*
+         * 获取当前用户下的所有道路
+         * */
+        loadAjaxRoad();
+        function loadAjaxRoad() {
+            $.ajax({
+                type:'get',
+                url:'http://'+ip+'/api/RoadInfo/getRoadlist',
+                data:{
+                    "UserID":localStorage.getItem("_id")
+                },
+                success:function (data){
+                    console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for(var i = 0;i<roadLength;i++){
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="'+RoadID+'">'+BI_RoadName+'</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(aaa)', function(a){
+                        getFile();
+                    });
+                    getFile();
+                }
+            });
+        }
+
+        function getFile() {
+            localStorage.setItem("selectId",$('select option:selected').val());
+            var url='http://'+ip+'/api/GetLib/getFile?RoadID='+localStorage.getItem("selectId")+'&Type=MaintenanceAssessment&Mode=Check';
+            $.ajax({
+                url: url,
+                type: 'get',
+                data: {
+
+                },
+                success: function(data) {
+                    if(!data.success){
+                        layer.open({
+                            type:1
+                            ,title:"提示消息"
+                            ,closeBtn:1
+                            ,area: ['380px', '170px']
+                            ,shade:0.8
+                            ,btn:'确定'
+                            ,btnAlign:'c'
+                            ,moveType:0.5
+                            ,content:'<div style="padding:20px 30px">'+data.message+'</div>'
+                            ,success:function(layero, index){
+                                $('.RoadInfoedit-content').html('');
+                            }
+                            ,yes:function(index,layero){
+                                layer.closeAll();
+                            }
+                            ,cancel:function(index,layero){
+                                layer.closeAll();
+                            }
+                        });
+                    }else{
+                        $('.RoadInfoedit-content').html($('<iframe src="js/pdfjs1/web/viewer.html" style="width:100%;height:100%;"></iframe>'));
+                    }
+                },
+                error: function(xhr, textStatus) {
+                    layer.open({
+                        type:1
+                        ,title:"提示消息"
+                        ,closeBtn:1
+                        ,area: ['380px', '170px']
+                        ,shade:0.8
+                        ,btn:'确定'
+                        ,btnAlign:'c'
+                        ,moveType:0.5
+                        ,content:'<div style="padding:20px 30px">'+data.message+'</div>'
+                        ,success:function(layero, index){
+                            $('.RoadInfoedit-content').html('');
+                        }
+                        ,yes:function(index,layero){
+                            layer.closeAll();
+                        }
+                        ,cancel:function(index,layero){
+                            layer.closeAll();
+                        }
+                    });
+                }
+            })
+        }
+
+
+
+
+
+    });
+</script>
+</body>
+</html>

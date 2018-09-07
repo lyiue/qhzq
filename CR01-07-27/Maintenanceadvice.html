@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/CRindex.css" media="all">
+    <title>道路健康评价管理系统</title>
+    <style>
+        .layui-nav-tree{vertical-align: top;}
+        .cr-content{
+            height:63px;
+            background-color: #e2e2e2;
+        }
+        .form-header{
+            padding-top: 10px;
+            display: inline-block;
+        }
+        body, html,.situation-content{width: 100%;height: 100%;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            background-color: #404866;
+            margin:0;font-family:"微软雅黑";position: relative;}
+        .imgButton{
+            display: block;
+            position: absolute;
+            left: 88%;
+            top:10px;
+        }
+        .imgButton img{
+            float: left;
+            cursor:pointer;
+            margin-left: 20px;
+        }
+        .situation-content legend{
+            color: white;
+        }
+        .layui-table tbody tr:hover{background-color:#404866!important}
+        .layui-table thead  tr,.layui-table tbody  tr{
+            background-color: #404866;
+            color: white;
+        }
+        .layui-table thead  tr,.layui-table tbody  tr td{
+            background-color: #404866;
+        }
+        .layui-table th,.layui-table td{
+            border:1px solid #353c66;
+        }
+        #mapContainer{width: 100%;height: 100%;overflow-y: auto;margin:0;font-family:"微软雅黑";position: relative;}
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="row">
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                    <li class="layui-nav-item layui-nav-item-first layui-nav-itemed ">
+                        <a class="userSet" href="editinfo.html">
+                            <img src="image/用户.png" style="display: inline-block">
+                            <img src="image/用户_12.png" class="MunePich" style="display: none">
+                            <p></p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="index.html">
+                            <img src="image/gis.png" style="display: inline-block">
+                            <img src="image/gis_h.png" class="MunePich" style="display: none">
+                            <p>GIS路况</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed ">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>基础数据</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd class=""><a href="CR.baseInfo.html">静态数据</a></dd>
+                            <dd ><a href="Roadsituation.html">道路现状</a></dd>
+                            <dd><a href="Roadrecords.html">健康档案</a></dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/基础.png" style="display: inline-block">
+                            <img src="image/基础_h.png" class="MunePich" style="display: none">
+                            <p>技术评定</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadtestReport.html">检测报告</a></dd>
+                            <dd><a href="Roadassess.html">评定分析</a></dd>
+                            <dd><a href="sequential.html">环比分析</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/病害.png" style="display: inline-block">
+                            <img src="image/病害_h.png" class="MunePich" style="display: none">
+                            <p>病害诊断</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="Roaddisease.html">病害统计</a></dd>
+                            <dd><a href="Roaddiseases.it.html">病害成因分析</a></dd>
+                            <dd><a href="">3D展示</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadPipeline.html">
+                            <img src="image/管线.png" style="display: inline-block">
+                            <img src="image/管线_h.png" class="MunePich" style="display: none">
+                            <p>管线档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="RoadInfo.html">
+                            <img src="image/养护.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>路网档案</p>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="#">
+                            <img src="image/路网.png" style="display: inline-block">
+                            <img src="image/路网_h.png" class="MunePich" style="display: none">
+                            <p>养护科学决策</p>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="RoadDecisiontree.html">决策树</a></dd>
+                            <dd class="layui-this"><a href="#">养护建议</a></dd>
+                            <dd><a href="Maintenanceevaluation.html">养护报告</a></dd>
+                            <dd><a></a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cr-content">
+            <form class="layui-form form-header" action="">
+                <div class="layui-inline">
+                    <label class="layui-form-label">道路选择</label>
+                    <div class="layui-input-inline">
+                        <select name="getRoadlist" lay-filter="getRoad"></select>
+                    </div>
+                </div>
+               
+            </form>
+            <div class="imgButton">
+                <img src="image/切换.png" class="userTypeBut1" style="display: none">
+                <img src="image/设置.png" class="userTypeBut2" style="display: none">
+                <img src="image/退出.png" class="userExit">
+            </div>
+        </div>
+        <div class="situation-content">
+            <div id="situationContainer">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>养护建议</legend>
+                </fieldset>
+                <!--创建地图-->
+                <div id="mapContainer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/IP.js"></script>
+<script src="js/index.js"></script>
+<script src="js/jquery.serializejson.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lnj2r20rbxBN1GGYBLmiqelbHCGGr7vK"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script>
+    layui.use(['element','form','layer','table'], function(){
+        var element = layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var table = layui.table;
+
+        /*功能条*/
+        localStorage.getItem("UserType");
+        if(localStorage.getItem("UserType") == 0){
+            /*普通用户*/
+            $('.userTypeBut2').css('display','block');
+        }
+        if(localStorage.getItem("UserType") == 1){
+            /*工作用户*/
+            $('.userTypeBut1').css('display','block');
+            $('.userSet').unwrap().wrap('<div class="layui-nav-item layui-nav-item-first layui-nav-itemed"><a class="userSet">'+
+                '<img src="image/用户.png" style="display: inline-block">'+
+                '<img src="image/用户_12.png" class="MunePich" style="display: none">'+
+                '<p></p>'+ '</a></div>')
+        }
+        /*导航条*/
+        var UserName = localStorage.getItem('UserName');
+        var UserUnitName = localStorage.getItem('UserUnitName');
+        $('.layui-nav-item-first p').html(UserName+':'+UserUnitName);
+
+        $('.userExit').on('click',function () {
+            localStorage.removeItem('UserName');
+            localStorage.removeItem('UserType');
+            localStorage.removeItem('_id');
+            localStorage.removeItem('selectId');
+            localStorage.removeItem('superId');
+            location.href='login.html';
+        });
+        $('.userTypeBut1').on('click',function () {
+            localStorage.setItem('selectId','');
+            location.href='superperson.html';
+        });
+        $('.userTypeBut2').on('click',function () {
+            location.href='editinfo.html';
+        });
+
+        /*
+         * 单元格换色
+         * */
+        $(".layui-table  thead  tr:odd").css("backgroundColor",'rgb(68,77,110)');
+
+        /*
+         * 获取所有道路
+         * */
+        getRoadlist();
+
+        function getRoadlist() {
+            $.ajax({
+                type: 'get',
+                url: 'http://'+ip+ '/api/RoadInfo/getRoadlist',
+                data: {
+                    "UserID": localStorage.getItem("_id")
+                },
+                success: function (data) {
+                    //console.log(data);
+                    var roadLength = data.message.length;
+                    var roadName = '';
+                    for (var i = 0; i < roadLength; i++) {
+                        //获取所有道路名称
+                        var BI_RoadName = data.message[i].BI_RoadName;
+                        var RoadID = data.message[i]._id;
+                        roadName += '<option value="' + RoadID + '">' + BI_RoadName + '</option>';
+                    }
+                    $('select[name="getRoadlist"]').append(roadName);
+                    if(localStorage.getItem("selectId") == undefined || localStorage.getItem("selectId") == null || localStorage.getItem("selectId") == ''){
+                        $('select[name="getRoadlist"]').val($('select').children().eq(0).val());
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                    }else{
+                        $('select[name="getRoadlist"]').val(localStorage.getItem("selectId"));
+                    }
+                    form.render('select');
+                    form.on('select(getRoad)', function(a){
+                        localStorage.setItem("selectId",$('select option:selected').val());
+                        initmap();
+                    });
+                    initmap();
+                }
+            });
+        }
+
+        /*
+         * 调取道路病害点及成因
+         * */
+        var map = new BMap.Map("mapContainer",{minZoom:13,maxZoom:17,enableMapClick:false}); // 创建地图实例
+        map.enableScrollWheelZoom(true);
+        map.addControl(new BMap.MapTypeControl());//三维 混合
+        var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT});   //设置版权控件位置
+        map.addControl(cr); //添加版权控件
+        var bs = map.getBounds();   //返回地图可视区域
+        cr.addCopyright({ id: 1,
+            content: "<a href='#' style='font-size:12px;color:black'>重庆亲禾智千科技有限公司</a>",
+            bounds: bs});
+        var myStyleJson = [
+            {
+                "featureType": "all",
+                "elementType": "all",
+                "stylers": {
+                    "lightness": 10,
+                    "saturation": -100
+                }
+            }
+        ];
+        map.setMapStyle({styleJson: myStyleJson});
+
+        function initmap() {
+            $.ajax({
+                type: 'get',
+                url: 'http://' + ip + '/api/GetRoadData/getRoadDiseaseCuring',
+                data: {
+                    RoadID: localStorage.getItem("selectId")
+                },
+                success: function (data) {
+                    console.log(data);
+                    map.clearOverlays();
+                    var point = new BMap.Point(data.message.Center[0], data.message.Center[1]);
+                    map.centerAndZoom(point,15);
+                    /*  获取所有路段节点  */
+                    //上行
+                    var startX1U = data.message.RoadUp[0][0];
+                    var startX2U = data.message.RoadUp[1][0];
+                    var starty1U = data.message.RoadUp[0][1];
+                    var starty2U = data.message.RoadUp[1][1];
+                    var startX1 = new BMap.Point(startX1U, starty1U);
+                    var startY1 = new BMap.Point(startX2U, starty2U);
+                    getLine(startX1,startY1);
+                    function getLine(startX1, startY1) {
+                        var driving = new BMap.DrivingRoute(map, {
+                            onSearchComplete: function (results) {
+                                if (driving.getStatus() == BMAP_STATUS_SUCCESS) {
+                                    var plan = results.getPlan(0);
+                                    var arrPois = [];
+                                    for (var j = 0; j < plan.getNumRoutes(); j++) {
+                                        var route = plan.getRoute(j);
+                                        arrPois = arrPois.concat(route.getPath());
+                                    }
+                                    var polyline = new BMap.Polyline(arrPois, {
+                                        strokeColor: "blue",
+                                        strokeWeight: 5
+                                    });
+                                    map.addOverlay(polyline);
+                                }
+                            }
+                        });
+                        driving.search(startX1, startY1);
+                    }
+
+                    //整段病害
+                    for(var i = 0;i<data.message.LineArry.length;i++){
+                        var startX1L = data.message.LineArry[i].GPS[0];
+                        var startX2L = data.message.LineArry[i].GPS[1];
+                        var starty1L = data.message.LineArry[i].GPS[0];
+                        var starty2L = data.message.LineArry[i].GPS[1];
+                        var startL1 = new BMap.Point(startX1L, startX2L);
+                        var startL2 = new BMap.Point(starty1L, starty2L);
+                        getLineL(startL1,startL2);
+                    }
+                    function getLineL(startL1, startL2) {
+                        var driving = new BMap.DrivingRoute(map, {
+                            onSearchComplete: function (results) {
+                                if (driving.getStatus() == BMAP_STATUS_SUCCESS) {
+                                    var plan = results.getPlan(0);
+                                    var arrPois = [];
+                                    for (var j = 0; j < plan.getNumRoutes(); j++) {
+                                        var route = plan.getRoute(j);
+                                        arrPois = arrPois.concat(route.getPath());
+                                    }
+                                    var polyline = new BMap.Polyline(arrPois, {
+                                        strokeColor: "green",
+                                        strokeWeight: 5
+                                    });
+                                    map.addOverlay(polyline);
+                                }
+                            }
+                        });
+                        driving.search(startX1, startY1);
+                    }
+
+
+                    /*获取所有分析点*/
+                    for(var i = 0;i<data.message.pointArry.length;i++){
+                        var poi1 = data.message.pointArry[i].GPS[0];
+                        var poi2 = data.message.pointArry[i].GPS[1];
+                        var content =  '<div style="margin:0;line-height:20px;padding:2px;">' +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>起始桩号："+data.message.pointArry[i].RDC_StarStopZH+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>行车方向："+data.message.pointArry[i].RDC_Up_And_Down+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>车道号："+data.message.pointArry[i].RDC_Lane_Number+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>路面类型："+data.message.pointArry[i].RDC_WayType+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>损坏类型："+data.message.pointArry[i].RDC_DamageType+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>病害类型："+data.message.pointArry[i].RDC_DiseaseType+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>长度/面积/体积（单位）m/㎡/m³："+data.message.pointArry[i].RDC_Value+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>预养护措施："+data.message.pointArry[i].RDC_Curing+"</p>" +
+                            "<p style='line-height:25px;width:100%;border-bottom:1px dashed black;text-indent:2em'>（参考）材料费用："+data.message.pointArry[i].RDC_Cost+"</p>" +
+                            '</div>';
+                        getPoint(poi1,poi2,content);
+                    }
+                    function getPoint(poi1,poi2,content) {
+                        var marker = new BMap.Marker(new BMap.Point(poi1,poi2));
+                        map.addOverlay(marker);               // 将标注添加到地图中
+                        addClickHandler(content, marker);
+                    }
+                    function addClickHandler(content,marker){
+                        marker.addEventListener("click",function(e){
+                            openInfo(content,e)}
+                        );
+                    }
+                    function openInfo(content,e){
+                        var p = e.target;
+                        var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+                        var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象
+                        map.openInfoWindow(infoWindow,point); //开启信息窗口
+                    }
+                    // 增加病害点
+                    var opts = {
+                        width : 300,     // 信息窗口宽度
+                        height: 0,     // 信息窗口高度
+                        title : "养护建议"  // 信息窗口标题
+                    };
+                }
+            })
+        }
+
+
+    });
+</script>
+</body>
+</html>
