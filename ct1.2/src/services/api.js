@@ -78,8 +78,8 @@ export async function queryNotices() {
   return request('/api/notices');
 }
 
-// const IP= 'http://120.26.227.120:3000'; // 正式
-const IP= 'http://192.168.1.84:3000'; // 开发
+const IP= 'http://120.26.227.120:3000'; // 正式
+// const IP= 'http://192.168.1.84:3000'; // 开发
 export async function getGisPoint(params) {
   return request(IP+'/api/GetRoadData/getRoadGPSTestDis', {
     method: 'GET',
@@ -157,13 +157,13 @@ export async function getRoadCarInfo(params) {
 //   });
 // }
 
-//路网档案
-export async function getRoadlistSearch(params) {
-  return request(IP+'/api/RoadInfo/getRoadlistSearch', {
-    method: 'GET',
-    body: params,
-  });
-}
+// //路网档案
+// export async function getRoadlistSearch(params) {
+//   return request(IP+'/api/RoadInfo/getRoadlistSearch', {
+//     method: 'GET',
+//     body: params,
+//   });
+// }
 
 /************* 假数据 **************/
 export async function getEvaluateType() {
@@ -180,4 +180,8 @@ export async function getDiseasePie() {
 
 export async function getRoadPCI() {
   return request('/api/getRoadPCI');
+}
+
+export async function getRoadlistSearch(params) {
+  return request('/api/getRoadlistSearch');
 }

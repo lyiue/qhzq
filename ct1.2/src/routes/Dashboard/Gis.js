@@ -90,8 +90,8 @@ export default class Gis extends React.PureComponent{
       getGisPathD:{getGisPathD},
       loading 
     }= this.props;
-    console.log(getGisPoint);
-    console.log({getGisPoint});
+    // console.log(getGisPoint);
+    // console.log({getGisPoint});
     if(typeof(getGisPoint)=== "undefined" || getGisPoint.length<1){
 
     }

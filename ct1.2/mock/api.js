@@ -376,6 +376,16 @@ export const getRoadPCI = {
 //   }
 // }
 
+export const getRoadlistSearch = {
+  "success":true,
+  "message":{
+    "countnum":7,
+    "pagecount":2,
+    "data":[{
+      "RoadID":"ce78e117-a999-4091-a9fd-3c297f990ae1",
+      "_id":"ce78e117-a999-4091-a9fd-3c297f990ae1",
+      "BI_RoadName":"20180903","RW_LaneNumber":0,"CT_RoadPic":"RoadPic/timg.gif","BI_RoadLength":0,"RoadLastTime":"2018-09-03T18:38:00.000Z","RoadLastPQI":"D","CT_UserInfoID":"5b46a69bf5096a2b8c91c969","RoadLastTimeN":"2018-9-4"},{"RoadID":"4979d7b5-d9c6-4ef6-a2f1-4382871d3ad7","_id":"4979d7b5-d9c6-4ef6-a2f1-4382871d3ad7","BI_RoadName":"20180901","RW_LaneNumber":0,"CT_RoadPic":"RoadPic/timg.gif","BI_RoadLength":0,"RoadLastTime":"2018-09-01T17:23:00.000Z","RoadLastPQI":"A","CT_UserInfoID":"5b46a69bf5096a2b8c91c969","RoadLastTimeN":"2018-9-2"},{"RoadID":"c5e3064d-6a3f-4cb6-a6d4-f1982d6ef5bb","_id":"c5e3064d-6a3f-4cb6-a6d4-f1982d6ef5bb","BI_RoadName":"同茂大道T","RW_LaneNumber":0,"CT_RoadPic":"RoadPic/timg.gif","BI_RoadLength":0,"RoadLastTime":"2018-08-29T12:26:00.000Z","RoadLastPQI":"A","CT_UserInfoID":"5b46a69bf5096a2b8c91c969","RoadLastTimeN":"2018-8-29"},{"RoadID":"a5091d3a-e081-4991-9e09-2c6269683fef","_id":"a5091d3a-e081-4991-9e09-2c6269683fef","BI_RoadName":"Test20180828","RW_LaneNumber":0,"CT_RoadPic":"RoadPic/2018_8_28_15_13_667.jpg","BI_RoadLength":0,"RoadLastTime":null,"RoadLastPQI":null,"CT_UserInfoID":"5b46a69bf5096a2b8c91c969","RoadLastTimeN":"1970-1-1"},{"RoadID":"53c853a4-70c8-4189-8d86-486067758f8d","_id":"53c853a4-70c8-4189-8d86-486067758f8d","BI_RoadName":"宏声大道","RW_LaneNumber":4,"CT_RoadPic":"RoadPic/2018_8_28_10_15_881.jpg","BI_RoadLength":642,"RoadLastTime":"2018-07-12T11:32:00.000Z","RoadLastPQI":"B","CT_UserInfoID":"5b46a69bf5096a2b8c91c969","RoadLastTimeN":"2018-7-12"},{"RoadID":"68074002-80be-4011-a5ff-1c8ca9cf626d","_id":"68074002-80be-4011-a5ff-1c8ca9cf626d","BI_RoadName":"顺江大道","RW_LaneNumber":5,"CT_RoadPic":"RoadPic/timg.gif","BI_RoadLength":80,"RoadLastTime":"2018-07-12T11:25:00.000Z","RoadLastPQI":"D","CT_UserInfoID":"5b46a69bf5096a2b8c91c969","RoadLastTimeN":"2018-7-12"}]}};
+
 export default {
   getNotice,
   getActivities,
@@ -384,4 +394,5 @@ export default {
   getEvaluateType_hb,
   getDiseasePie,
   getRoadPCI,
+  getRoadlistSearch,
 };

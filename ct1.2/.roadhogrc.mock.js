@@ -1,6 +1,6 @@
 import mockjs from 'mockjs';
 import { getRule, postRule } from './mock/rule';
-import { getActivities, getNotice, getFakeList,getEvaluateType,getEvaluateType_hb,getDiseasePie,getRoadPCI } from './mock/api';
+import { getActivities, getNotice, getFakeList,getEvaluateType,getEvaluateType_hb,getDiseasePie,getRoadPCI,getRoadlistSearch } from './mock/api';
 import { getFakeChartData } from './mock/chart';
 import { getProfileBasicData } from './mock/profile';
 import { getProfileAdvancedData } from './mock/profile';
@@ -136,6 +136,7 @@ const proxy = {
   'GET /api/getEvaluateType_hb': getEvaluateType_hb,
   'GET /api/getDiseasePie': getDiseasePie,
   'GET /api/getRoadPCI': getRoadPCI,
+  'GET /api/getRoadlistSearch': getRoadlistSearch,
 
   // getEvaluateType_hb
   

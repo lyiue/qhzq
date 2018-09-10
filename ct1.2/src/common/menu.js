@@ -141,7 +141,7 @@ const menuData = [
 {
   name: '路网档案',
   icon: '/static/lw.png',
-  path: 'b',
+  path: 'list/card-list1',
   // children: []
 },
 {
@@ -149,6 +149,29 @@ const menuData = [
   icon: '/static/yh.png',
   path: 'c',
   // children: []
+},
+{
+  name: '列表页',
+  icon: 'table',
+  path: 'list',
+  children: [{
+    name: '查询表格',
+    path: 'table-list',
+    // hideInMenu: true
+  }, {
+    name: '标准列表',
+    path: 'basic-list',
+    // hideInMenu: true
+  }, {
+    name: '卡片列表',
+    path: 'card-list',
+    // hideInMenu: true
+  },
+  // {
+  //   name: '道路列表',
+  //   path: 'card-list1',
+  // },
+]
 },
 // {
 //   name: '详情页',

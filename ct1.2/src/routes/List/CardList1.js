@@ -31,6 +31,13 @@ export default class CardList extends PureComponent {
       },
     });
   }
+  setUpClick (e,road_id){
+    e.preventDefault();
+    if(road_id){
+      localStorage.setItem('selectRoadId',road_id);
+      this.props.history.push({ pathname : '/dashboard/baseinfo'});
+    }
+  }
 
   render() {
     const { getRoadlistSearch: { getRoadlistSearch }, loading } = this.props;
@@ -40,6 +47,7 @@ export default class CardList extends PureComponent {
       for(var i=0;i<getRoadlistSearch.data.length;i++){
         roadlist.push({
           avatar:'http://120.26.227.120:3000/api/imageview?url='+getRoadlistSearch.data[i].CT_RoadPic,
+          // avatar:'http://192.168.1.84:3000/api/imageview?url='+getRoadlistSearch.data[i].CT_RoadPic,
           roadId:getRoadlistSearch.data[i].RoadID,
           title:getRoadlistSearch.data[i].BI_RoadName,
           description:"道路等级"+getRoadlistSearch.data[i].RoadLastPQI 
@@ -47,7 +55,7 @@ export default class CardList extends PureComponent {
       }
     }
     const onChange = (page) => {
-      console.log(page);
+      // console.log(page);
       this.setState({
         current: page,
       },()=>{
@@ -63,7 +71,7 @@ export default class CardList extends PureComponent {
       });
     }
     const SearchChange = (value)=>{
-      console.log(value);
+      // console.log(value);
       this.setState({
         SearchValue: value,
         current:1
@@ -95,7 +103,7 @@ export default class CardList extends PureComponent {
             dataSource={roadlist}
             renderItem={item =>
               <List.Item key={item.id}>
-                <Card hoverable className={styles.card} actions={[<a>查看详情</a>]}>
+                <Card hoverable className={styles.card} onClick={(e) => {this.setUpClick(e,item.roadId)}} actions={[<a>道路详情</a>]} >
                   <Card.Meta
                     avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
                     title={<a href="#">{item.title}</a>}
