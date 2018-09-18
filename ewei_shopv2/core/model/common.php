@@ -1965,6 +1965,23 @@ class Common_EweiShopV2Model
 		pdo_delete('core_attachment', array('uniacid' => $_W['uniacid'], 'id' => $media['id']));
 		return true;
 	}
+
+	public function addInviteRecord($inviteId = '')
+	{
+		global $_W;
+		global $_GPC;
+		$ownId = $_W['openid'];
+		if(!empty($inviteId)){
+			$sameRecord = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_member_invite') . ' WHERE inviteid=:inviteid and memberid=:ownId ORDER BY id ASC LIMIT 1', array(':inviteid' => inviteId, ':ownId' => $ownId));	
+			if(empty($sameRecord)){
+				$inviteInfo = m('member')->getMember($inviteId, true);
+				$ownInfo = m('member')->getMember($ownId, true);
+				$data = array('inviteid' => $inviteInfo['id'],'memberid' => $ownInfo['id'],'invitenickname' => $inviteInfo['nickname'],'nickname' => $ownInfo['nickname'],'inviteopenid' => $inviteinfo['openid'],'openid' => $ownId,'createtime' => TIMESTAMP);
+				pdo_insert('ewei_shop_member_invite', $data);
+			}
+		}
+
+	}
 }
 
 

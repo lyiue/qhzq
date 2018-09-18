@@ -8,6 +8,7 @@ class Page extends WeModuleSite
 	public function runTasks()
 	{
 		global $_W;
+		global $_GPC;
 		load()->func('communication');
 		$lasttime = strtotime(m('cache')->getString('receive', 'global'));
 		$interval = intval(m('cache')->getString('receive_time', 'global'));
@@ -160,6 +161,10 @@ class Page extends WeModuleSite
 				ihttp_request($_W['siteroot'] . 'addons/ewei_shopv2/plugin/seckill/task/receive.php', NULL, NULL, 1);
 			}
 		}
+
+		$inviteid = $_GPC['inviteopenid'];
+		var_dump($inviteid);
+		$addRecord = m('common')->addInviteRecord($inviteid);
 
 		exit('run finished.');
 	}
