@@ -683,6 +683,50 @@ class Member_EweiShopV2Model
 	}
 
 	/**
+     * 会员或分销商升级（美均版）
+     * @param type $mid
+     */
+	public function updateUserLevel($openid, $orderid = 0)
+	{
+		global $_W;
+
+		if (empty($openid)) {
+			return;
+		}
+
+		$member = m('member')->getMember($openid);
+
+		if (empty($member)) {
+			return;
+		}
+
+		$level = 0;
+		//0:普通,8:会员,5:一星,6:二星,7:三星 
+		$level = $member['level'];
+
+		//本次订单的购买数
+		$ordercount = pdo_fetchcolumn('SELECT c.total from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
+		if($level == 0){
+
+		}elseif(){
+
+		}elseif(){
+			
+		}elseif(){
+			
+		}elseif(){
+			
+		}
+
+		if ($canupgrade) {
+			pdo_update('ewei_shop_member', array('level' => $level['id']), array('id' => $member['id']));
+			com_run('wxcard::updateMemberCardByOpenid', $openid);
+			m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $level);
+		}
+
+	}
+
+	/**
      * 根据会员等级ID升级会员
      * @param type $mid
      */
