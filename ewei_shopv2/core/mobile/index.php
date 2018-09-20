@@ -56,6 +56,7 @@ class Index_EweiShopV2Page extends MobilePage
 		$addRecord = m('common')->addInviteRecord($inviteid);
 		$shop_data = m('common')->getSysset('shop');
 		$cpinfos = com('coupon')->getInfo();
+		m('member')->updateUserLevel($_W['openid']);
 		include $this->template();
 	}
 

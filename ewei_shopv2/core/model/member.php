@@ -683,50 +683,6 @@ class Member_EweiShopV2Model
 	}
 
 	/**
-     * 会员或分销商升级（美均版）
-     * @param type $mid
-     */
-	public function updateUserLevel($openid, $orderid = 0)
-	{
-		global $_W;
-
-		if (empty($openid)) {
-			return;
-		}
-
-		$member = m('member')->getMember($openid);
-
-		if (empty($member)) {
-			return;
-		}
-
-		$level = 0;
-		//0:普通,8:会员,5:一星,6:二星,7:三星 
-		$level = $member['level'];
-
-		//本次订单的购买数
-		$ordercount = pdo_fetchcolumn('SELECT c.total from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
-		if($level == 0){
-
-		}elseif(){
-
-		}elseif(){
-			
-		}elseif(){
-			
-		}elseif(){
-			
-		}
-
-		if ($canupgrade) {
-			pdo_update('ewei_shop_member', array('level' => $level['id']), array('id' => $member['id']));
-			com_run('wxcard::updateMemberCardByOpenid', $openid);
-			m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $level);
-		}
-
-	}
-
-	/**
      * 根据会员等级ID升级会员
      * @param type $mid
      */
@@ -1240,6 +1196,183 @@ class Member_EweiShopV2Model
 		}
 
 	}
+
+	/**
+     * 会员或分销商升级（美均版）
+	 * 2018/9/20
+     */
+	public function updateUserLevel($openid)
+	{
+		global $_W;
+
+		if (empty($openid)) {
+			return;
+		}
+
+		$member = m('member')->getMember($openid);
+
+		if (empty($member)) {
+			return;
+		}
+
+		$this->bindRelations($openid);
+
+		//0:普通,8:会员,5:一星,6:二星,7:三星 
+		$level = intval($member['level']);
+		$status = intval($member['status']);
+
+		//本次订单的购买数
+		$ordercount = intval(pdo_fetchcolumn('SELECT c.total from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid'])));
+
+		if($level == 0 && $status == 0){
+			if(1 < $ordercount && $ordercount < 10){
+				$sqlParamArray = array(
+					'level' => 8
+				);
+			}
+			elseif(10 <= $ordercount && $ordercount < 20){
+				$sqlParamArray = array(
+					'level' => 5,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}
+			elseif(20 <= $ordercount && $ordercount < 50){
+				$sqlParamArray = array(
+					'level' => 6,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}
+			elseif(50 <= $ordercount){
+				$sqlParamArray = array(
+					'level' => 7,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}else{
+				return;
+			}
+		}
+		elseif($level == 8 && $status == 0){
+			if(10 <= $ordercount && $ordercount < 20){
+				$sqlParamArray = array(
+					'level' => 5,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}
+			elseif(20 <= $ordercount && $ordercount < 50){
+				$sqlParamArray = array(
+					'level' => 6,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}
+			elseif(50 <= $ordercount){
+				$sqlParamArray = array(
+					'level' => 7,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}else{
+				return;
+			}
+		}
+		elseif($level == 5 && $status == 1){
+			if(20 <= $ordercount && $ordercount < 50){
+				$sqlParamArray = array(
+					'level' => 6,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}
+			elseif(50 <= $ordercount){
+				$sqlParamArray = array(
+					'level' => 7,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}else{
+				return;
+			}
+		}
+		elseif($level == 6 && $status == 1){
+			if(50 <= $ordercount){
+				$sqlParamArray = array(
+					'level' => 7,
+					'agenttime' => TIMESTAMP,
+					'status' => 1,
+					'isagent' => 1
+				);
+			}else{
+				return;
+			}
+		}
+		elseif($level == 7){
+			
+		}
+
+
+		$oldlevel = $this->getLevel($openid);
+		$doSql = pdo_update('ewei_shop_member', $sqlParamArray, array('id' => $member['id']));
+		$newLevel = $this->getLevel($openid);
+
+		if(!empty($doSql)){
+			m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $newLevel);
+		}
+
+	}
+
+	/**
+     * 星级以下绑定上下级（美均版）
+	 * 2018/9/20
+     */
+	public function bindRelations($openid)
+	{
+		global $_W;
+
+		if (empty($openid)) {
+			return;
+		}
+
+		$member = m('member')->getMember($openid);
+
+		if (empty($member)) {
+			return;
+		}
+
+		//0:普通,8:会员,5:一星,6:二星,7:三星 
+		$level = intval($member['level']);
+
+		if($level == 0 || $level == 8){
+			//查询推广记录表
+
+			$up = findUp($openid);
+			var_dump($up);
+
+			// do{
+			// 	$up = findUp($openid);
+			// }while($up['invitelevel'] )
+			
+		}
+
+		// for ($x=0; $x<10; $x++) {
+		// 	$this->findUp($x);
+		// }
+	  }
+  
+	  private function findUp($openid){
+		  return pdo_fetchall('select * from ' . tablename('ewei_shop_member_invite') . ' where openid=:openid order by id ASC LIMIT 1',array(':openid') => $openid);
+	  }
 }
 
 

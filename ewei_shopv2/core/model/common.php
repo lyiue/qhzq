@@ -1977,7 +1977,16 @@ class Common_EweiShopV2Model
 				$inviteInfo = m('member')->getMember($inviteId, true);
 				if(!empty($inviteInfo)){
 					$ownInfo = m('member')->getMember($ownId, true);
-					$data = array('inviteid' => $inviteInfo['id'],'memberid' => $ownInfo['id'],'invitenickname' => $inviteInfo['nickname'],'nickname' => $ownInfo['nickname'],'inviteopenid' => $inviteinfo['openid'],'openid' => $ownId,'createtime' => TIMESTAMP);
+					$data = array(
+						'inviteid' => $inviteInfo['id'],
+						'memberid' => $ownInfo['id'],
+						'invitenickname' => $inviteInfo['nickname'],
+						'nickname' => $ownInfo['nickname'],
+						'inviteopenid' => $inviteinfo['openid'],
+						'openid' => $ownId,
+						'invitelevel' => $inviteInfo['level'],
+						'createtime' => TIMESTAMP
+					);
 					pdo_insert('ewei_shop_member_invite', $data);
 				}
 			}
