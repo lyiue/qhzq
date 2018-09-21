@@ -2122,6 +2122,47 @@ class Order_EweiShopV2Model
 		}
 
 	}
+
+	/**
+     * 订单完成后返利（美均版）
+     * 2018/9/21
+     */
+	public function profitBack($openid,$orderid)
+	{
+		global $_W;
+
+		if (empty($openid)) {
+			return;
+		}
+
+		$member = m('member')->getMember($openid);
+
+		if (empty($member)) {
+			return;
+		}
+
+		//0:普通,8:会员,5:一星,6:二星,7:三星 
+		$level = intval($member['level']);
+
+		$orderInfo = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_order'). ' WHERE id=:orderid',array(':orderid' => $orderid));
+
+		if($level == 0 || $level == 8){
+
+			//TODO 找到上级 $upInfo
+
+			if(empty($upInfo)){
+				return;
+			}
+
+			$purchasePrice; //进价
+			$pd; //差价
+			if($upInfo['level'] > 0 && $upInfo['level'] < 8){ //处于分销的等级
+				$price = $orderInfo['price'];
+				$profit1 = $price * 0.5;
+				$profit2 = $price * 0.2;
+			}
+		}
+	}
 }
 
 
