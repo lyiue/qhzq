@@ -2145,6 +2145,7 @@ class Order_EweiShopV2Model
 		$level = intval($member['level']);
 
 		$orderInfo = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_order'). ' WHERE id=:orderid',array(':orderid' => $orderid));
+		//增加返利记录表，用于其他操作
 
 		if($level == 0 || $level == 8){
 

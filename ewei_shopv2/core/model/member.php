@@ -1355,23 +1355,25 @@ class Member_EweiShopV2Model
 
 		if($level == 0 || $level == 8){
 			//查询推广记录表
+			$inviteUpInfo = pdo_fetch('select * from ' . tablename('ewei_shop_member_invite') . ' where openid=:openid order by id DESC LIMIT 1',array(':openid') => $openid);
 
-			$up = findUp($openid);
-			var_dump($up);
-
-			// do{
-			// 	$up = findUp($openid);
-			// }while($up['invitelevel'] )
-			
+			//判断上级是否是星级用户，并记录一二三星
+			$up = m('member')->getMember($inviteUpInfo['inviteopenid']);
+			if($up['level'] == 0 || $up['level'] == 8){
+				//再往上查询一级必能查到分销商等级
+				//直接绑定上上级
+				$param = array(
+					"agentid" => $up['agentid']
+				);
+			}else if($up['level'] == 5 || $up['level'] == 6 || $up['level'] == 7){
+				//直接绑定
+				$param = array(
+					"agentid" => $up['id']
+				);
+			}
+			$doSql = pdo_update('ewei_shop_member',$param,array('id' => $member['id']));
+			// var_dump($up);	
 		}
-
-		// for ($x=0; $x<10; $x++) {
-		// 	$this->findUp($x);
-		// }
-	  }
-  
-	  private function findUp($openid){
-		  return pdo_fetchall('select * from ' . tablename('ewei_shop_member_invite') . ' where openid=:openid order by id ASC LIMIT 1',array(':openid') => $openid);
 	  }
 }
 
