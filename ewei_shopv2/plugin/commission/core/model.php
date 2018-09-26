@@ -1901,7 +1901,6 @@ if (!(class_exists('CommissionModel'))) {
 				return;
 			}
 
-
 			$become_check = intval($set['become_check']);
 			$become_child = intval($set['become_child']);
 			$parent = false;
@@ -1924,12 +1923,21 @@ if (!(class_exists('CommissionModel'))) {
 							$member['agentid'] = $parent['id'];
 							$authorid = ((empty($parent['isauthor']) ? $parent['authorid'] : $parent['id']));
 							$author = p('author');
-
 							if ($author) {
 								$author->upgradeLevelByAgent($parent['id']);
 								pdo_update('ewei_shop_member', array('agentid' => $parent['id'], 'childtime' => $time, 'authorid' => $authorid), array('uniacid' => $_W['uniacid'], 'id' => $member['id']));
 							}
 							 else {
+							    //寻找关系记录表是否存在对应的上下级关系
+							    $findRelation = pdo_fetch('select * from '.tablename('ewei_shop_member_relationship') .' where ownid = :id',array('id' => $member['id']));
+							    if(empty($findRelation)){
+							        $rArray = array(
+							            'ownid' => $member['id'],
+                                        'parentid' => $parent['id'],
+                                        'createtime' => TIMESTAMP
+                                    );
+                                    pdo_insert('ewei_shop_member_relationship',$rArray);
+                                }
 								pdo_update('ewei_shop_member', array('agentid' => $parent['id'], 'childtime' => $time), array('uniacid' => $_W['uniacid'], 'id' => $member['id']));
 							}
 
@@ -2276,7 +2284,6 @@ if (!(class_exists('CommissionModel'))) {
 				return;
 			}
 
-
 			$time = time();
 			$become_check = intval($set['become_check']);
 			$isagent = ($member['isagent'] == 1) && ($member['status'] == 1);
@@ -2398,6 +2405,8 @@ if (!(class_exists('CommissionModel'))) {
 
 
 			$this->upgradeLevelByOrder($openid);
+            //订单完成后升级
+            m('member')->updateUserLevel($openid);
 
 			if ($isagent) {
 				$plugin_author = p('author');

@@ -2164,6 +2164,54 @@ class Order_EweiShopV2Model
 			}
 		}
 	}
+
+    /**
+     * 订单完成后计入各自三星业绩（美均版）
+     * 2018/9/26
+     */
+    public function profitSub($openid)
+    {
+        global $_W;
+
+        if (empty($openid)) {
+            return;
+        }
+
+        $member = m('member')->getMember($openid);
+
+        if (empty($member)) {
+            return;
+        }
+
+        //找到自己线上的三星上级
+        //上一级上级
+        $uperInfo = m('member')->getMember($member['agentid']);
+
+        $agent1 = 0;
+        $agent2 = 0;
+        $agent3 = 0;
+        for($i = 0;$i < 3;$i++){
+//            $uperInfo = m('member')->getMember($uperInfo['agentid']);
+            $uperInfo = pdo_fetch('select * from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.parentid = b.id where a.ownid=:id',array(':id'=>$uperInfo['parentid']));
+            if($uperInfo['level'] == 5){
+                $agent1 = $uperInfo['id'];
+            }
+            elseif($uperInfo['level'] == 6){
+                $agent2 = $uperInfo['id'];
+            }
+            elseif($uperInfo['level'] == 7){
+                $agent3 = $uperInfo['id'];
+                break;
+            }
+        }
+        var_dump($agent1);
+        var_dump($agent2);
+        var_dump($agent3);
+
+        //找到最新的完成的订单加入表
+        $orderCount = intval(pdo_fetch('SELECT c.price from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid'])));
+
+    }
 }
 
 

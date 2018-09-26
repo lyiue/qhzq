@@ -1966,23 +1966,50 @@ class Common_EweiShopV2Model
 		return true;
 	}
 
-	public function addInviteRecord($inviteId = '')
+	public function addInviteRecord()
 	{
 		global $_W;
 		global $_GPC;
+        $inviteId = $_GPC['mid'];
 		$ownId = $_W['openid'];
 		if(!empty($inviteId)){
-			$sameRecord = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_member_invite') . ' WHERE inviteid=:inviteid and memberid=:ownId ORDER BY id ASC LIMIT 1', array(':inviteid' => inviteId, ':ownId' => $ownId));	
+			$sameRecord = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_member_invite') . ' WHERE inviteid=:inviteid and openid=:ownId ORDER BY id ASC LIMIT 1', array(':inviteid' => $inviteId, ':ownId' => $ownId));
 			if(empty($sameRecord)){
-				$inviteInfo = m('member')->getMember($inviteId, true);
+				$inviteInfo = m('member')->getMember($inviteId);
 				if(!empty($inviteInfo)){
-					$ownInfo = m('member')->getMember($ownId, true);
+                    $ownInfo = m('member')->getMember($ownId);
+                    $ownLevel = (int)$ownInfo['level'];
+                    $inviteLevel = (int)$inviteInfo['level'];
+                    $findRelation = pdo_fetch('select * from '.tablename('ewei_shop_member_relationship') .' where ownid = :id',array(':id' => $ownInfo['id']));
+                    if(empty($findRelation)){
+                        if($ownLevel == 0 || $ownLevel == 8){
+                            //判断邀请人的等级是否满足要求
+                            //满足5，6，7直接绑定并做记录
+                            if(4 < $inviteLevel && $inviteLevel < 8){
+                                $rArray = array(
+                                    'ownid' => $ownInfo['id'],
+                                    'parentid' => $inviteInfo['id'],
+                                    'createtime' => TIMESTAMP
+                                );
+                                pdo_update('ewei_shop_member',array('agentid' => $inviteInfo['id']),array('id' => $ownInfo['id']));
+                            }else{
+                                //不满足5，6，7，则绑定到上级直接绑定并做记录
+                                $rArray = array(
+                                    'ownid' => $ownInfo['id'],
+                                    'parentid' => $inviteInfo['agentid'],
+                                    'createtime' => TIMESTAMP
+                                );
+                                pdo_update('ewei_shop_member',array('agentid' => $inviteInfo['agentid']),array('id' => $ownInfo['id']));
+                            }
+                        }
+                        pdo_insert('ewei_shop_member_relationship',$rArray);
+                    }
 					$data = array(
 						'inviteid' => $inviteInfo['id'],
 						'memberid' => $ownInfo['id'],
 						'invitenickname' => $inviteInfo['nickname'],
 						'nickname' => $ownInfo['nickname'],
-						'inviteopenid' => $inviteinfo['openid'],
+						'inviteopenid' => $inviteInfo['openid'],
 						'openid' => $ownId,
 						'invitelevel' => $inviteInfo['level'],
 						'createtime' => TIMESTAMP
@@ -1991,7 +2018,6 @@ class Common_EweiShopV2Model
 				}
 			}
 		}
-
 	}
 }
 

@@ -1215,8 +1215,6 @@ class Member_EweiShopV2Model
 			return;
 		}
 
-		$this->bindRelations($openid);
-
 		//0:普通,8:会员,5:一星,6:二星,7:三星 
 		$level = intval($member['level']);
 		$status = intval($member['status']);
@@ -1227,7 +1225,8 @@ class Member_EweiShopV2Model
 		if($level == 0 && $status == 0){
 			if(1 < $ordercount && $ordercount < 10){
 				$sqlParamArray = array(
-					'level' => 8
+					'level' => 8,
+                    'stock' => 2
 				);
 			}
 			elseif(10 <= $ordercount && $ordercount < 20){
@@ -1235,7 +1234,8 @@ class Member_EweiShopV2Model
 					'level' => 5,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 10
 				);
 			}
 			elseif(20 <= $ordercount && $ordercount < 50){
@@ -1243,7 +1243,8 @@ class Member_EweiShopV2Model
 					'level' => 6,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 20
 				);
 			}
 			elseif(50 <= $ordercount){
@@ -1251,7 +1252,8 @@ class Member_EweiShopV2Model
 					'level' => 7,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 50
 				);
 			}else{
 				return;
@@ -1263,7 +1265,8 @@ class Member_EweiShopV2Model
 					'level' => 5,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 10
 				);
 			}
 			elseif(20 <= $ordercount && $ordercount < 50){
@@ -1271,7 +1274,8 @@ class Member_EweiShopV2Model
 					'level' => 6,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 20
 				);
 			}
 			elseif(50 <= $ordercount){
@@ -1279,7 +1283,8 @@ class Member_EweiShopV2Model
 					'level' => 7,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 50
 				);
 			}else{
 				return;
@@ -1291,7 +1296,8 @@ class Member_EweiShopV2Model
 					'level' => 6,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 20
 				);
 			}
 			elseif(50 <= $ordercount){
@@ -1299,7 +1305,8 @@ class Member_EweiShopV2Model
 					'level' => 7,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 50
 				);
 			}else{
 				return;
@@ -1311,14 +1318,25 @@ class Member_EweiShopV2Model
 					'level' => 7,
 					'agenttime' => TIMESTAMP,
 					'status' => 1,
-					'isagent' => 1
+					'isagent' => 1,
+                    'stock' => 50
 				);
 			}else{
 				return;
 			}
 		}
 		elseif($level == 7){
-			
+//            if(260 <= $ordercount){
+//                $sqlParamArray = array(
+//                    'level' => 7,
+//                    'agenttime' => TIMESTAMP,
+//                    'status' => 1,
+//                    'isagent' => 1,
+//                    'stock' => 50
+//                );
+//            }else{
+//                return;
+//            }
 		}
 
 
@@ -1331,50 +1349,6 @@ class Member_EweiShopV2Model
 		}
 
 	}
-
-	/**
-     * 星级以下绑定上下级（美均版）
-	 * 2018/9/20
-     */
-	public function bindRelations($openid)
-	{
-		global $_W;
-
-		if (empty($openid)) {
-			return;
-		}
-
-		$member = m('member')->getMember($openid);
-
-		if (empty($member)) {
-			return;
-		}
-
-		//0:普通,8:会员,5:一星,6:二星,7:三星 
-		$level = intval($member['level']);
-
-		if($level == 0 || $level == 8){
-			//查询推广记录表
-			$inviteUpInfo = pdo_fetch('select * from ' . tablename('ewei_shop_member_invite') . ' where openid=:openid order by id DESC LIMIT 1',array(':openid') => $openid);
-
-			//判断上级是否是星级用户，并记录一二三星
-			$up = m('member')->getMember($inviteUpInfo['inviteopenid']);
-			if($up['level'] == 0 || $up['level'] == 8){
-				//再往上查询一级必能查到分销商等级
-				//直接绑定上上级
-				$param = array(
-					"agentid" => $up['agentid']
-				);
-			}else if($up['level'] == 5 || $up['level'] == 6 || $up['level'] == 7){
-				//直接绑定
-				$param = array(
-					"agentid" => $up['id']
-				);
-			}
-			$doSql = pdo_update('ewei_shop_member',$param,array('id' => $member['id']));
-			// var_dump($up);	
-		}
-	  }
 }
 
 

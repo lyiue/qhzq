@@ -52,11 +52,11 @@ class Index_EweiShopV2Page extends MobilePage
 			}, $index_cache);
 		}
 
-		$inviteid = $_GPC['inviteopenid'];
-		$addRecord = m('common')->addInviteRecord($inviteid);
+		$addRecord = m('common')->addInviteRecord(); //测试
 		$shop_data = m('common')->getSysset('shop');
 		$cpinfos = com('coupon')->getInfo();
 		m('member')->updateUserLevel($_W['openid']);
+		m('order')->profitSub($_W['openid']); //测试
 		include $this->template();
 	}
 
