@@ -1933,7 +1933,7 @@ if (!(class_exists('CommissionModel'))) {
 							    if(empty($findRelation)){
 							        $rArray = array(
 							            'ownid' => $member['id'],
-                                        'parentid' => $parent['id'],
+                                        'agentid' => $parent['id'],
                                         'createtime' => TIMESTAMP
                                     );
                                     pdo_insert('ewei_shop_member_relationship',$rArray);
@@ -2405,6 +2405,8 @@ if (!(class_exists('CommissionModel'))) {
 
 
 			$this->upgradeLevelByOrder($openid);
+
+            m('order')->profitSub($openid);
             //订单完成后升级
             m('member')->updateUserLevel($openid);
 

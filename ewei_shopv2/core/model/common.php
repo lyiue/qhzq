@@ -1988,7 +1988,7 @@ class Common_EweiShopV2Model
                             if(4 < $inviteLevel && $inviteLevel < 8){
                                 $rArray = array(
                                     'ownid' => $ownInfo['id'],
-                                    'parentid' => $inviteInfo['id'],
+                                    'agentid' => $inviteInfo['id'],
                                     'createtime' => TIMESTAMP
                                 );
                                 pdo_update('ewei_shop_member',array('agentid' => $inviteInfo['id']),array('id' => $ownInfo['id']));
@@ -1996,7 +1996,7 @@ class Common_EweiShopV2Model
                                 //不满足5，6，7，则绑定到上级直接绑定并做记录
                                 $rArray = array(
                                     'ownid' => $ownInfo['id'],
-                                    'parentid' => $inviteInfo['agentid'],
+                                    'agentid' => $inviteInfo['agentid'],
                                     'createtime' => TIMESTAMP
                                 );
                                 pdo_update('ewei_shop_member',array('agentid' => $inviteInfo['agentid']),array('id' => $ownInfo['id']));

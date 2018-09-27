@@ -2135,35 +2135,63 @@ class Order_EweiShopV2Model
 			return;
 		}
 
+        if (empty($orderid)) {
+            return;
+        }
+
 		$member = m('member')->getMember($openid);
 
 		if (empty($member)) {
 			return;
 		}
 
-		//0:普通,8:会员,5:一星,6:二星,7:三星 
-		$level = intval($member['level']);
+		$find = pdo_fetch('select * from '.tablename('ewei_shop_order_sub').' where contributor = :id and orderid = :orderid and `status` = 0',array(':id' => $member['id'],':orderid' => $orderid));
+		if(empty($find)){
+            return;
+        }
 
-		$orderInfo = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_order'). ' WHERE id=:orderid',array(':orderid' => $orderid));
-		//增加返利记录表，用于其他操作
+        $agent1 = (int)$find['agent1'];
+        $agent2 = (int)$find['agent2'];
+        $agent3 = (int)$find['agent3'];
 
-		if($level == 0 || $level == 8){
+        if($agent1 > 0){
+		    $agent1Info = m('member')->getMember($agent1);
+		    if(!empty($agent1Info)){
+                $uid1 = $agent1Info['uid'];
+                $this->updateCredit2($uid1,$find['price1']);
+            }
+        }
 
-			//TODO 找到上级 $upInfo
+        if($agent2 > 0){
+            $agent2Info = m('member')->getMember($agent2);
+            if(!empty($agent2Info)){
+                $uid2 = $agent2Info['uid'];
+                $this->updateCredit2($uid2,$find['price2']);
+            }
+        }
 
-			if(empty($upInfo)){
-				return;
-			}
-
-			$purchasePrice; //进价
-			$pd; //差价
-			if($upInfo['level'] > 0 && $upInfo['level'] < 8){ //处于分销的等级
-				$price = $orderInfo['price'];
-				$profit1 = $price * 0.5;
-				$profit2 = $price * 0.2;
-			}
-		}
+        if($agent3 > 0){
+            $agent3Info = m('member')->getMember($agent3);
+            if(!empty($agent3Info)){
+                $uid3 = $agent3Info['uid'];
+                $this->updateCredit2($uid3,$find['price3']);
+            }
+        }
+        return true;
 	}
+
+    /**
+     * 用户金额变动，及日志记录
+     * 2018/9/21
+     */
+    private  function updateCredit2($uid, $change)
+    {
+        $user = pdo_fetch('SELECT credit2 FROM ' . tablename('mc_members') . ' WHERE uid=:uid  LIMIT 1', array(':uid' => $uid));
+        $usercredit2 = $user['credit2'] + $change;//总共约
+        pdo_update('mc_members', array('credit2' => $usercredit2), array('uid' => $uid));
+        plog('order.op.finish.checkOrderFinish.profitBack','用户ID：'.$uid.',下级购买商品返利：'.$change.'元');
+        return true;
+    }
 
     /**
      * 订单完成后计入各自三星业绩（美均版）
@@ -2183,34 +2211,88 @@ class Order_EweiShopV2Model
             return;
         }
 
-        //找到自己线上的三星上级
-        //上一级上级
-        $uperInfo = m('member')->getMember($member['agentid']);
-
         $agent1 = 0;
         $agent2 = 0;
         $agent3 = 0;
-        for($i = 0;$i < 3;$i++){
-//            $uperInfo = m('member')->getMember($uperInfo['agentid']);
-            $uperInfo = pdo_fetch('select * from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.parentid = b.id where a.ownid=:id',array(':id'=>$uperInfo['parentid']));
-            if($uperInfo['level'] == 5){
-                $agent1 = $uperInfo['id'];
+        $price1 = 0;
+        $price2 = 0;
+        $price3 = 0;
+
+        //找到最新的完成的订单
+        $orderInfo = pdo_fetch('SELECT c.oprice price,c.orderid,c.total from (SELECT a.price oprice,b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
+        $price = (float)$orderInfo['price'];
+        $num = (int)$orderInfo['total'];
+        $orderid = $orderInfo['orderid'];
+
+        //ims_ewei_shop_member_relationship只有绝对上下级关系
+        if($member['level'] == 0 || $member['level'] == 8){
+            $agent1Info = m('member')->getMember($member['agentid']);;
+            if(!empty($agent1Info)){
+                $level1 = (int)$agent1Info['level'];
+                if($level1 == 5){
+                    $agent1 = $agent1Info['id'];
+                    $price1 = 100 * $num;
+                }elseif($level1 == 6){
+                    $agent2 = $agent1Info['id'];
+                    $price2 = 200 * $num;
+                }elseif($level1 == 7){
+                    $agent3 = $agent1Info['id'];
+                    $price3 = 274 * $num;
+                }
             }
-            elseif($uperInfo['level'] == 6){
-                $agent2 = $uperInfo['id'];
+
+            if($agent1 > 0){
+                $agent2Info = pdo_fetch('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent1));
+                if(!empty($agent2Info)){
+                    $agent2 = $agent2Info['agentid'];
+                    $price2 = $price * 0.05;
+                }
             }
-            elseif($uperInfo['level'] == 7){
-                $agent3 = $uperInfo['id'];
-                break;
+
+            if($agent2 > 0){
+                $agent3Info = pdo_fetch('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
+                if(!empty($agent3Info)){
+                    $agent3 = $agent3Info['agentid'];
+                    $price3 = $price * 0.02;
+                }
+            }
+        }elseif($member['level'] == 5){
+            $agent2Info = pdo_fetch('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$member['id']));
+            if(!empty($agent2Info)){
+                $agent2 = $agent2Info['agentid'];
+                $price2 = 100 * $num;
+            }
+
+            $agent3Info = pdo_fetch('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
+            if(!empty($agent3Info)){
+                $agent3 = $agent3Info['agentid'];
+                $price3 = $price * 0.02;
+            }
+        }elseif($member['level'] == 6){
+            $agent3Info = pdo_fetch('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$member['id']));
+            if(!empty($agent3Info)){
+                $agent3 = $agent3Info['agentid'];
+                $price3 = 74 * $num;
             }
         }
-        var_dump($agent1);
-        var_dump($agent2);
-        var_dump($agent3);
 
-        //找到最新的完成的订单加入表
-        $orderCount = intval(pdo_fetch('SELECT c.price from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid'])));
 
+        $orderArray = array(
+            'orderid' => $orderid,
+            'contributor' => $member['id'],
+            'agent1' => $agent1,
+            'agent2' => $agent2,
+            'agent3' => $agent3,
+            'price' => $price,
+            'price1' => $price1,
+            'price2' => $price2,
+            'price3' => $price3,
+            'createtime' => TIMESTAMP
+        );
+
+        pdo_insert('ewei_shop_order_sub',$orderArray);
+
+        $this->profitBack($openid,$orderid);
     }
 }
 
