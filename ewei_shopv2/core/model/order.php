@@ -2217,6 +2217,9 @@ class Order_EweiShopV2Model
         $price1 = 0;
         $price2 = 0;
         $price3 = 0;
+        $stock1 = 0;
+        $stock2 = 0;
+        $stock3 = 0;
 
         //找到最新的完成的订单
         $orderInfo = pdo_fetch('SELECT c.oprice price,c.orderid,c.total from (SELECT a.price oprice,b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
@@ -2226,10 +2229,11 @@ class Order_EweiShopV2Model
 
         //ims_ewei_shop_member_relationship只有绝对上下级关系
         if($member['level'] == 0 || $member['level'] == 8){
-            $agent1Info = m('member')->getMember($member['agentid']);;
+            $agent1Info = m('member')->getMember($member['agentid']);
             if(!empty($agent1Info)){
+                $stock1 = (int)$agent1Info['stock'];
                 $level1 = (int)$agent1Info['level'];
-                if($level1 == 5){
+                if($level1 == 5 && $stock1 < 3){
                     $agent1 = $agent1Info['id'];
                     $price1 = 100 * $num;
                 }elseif($level1 == 6){
@@ -2293,6 +2297,31 @@ class Order_EweiShopV2Model
         pdo_insert('ewei_shop_order_sub',$orderArray);
 
         $this->profitBack($openid,$orderid);
+    }
+
+    /**
+     * 利润分配（美均版）
+     * 2018/9/27
+     */
+    public function profitDispatch($openid,$orderid)
+    {
+        global $_W;
+
+        if (empty($openid)) {
+            return;
+        }
+
+        $member = m('member')->getMember($openid);
+
+        if (empty($member)) {
+            return;
+        }
+
+        $stock = (int)$member['stock'];
+        if($stock > 0){
+
+        }
+
     }
 }
 
