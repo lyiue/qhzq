@@ -2322,40 +2322,59 @@ class Order_EweiShopV2Model
                     }
                 }else{
                     //寻找上级
-
+                    //通过递归寻找上级二星
                     if($agent1 > 0){
                         $agent2Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent1));
                         if(!empty($agent2Info)){
                             $stock2 = (int)$agent2Info['stock']; //查询$agent2Info的库存数
                             $agent2 = $agent2Info['agentid'];
+                            $level2 = $agent2Info['level'];
 
-                            if($num <= $stock2){
-                                $price2 = $singlePrice2 * $num;
-                                $price2 += $price * 0.05;
-                                $this->updateStock($agent2,-$num);
+                            if($level2 == 5){
+                                $agent2 = $this->findAgent($agent1,6); //递归找出真正二星上级
+                                $agent2Info = m('member')->getMember($agent2);
+                                $stock2 = (int)$agent2Info['stock'];
 
-                                $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
-                                if(!empty($agent3Info)){
-                                    $agent3 = $agent3Info['agentid'];
-                                    $price3 = $price * 0.02;
-                                }
-                            }else{
+                                if($num <= $stock2){
+                                    $price2 = 100 * $num;
+                                    $price2 += $price * 0.05;
+                                    $this->updateStock($agent2,-$num);
 
-                                if($agent2 > 0){
                                     $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
                                     if(!empty($agent3Info)){
-                                        $stock3 = (int)$agent3Info['stock']; //查询$agent2Info的库存数
                                         $agent3 = $agent3Info['agentid'];
-
-                                        if($num <= $stock3){
-                                            $price3 = $singlePrice3 * $num;
-                                            $price3 += $price * 0.05;
-                                            $this->updateStock($agent3,-$num);
-                                        }
-
+                                        $price3 = $price * 0.02;
                                     }
                                 }
+                            }else{
+                                if($num <= $stock2){
+                                    $price2 = $singlePrice2 * $num;
+                                    $price2 += $price * 0.05;
+                                    $this->updateStock($agent2,-$num);
 
+                                    $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
+                                    if(!empty($agent3Info)){
+                                        $agent3 = $agent3Info['agentid'];
+                                        $price3 = $price * 0.02;
+                                    }
+                                }else{
+
+                                    if($agent2 > 0){
+                                        $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
+                                        if(!empty($agent3Info)){
+                                            $stock3 = (int)$agent3Info['stock']; //查询$agent2Info的库存数
+                                            $agent3 = $agent3Info['agentid'];
+
+                                            if($num <= $stock3){
+                                                $price3 = $singlePrice3 * $num;
+                                                $price3 += $price * 0.05;
+                                                $this->updateStock($agent3,-$num);
+                                            }
+
+                                        }
+                                    }
+
+                                }
                             }
                         }
                     }
@@ -2371,7 +2390,6 @@ class Order_EweiShopV2Model
             $agent2Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$member['id']));
             if(!empty($agent2Info)){
                 $stock2 = (int)$agent2Info['stock'];
-                $level2 = (int)$agent2Info['level'];
 
                 if($num <= $stock2){
                     $agent2 = $agent2Info['agentid'];
@@ -2388,10 +2406,27 @@ class Order_EweiShopV2Model
                 else{
                     $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
                     if(!empty($agent3Info)){
-                        $agent3 = $agent3Info['agentid'];
-                        $price3 = 174 * $num;
-                        $price3 += $price * 0.05;
-                        $this->updateStock($agent3,-$num);
+                        $level3 = $agent3Info['level'];
+                        $stock3 = (int)$agent3Info['stock'];
+
+                        if($level3 == 6){
+                            $agent3 = $this->findAgent($agent2,7); //递归找出真正三星上级
+                            $agent3Info = m('member')->getMember($agent3);
+                            $stock3 = (int)$agent3Info['stock'];
+
+                            if($num <= $stock3){
+                                $price3 = 174 * $num;
+                                $price3 += $price * 0.05;
+                                $this->updateStock($agent3,-$num);
+                            }
+                        }else{
+                            if($num <= $stock3){
+                                $agent3 = $agent3Info['agentid'];
+                                $price3 = 174 * $num;
+                                $price3 += $price * 0.05;
+                                $this->updateStock($agent3,-$num);
+                            }
+                        }
                     }
                 }
 
@@ -2428,6 +2463,25 @@ class Order_EweiShopV2Model
         pdo_insert('ewei_shop_order_sub',$orderArray);
 
         $this->profitBack($openid,$orderid);
+    }
+
+    /**
+     * 递归寻找上级（美均版）
+     * 2018/9/28
+     */
+    function findAgent($id,$finishLevel){
+
+        if(empty($id)){
+            return;
+        }
+
+        $agentInfo = pdo_fetch('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$id));
+
+        if($agentInfo['level'] == $finishLevel){
+            return $agentInfo['agentid'];
+        }
+
+        return $this->findAgent($agentInfo['agentid'],$finishLevel);
     }
 
     /**

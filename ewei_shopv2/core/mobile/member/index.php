@@ -206,7 +206,7 @@ class Index_EweiShopV2Page extends MobileLoginPage
 			$hasFullback = false;
 		}
 
-
+        $addRecord = m('common')->addInviteRecord();
 		include $this->template();
 	}
 }
