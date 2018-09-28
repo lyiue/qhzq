@@ -1325,20 +1325,6 @@ class Member_EweiShopV2Model
 				return;
 			}
 		}
-		elseif($level == 7){
-//            if(260 <= $ordercount){
-//                $sqlParamArray = array(
-//                    'level' => 7,
-//                    'agenttime' => TIMESTAMP,
-//                    'status' => 1,
-//                    'isagent' => 1,
-//                    'stock' => 50
-//                );
-//            }else{
-//                return;
-//            }
-		}
-
 
 		$oldlevel = $this->getLevel($openid);
 		$doSql = pdo_update('ewei_shop_member', $sqlParamArray, array('id' => $member['id']));
@@ -1349,6 +1335,47 @@ class Member_EweiShopV2Model
 		}
 
 	}
+
+    /**
+     * 更低价格（美均版）
+     * 2018/9/28
+     */
+	public function getLevelDiscount($openid)
+    {
+        if (empty($openid)) {
+            return;
+        }
+
+        $member = m('member')->getMember($openid);
+
+        if (empty($member)) {
+            return;
+        }
+
+        if($member['level'] == 7){
+            $agent1 = 0;
+            $agent2 = 0;
+            $agent3 = 0;
+
+            $findChild = pdo_fetchall('select a.*,b.level from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.ownid = b.id where a.agentid=:id',array(':id'=>$member['id']));
+            foreach ($findChild as $key => $v){
+                if($v['level'] == 5){
+                    $agent1++;
+                }
+                if($v['level'] == 6){
+                    $agent2++;
+                }
+                if($v['level'] == 7){
+                    $agent3++;
+                }
+            }
+            $orderCount = (int)pdo_fetchcolumn('SELECT count(*) from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c where c.total >= 260', array(':openid' => $member['openid']));
+            if($agent1 >= 20 || $agent2 >=8 || $agent3 >= 3 || $orderCount > 0){
+                return 2.5*.9;
+            }
+        }
+        return false;
+    }
 }
 
 

@@ -653,6 +653,12 @@ class Goods_EweiShopV2Model
 					$dd = floatval($discounts[$key . '_pay']);
 					$md = floatval($level['discount']);
 
+                     //2018/9/28
+                     $newmd = m('member')->getLevelDiscount($_W['openid']);
+                     if(!empty($newmd)){
+                         $md = floatval($newmd);
+                     }
+
 					if (!(empty($dd))) {
 						$memberprice = round($dd, 2);
 					}
