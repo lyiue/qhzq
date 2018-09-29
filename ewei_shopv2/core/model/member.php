@@ -1220,120 +1220,126 @@ class Member_EweiShopV2Model
 		$status = intval($member['status']);
 
 		//本次订单的购买数
-		$ordercount = intval(pdo_fetchcolumn('SELECT c.total from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid'])));
+		$order = pdo_fetch('SELECT c.total,c.goodsid from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
 
-		if($level == 0 && $status == 0){
-			if(1 < $ordercount && $ordercount < 10){
-				$sqlParamArray = array(
-					'level' => 8,
-                    'stock' => 2
-				);
-			}
-			elseif(10 <= $ordercount && $ordercount < 20){
-				$sqlParamArray = array(
-					'level' => 5,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 10
-				);
-			}
-			elseif(20 <= $ordercount && $ordercount < 50){
-				$sqlParamArray = array(
-					'level' => 6,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 20
-				);
-			}
-			elseif(50 <= $ordercount){
-				$sqlParamArray = array(
-					'level' => 7,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 50
-				);
-			}else{
-				return;
-			}
-		}
-		elseif($level == 8 && $status == 0){
-			if(10 <= $ordercount && $ordercount < 20){
-				$sqlParamArray = array(
-					'level' => 5,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 10
-				);
-			}
-			elseif(20 <= $ordercount && $ordercount < 50){
-				$sqlParamArray = array(
-					'level' => 6,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 20
-				);
-			}
-			elseif(50 <= $ordercount){
-				$sqlParamArray = array(
-					'level' => 7,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 50
-				);
-			}else{
-				return;
-			}
-		}
-		elseif($level == 5 && $status == 1){
-			if(20 <= $ordercount && $ordercount < 50){
-				$sqlParamArray = array(
-					'level' => 6,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 20
-				);
-			}
-			elseif(50 <= $ordercount){
-				$sqlParamArray = array(
-					'level' => 7,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 50
-				);
-			}else{
-				return;
-			}
-		}
-		elseif($level == 6 && $status == 1){
-			if(50 <= $ordercount){
-				$sqlParamArray = array(
-					'level' => 7,
-					'agenttime' => TIMESTAMP,
-					'status' => 1,
-					'isagent' => 1,
-                    'stock' => 50
-				);
-			}else{
-				return;
-			}
-		}
+		if(!empty($order)){
+            $ordercount = $this->getGroupProduct($order['goodsid']);
+		    if($ordercount == 0){
+                $ordercount = $order['total'];
+            }
 
-		$oldlevel = $this->getLevel($openid);
-		$doSql = pdo_update('ewei_shop_member', $sqlParamArray, array('id' => $member['id']));
-		$newLevel = $this->getLevel($openid);
+            if($level == 0 && $status == 0){
+                if(1 < $ordercount && $ordercount < 10){
+                    $sqlParamArray = array(
+                        'level' => 8,
+                        'stock' => 2
+                    );
+                }
+                elseif(10 <= $ordercount && $ordercount < 20){
+                    $sqlParamArray = array(
+                        'level' => 5,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 10
+                    );
+                }
+                elseif(20 <= $ordercount && $ordercount < 50){
+                    $sqlParamArray = array(
+                        'level' => 6,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 20
+                    );
+                }
+                elseif(50 <= $ordercount){
+                    $sqlParamArray = array(
+                        'level' => 7,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 50
+                    );
+                }else{
+                    return;
+                }
+            }
+            elseif($level == 8 && $status == 0){
+                if(10 <= $ordercount && $ordercount < 20){
+                    $sqlParamArray = array(
+                        'level' => 5,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 10
+                    );
+                }
+                elseif(20 <= $ordercount && $ordercount < 50){
+                    $sqlParamArray = array(
+                        'level' => 6,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 20
+                    );
+                }
+                elseif(50 <= $ordercount){
+                    $sqlParamArray = array(
+                        'level' => 7,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 50
+                    );
+                }else{
+                    return;
+                }
+            }
+            elseif($level == 5 && $status == 1){
+                if(20 <= $ordercount && $ordercount < 50){
+                    $sqlParamArray = array(
+                        'level' => 6,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 20
+                    );
+                }
+                elseif(50 <= $ordercount){
+                    $sqlParamArray = array(
+                        'level' => 7,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 50
+                    );
+                }else{
+                    return;
+                }
+            }
+            elseif($level == 6 && $status == 1){
+                if(50 <= $ordercount){
+                    $sqlParamArray = array(
+                        'level' => 7,
+                        'agenttime' => TIMESTAMP,
+                        'status' => 1,
+                        'isagent' => 1,
+                        'stock' => 50
+                    );
+                }else{
+                    return;
+                }
+            }
 
-		if(!empty($doSql)){
-			m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $newLevel);
-		}
+            $oldlevel = $this->getLevel($openid);
+            $doSql = pdo_update('ewei_shop_member', $sqlParamArray, array('id' => $member['id']));
+            $newLevel = $this->getLevel($openid);
 
+            if(!empty($doSql)){
+                m('notice')->sendMemberUpgradeMessage($openid, $oldlevel, $newLevel);
+            }
+        }
 	}
 
     /**
@@ -1375,6 +1381,41 @@ class Member_EweiShopV2Model
             }
         }
         return false;
+    }
+
+    /**
+     * 分组商品（美均版）
+     * 2018/9/28
+     */
+    public function getGroupProduct($goodsid){
+
+        if(empty($goodsid)){
+            return;
+        }
+
+        $goodsid = (int)$goodsid;
+        $findStatus = false;
+        $virtualCount = 0;
+        $findGroup = pdo_fetch('select * from '.tablename('ewei_shop_goods_group').' where enabled = 1');
+        $goodsArray = explode(',',$findGroup['goodsids']);
+        foreach($goodsArray as $key => $v){
+            if($goodsid == $v){
+                $findStatus = true;
+                break;
+            }
+        }
+        if($findStatus){
+            if($goodsid == 200){
+                $virtualCount = 10;
+            }
+            elseif($goodsid == 201){
+                $virtualCount = 20;
+            }
+            elseif($goodsid == 202){
+                $virtualCount = 50;
+            }
+        }
+        return $virtualCount;
     }
 }
 

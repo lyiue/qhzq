@@ -2238,9 +2238,12 @@ class Order_EweiShopV2Model
         $stock3 = 0;
 
         //找到最新的完成的订单
-        $orderInfo = pdo_fetch('SELECT c.oprice price,c.orderid,c.total from (SELECT a.price oprice,b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
+        $orderInfo = pdo_fetch('SELECT c.oprice price,c.orderid,c.total,c.goodsid from (SELECT a.price oprice,b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
         $price = (float)$orderInfo['price'];
-        $num = (int)$orderInfo['total'];
+        $num = m('member')->getGroupProduct($orderInfo['goodsid']);
+        if($num == 0){
+            $num = (int)$orderInfo['total'];
+        }
         $orderid = $orderInfo['orderid'];
 
         //ims_ewei_shop_member_relationship只有绝对上下级关系

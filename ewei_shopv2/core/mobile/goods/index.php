@@ -27,7 +27,7 @@ class Index_EweiShopV2Page extends MobilePage
 
 		}
 
-
+        $addRecord = m('common')->addInviteRecord();
 		include $this->template();
 	}
 
