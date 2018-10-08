@@ -1250,7 +1250,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 20
+                        'stock' => 20,
+                        'agentlevel' => 3
                     );
                 }
                 elseif(50 <= $ordercount){
@@ -1259,7 +1260,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 50
+                        'stock' => 50,
+                        'agentlevel' => 4
                     );
                 }else{
                     return;
@@ -1281,7 +1283,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 20
+                        'stock' => 20,
+                        'agentlevel' => 3
                     );
                 }
                 elseif(50 <= $ordercount){
@@ -1290,7 +1293,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 50
+                        'stock' => 50,
+                        'agentlevel' => 4
                     );
                 }else{
                     return;
@@ -1303,7 +1307,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 20
+                        'stock' => 20,
+                        'agentlevel' => 3
                     );
                 }
                 elseif(50 <= $ordercount){
@@ -1312,7 +1317,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 50
+                        'stock' => 50,
+                        'agentlevel' => 4
                     );
                 }else{
                     return;
@@ -1325,7 +1331,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 50
+                        'stock' => 50,
+                        'agentlevel' => 4
                     );
                 }else{
                     return;
