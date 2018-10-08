@@ -1553,6 +1553,16 @@ if (!(class_exists('CommissionModel'))) {
 								pdo_update('ewei_shop_member', array('agentid' => $parent['id'], 'childtime' => $time, 'authorid' => $authorid), array('uniacid' => $_W['uniacid'], 'id' => $member['id']));
 							}
 							 else {
+                                 //寻找关系记录表是否存在对应的上下级关系
+                                 $findRelation = pdo_fetch('select * from '.tablename('ewei_shop_member_relationship') .' where ownid = :id',array('id' => $member['id']));
+                                 if(empty($findRelation)){
+                                     $rArray = array(
+                                         'ownid' => $member['id'],
+                                         'agentid' => $parent['id'],
+                                         'createtime' => TIMESTAMP
+                                     );
+                                     pdo_insert('ewei_shop_member_relationship',$rArray);
+                                 }
 								pdo_update('ewei_shop_member', array('agentid' => $parent['id'], 'childtime' => $time), array('uniacid' => $_W['uniacid'], 'id' => $member['id']));
 							}
 
@@ -1763,6 +1773,16 @@ if (!(class_exists('CommissionModel'))) {
 								pdo_update('ewei_shop_member', array('agentid' => $parent['id'], 'childtime' => $time, 'authorid' => $authorid), array('uniacid' => $_W['uniacid'], 'id' => $member['id']));
 							}
 							 else {
+                                 //寻找关系记录表是否存在对应的上下级关系
+                                 $findRelation = pdo_fetch('select * from '.tablename('ewei_shop_member_relationship') .' where ownid = :id',array('id' => $member['id']));
+                                 if(empty($findRelation)){
+                                     $rArray = array(
+                                         'ownid' => $member['id'],
+                                         'agentid' => $parent['id'],
+                                         'createtime' => TIMESTAMP
+                                     );
+                                     pdo_insert('ewei_shop_member_relationship',$rArray);
+                                 }
 								pdo_update('ewei_shop_member', array('agentid' => $parent['id'], 'childtime' => $time), array('uniacid' => $_W['uniacid'], 'id' => $member['id']));
 							}
 

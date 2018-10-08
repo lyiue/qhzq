@@ -2244,9 +2244,15 @@ class Order_EweiShopV2Model
         if($num == 0){
             $num = (int)$orderInfo['total'];
         }
-        $percentProfit = $this->compareLevelStock($num);
+        $percentProfit = $this->compareLevelStock($num); //判断是否批量
 
         $orderid = $orderInfo['orderid'];
+
+        $singlePrice1 = 325;
+        $singlePrice2 = 99;
+        $singlePrice3 = 74;
+//        $aPrice2 = $singlePrice2 + $singlePrice1;
+//        $aPrice3 = $singlePrice3 + $singlePrice2 + $singlePrice1;
 
         //ims_ewei_shop_member_relationship只有绝对上下级关系
         if($member['level'] == 0 || $member['level'] == 8){
@@ -2259,19 +2265,6 @@ class Order_EweiShopV2Model
             if(!empty($agent1Info)){
                 $stock1 = (int)$agent1Info['stock']; //查询$agent1Info的库存数
                 $level1 = (int)$agent1Info['level']; //查询$agent1Info处于什么星级
-                $singlePrice1 = 0;
-                $singlePrice2 = 0;
-                $singlePrice3 = 0;
-
-                if($member['level'] == 0){
-                    $singlePrice1 = 200;
-                    $singlePrice2 = 300;
-                    $singlePrice3 = 374;
-                }elseif($member['level'] == 8){
-                    $singlePrice1 = 100;
-                    $singlePrice2 = 200;
-                    $singlePrice3 = 274;
-                }
 
                 //决定有哪几个星级
                 if($level1 == 5){
@@ -2287,11 +2280,12 @@ class Order_EweiShopV2Model
                 //库存充足
                 if($num <= $stock1){
 
-                    //上级为一星，返差价 + 百5，二星返百2
+                    //上级为一星，零售返差价 ；或批量 百5，二星返百2
                     if($agent1 > 0){
-                        $price1 = $singlePrice1 * $num;
                         if($percentProfit){
                             $price1 += $price * 0.05;
+                        }else{
+                            $price1 = $singlePrice1 * $num;
                         }
                         $this->updateStock($agent1,-$num);
 
@@ -2300,21 +2294,27 @@ class Order_EweiShopV2Model
                             $agent2 = $agent2Info['agentid'];
                             if($percentProfit){
                                 $price2 = $price * 0.02;
+                            }else{
+                                $price2 = $singlePrice2 * $num;
                             }
 
                             //还需要找出三星用于统计
                             $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
                             if(!empty($agent3Info)){
                                 $agent3 = $agent3Info['agentid'];
+                                if(!$percentProfit){
+                                    $price3 = $singlePrice3 * $num;
+                                }
                             }
                         }
                     }
 
-                    //上级为二星，返差价 + 百5，三星拿百2
+                    //上级为二星，返差价 或批量 百5，三星拿百2
                     elseif($agent2 > 0){
-                        $price2 = $singlePrice2 * $num;
                         if($percentProfit){
                             $price2 += $price * 0.05;
+                        }else{
+                            $price2 = ($singlePrice2 + $singlePrice1) * $num;
                         }
                         $this->updateStock($agent2,-$num);
 
@@ -2323,15 +2323,18 @@ class Order_EweiShopV2Model
                             $agent3 = $agent3Info['agentid'];
                             if($percentProfit){
                                 $price3 = $price * 0.02;
+                            }else{
+                                $price3 = $singlePrice3 * $num;
                             }
                         }
                     }
 
                     //上级为三星，返差价 + 百5
                     elseif($agent3 > 0){
-                        $price3 = $singlePrice3 * $num;
                         if($percentProfit){
                             $price3 += $price * 0.05;
+                        }else{
+                            $price3 = ($singlePrice3 + $singlePrice2 + $singlePrice1) * $num;
                         }
                         $this->updateStock($agent3,-$num);
                     }
@@ -2352,9 +2355,10 @@ class Order_EweiShopV2Model
                                     $stock2 = (int)$agent2Info['stock'];
 
                                     if($num <= $stock2){
-                                        $price2 = $singlePrice2 * $num;
                                         if($percentProfit){
                                             $price2 += $price * 0.05;
+                                        }else{
+                                            $price2 = ($singlePrice2 + $singlePrice1) * $num;
                                         }
                                         $this->updateStock($agent2,-$num);
 
@@ -2363,6 +2367,8 @@ class Order_EweiShopV2Model
                                             $agent3 = $agent3Info['agentid'];
                                             if($percentProfit){
                                                 $price3 = $price * 0.02;
+                                            }else{
+                                                $price3 = $singlePrice3 * $num;
                                             }
                                         }
                                     }else {
@@ -2372,9 +2378,10 @@ class Order_EweiShopV2Model
                                             $stock3 = (int)$agent3Info['stock'];
 
                                             if($num <= $stock3){
-                                                $price3 = $singlePrice3 * $num;
                                                 if($percentProfit){
                                                     $price3 += $price * 0.05;
+                                                }else{
+                                                    $price3 = ($singlePrice3 + $singlePrice2 + $singlePrice1) * $num;
                                                 }
                                                 $this->updateStock($agent3,-$num);
                                             }
@@ -2383,9 +2390,10 @@ class Order_EweiShopV2Model
                                 }
                             }else{
                                 if($num <= $stock2){
-                                    $price2 = $singlePrice2 * $num;
                                     if($percentProfit){
                                         $price2 += $price * 0.05;
+                                    }else{
+                                        $price2 = ($singlePrice2 + $singlePrice1) * $num;
                                     }
                                     $this->updateStock($agent2,-$num);
 
@@ -2394,6 +2402,8 @@ class Order_EweiShopV2Model
                                         $agent3 = $agent3Info['agentid'];
                                         if($percentProfit){
                                             $price3 = $price * 0.02;
+                                        }else{
+                                            $price3 = $singlePrice3 * $num;
                                         }
                                     }
                                 }else{
@@ -2405,9 +2415,10 @@ class Order_EweiShopV2Model
                                             $agent3 = $agent3Info['agentid'];
 
                                             if($num <= $stock3){
-                                                $price3 = $singlePrice3 * $num;
                                                 if($percentProfit){
                                                     $price3 += $price * 0.05;
+                                                }else{
+                                                    $price3 = ($singlePrice3 + $singlePrice2 + $singlePrice1) * $num;
                                                 }
                                                 $this->updateStock($agent3,-$num);
                                             }
@@ -2434,22 +2445,31 @@ class Order_EweiShopV2Model
 
                 //上极有可能是一星、二星、或三星
                 if($num <= $stock1){
-                    if($level1 == 6){ //大于当前等级的上级才有差价
-                        $price1 = 100 * $num;
-                    }
-                    if($level1 == 7){ //大于当前等级的上级才有差价
-                        $price1 = 174 * $num;
-                    }
                     if($percentProfit){
                         $price1 += $price * 0.05;
+                    }else{
+                        if($level1 == 6){ //大于当前等级的上级才有差价
+                            $price1 = $singlePrice2 * $num;
+                        }
+                        if($level1 == 7){ //大于当前等级的上级才有差价
+                            $price1 = ($singlePrice3 + $singlePrice2) * $num;
+                        }
                     }
                     $this->updateStock($agent1,-$num);
 
                     $agent2Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent1));
                     if(!empty($agent2Info)){
                         $agent2 = $agent2Info['agentid'];
+                        $level2 = (int)$agent2Info['level'];
                         if($percentProfit){
                             $price2 = $price * 0.02;
+                        }else{
+                            if($level2 == 6){ //大于当前等级的上级才有差价
+                                $price2 = $singlePrice2 * $num;
+                            }
+                            if($level2 == 7){ //大于当前等级的上级才有差价
+                                $price2 = $singlePrice3 * $num;
+                            }
                         }
 
                         //还需要找出三星用于统计
@@ -2472,9 +2492,10 @@ class Order_EweiShopV2Model
                                 $stock2 = (int)$agent2Info['stock'];
 
                                 if($num <= $stock2){
-                                    $price2 = 100 * $num;
                                     if($percentProfit){
                                         $price2 += $price * 0.05;
+                                    }else{
+                                        $price2 = $singlePrice2 * $num;
                                     }
                                     $this->updateStock($agent2,-$num);
 
@@ -2482,7 +2503,9 @@ class Order_EweiShopV2Model
                                     if(!empty($agent3Info)){
                                         $agent3 = $agent3Info['agentid'];
                                         if($percentProfit){
-                                            $price3 += $price * 0.02;
+                                            $price3 = $price * 0.02;
+                                        }else{
+                                            $price3 = $singlePrice3 * $num;
                                         }
                                     }
                                 }else{
@@ -2493,9 +2516,10 @@ class Order_EweiShopV2Model
                                             $stock3 = (int)$agent3Info['stock'];
 
                                             if($num <= $stock3){
-                                                $price3 = 174 * $num;
                                                 if($percentProfit){
                                                     $price3 += $price * 0.05;
+                                                }else{
+                                                    $price3 = ($singlePrice3 + $singlePrice2) * $num;
                                                 }
                                                 $this->updateStock($agent3,-$num);
                                             }
@@ -2518,19 +2542,25 @@ class Order_EweiShopV2Model
 
                 //上极有可能是一星、二星、或三星
                 if($num <= $stock1){
-                    if($level1 == 7){ //大于当前等级的上级才有差价
-                        $price1 = 74 * $num;
-                    }
                     if($percentProfit){
                         $price1 += $price * 0.05;
+                    }else{
+                        if($level1 == 7){ //大于当前等级的上级才有差价
+                            $price1 = $singlePrice3 * $num;
+                        }
                     }
                     $this->updateStock($agent1,-$num);
 
                     $agent2Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent1));
                     if(!empty($agent2Info)){
                         $agent2 = $agent2Info['agentid'];
+                        $level2 = $agent2Info['level'];
                         if($percentProfit){
                             $price2 = $price * 0.02;
+                        }else{
+                            if($level2 == 7){ //大于当前等级的上级才有差价
+                                $price2 = $singlePrice3 * $num;
+                            }
                         }
 
                         //还需要找出三星用于统计
@@ -2561,9 +2591,10 @@ class Order_EweiShopV2Model
                                     $agent3Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$agent2));
                                     if(!empty($agent3Info)){
                                         $agent3 = $agent3Info['agentid'];
-                                        $price3 = 74 * $num;
                                         if($percentProfit){
                                             $price3 += $price * 0.02;
+                                        }else{
+                                            $price3 = $singlePrice3 * $num;
                                         }
                                     }
                                 }else{
@@ -2574,9 +2605,10 @@ class Order_EweiShopV2Model
                                             $stock3 = (int)$agent3Info['stock'];
 
                                             if($num <= $stock3){
-                                                $price3 = 74 * $num;
                                                 if($percentProfit){
                                                     $price3 += $price * 0.05;
+                                                }else{
+                                                    $price3 = $singlePrice3 * $num;
                                                 }
                                                 $this->updateStock($agent3,-$num);
                                             }

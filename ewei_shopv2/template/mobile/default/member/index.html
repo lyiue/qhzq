@@ -29,11 +29,11 @@
 					[{$level['levelname']}]
 					{/if}
 					{if !empty($_W['shopset']['shop']['levelurl'])}<i class='icon icon-question1' style='font-size:0.65rem'></i>{/if}
+					{if $member['level'] >= 5 && $member['level'] <= 7}<br/>库存：{$member['stock']}{/if}
 				</div>
 			</div>
 			<div class="child">
-				<div
-						 class="title">{$_W['shopset']['trade']['credittext']}</div>
+				<div class="title">{$_W['shopset']['trade']['credittext']}</div>
 				<div class="num">{php echo number_format($member['credit1'],0)}</div>
 				{if $open_creditshop}<a href="{php echo mobileUrl('creditshop')}" class="external"><div class="btn">兑换</div></a>{/if}
 			</div>
