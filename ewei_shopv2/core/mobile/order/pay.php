@@ -1081,6 +1081,18 @@ class Pay_EweiShopV2Page extends MobileLoginPage
 			$virtualtemp = pdo_fetch('SELECT linktext, linkurl FROM ' . tablename('ewei_shop_virtual_type') . ' WHERE id=:id AND uniacid=:uniacid LIMIT 1', array(':id' => $order['virtual'], ':uniacid' => $_W['uniacid']));
 		}
 
+		$orderGoods = pdo_fetch('SELECT * from ims_ewei_shop_order_goods where orderid = :orderid', array(':orderid' => $orderid));
+		$groupProduct = m('member')->getGroupProduct($orderGoods['goodsid']);
+		if($groupProduct > 0){
+			//自动完成
+            pdo_update('ewei_shop_order', array('status' => 3, 'finishtime' => time(), 'refundstate' => 0), array('id' => $orderid));
+            if (p('commission')) {
+                p('commission')->checkOrderFinish($orderid);
+            }
+            header('location: ' . mobileUrl('order'));
+            exit();
+		}
+
 		include $this->template();
 	}
 

@@ -1217,7 +1217,7 @@ class Member_EweiShopV2Model
 
 		//0:普通,8:会员,5:一星,6:二星,7:三星 
 		$level = intval($member['level']);
-		$status = intval($member['status']);
+		$agenttime = intval($member['agenttime']);
 
 		//本次订单的购买数
 		$order = pdo_fetch('SELECT c.total,c.goodsid from (SELECT b.* FROM (SELECT * from ims_ewei_shop_order where openid=:openid and `status`=3 ORDER BY createtime DESC LIMIT 1) a LEFT JOIN ims_ewei_shop_order_goods b ON a.id = b.orderid) c', array(':openid' => $member['openid']));
@@ -1228,7 +1228,7 @@ class Member_EweiShopV2Model
                 $ordercount = $order['total'];
             }
 
-            if($level == 0 && $status == 0){
+            if($level == 0 && $agenttime == 0){
                 if(1 < $ordercount && $ordercount < 10){
                     $sqlParamArray = array(
                         'level' => 8,
@@ -1241,7 +1241,8 @@ class Member_EweiShopV2Model
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 10
+                        'stock' => 10,
+                        'agentlevel' => 5
                     );
                 }
                 elseif(20 <= $ordercount && $ordercount < 50){
@@ -1267,14 +1268,15 @@ class Member_EweiShopV2Model
                     return;
                 }
             }
-            elseif($level == 8 && $status == 0){
+            elseif($level == 8 && $agenttime == 0){
                 if(10 <= $ordercount && $ordercount < 20){
                     $sqlParamArray = array(
                         'level' => 5,
                         'agenttime' => TIMESTAMP,
                         'status' => 1,
                         'isagent' => 1,
-                        'stock' => 10
+                        'stock' => 10,
+                        'agentlevel' => 5
                     );
                 }
                 elseif(20 <= $ordercount && $ordercount < 50){
@@ -1300,7 +1302,7 @@ class Member_EweiShopV2Model
                     return;
                 }
             }
-            elseif($level == 5 && $status == 1){
+            elseif($level == 5 && $agenttime > 0){
                 if(20 <= $ordercount && $ordercount < 50){
                     $sqlParamArray = array(
                         'level' => 6,
@@ -1324,7 +1326,7 @@ class Member_EweiShopV2Model
                     return;
                 }
             }
-            elseif($level == 6 && $status == 1){
+            elseif($level == 6 && $agenttime > 0){
                 if(50 <= $ordercount){
                     $sqlParamArray = array(
                         'level' => 7,
