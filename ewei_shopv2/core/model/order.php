@@ -2437,6 +2437,9 @@ class Order_EweiShopV2Model
             //二星直接抽取100 + 百5，三星取百2
             //或
             //二星库存不足，三星抽取174 + 百2
+
+            $this->updateStock($member['id'],$num); //星级分销商购买=添加库存
+
             $agent1Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$member['id']));
             if(!empty($agent1Info)){
                 $agent1 = $agent1Info['agentid'];
@@ -2534,6 +2537,9 @@ class Order_EweiShopV2Model
         }elseif($member['level'] == 6){
             //二星用户购买
             //三星获得差价 + 百2 或没库存即为没有
+
+            $this->updateStock($member['id'],$num); //星级分销商购买=添加库存
+
             $agent1Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$member['id']));
             if(!empty($agent1Info)){
                 $agent1 = $agent1Info['agentid'];
@@ -2621,6 +2627,9 @@ class Order_EweiShopV2Model
                 }
             }
         }elseif($member['level'] == 7) {
+
+            $this->updateStock($member['id'],$num); //星级分销商购买=添加库存
+
             $agent1Info = pdo_fetch('select a.*,b.level,b.stock from ims_ewei_shop_member_relationship a left join ims_ewei_shop_member b on a.agentid = b.id where a.ownid=:id',array(':id'=>$member['id']));
             if(!empty($agent1Info)){
                 $agent1 = $agent1Info['agentid'];
@@ -2737,7 +2746,7 @@ class Order_EweiShopV2Model
      * 更新库存（美均版）
      * 2018/9/27
      */
-    private function updateStock($memberid,$change)
+    public function updateStock($memberid,$change)
     {
         if (empty($memberid)) {
             return;

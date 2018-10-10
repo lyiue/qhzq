@@ -1022,6 +1022,7 @@ class Detail_EweiShopV2Page extends MobilePage
 			$goods['city_express_state'] = 0;
 		}
 
+        $addRecord = m('common')->addInviteRecord();
 		include $this->template();
 	}
 

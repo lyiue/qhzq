@@ -228,7 +228,7 @@ class Pay_EweiShopV2Page extends MobileLoginPage
 		$alipay = array('success' => false);
 		if (empty($seckill_goods) && empty($ispeerpay)) {
 			if (isset($set['pay']) && ($set['pay']['alipay'] == 1)) {
-				if (is_array($setting['payment']['alipay']) && $setting['payment']['alipay']['switch']) {
+				if (is_array($setting['payment']['alipay']) && $setting['payment']['alipay']['pay_switch']) {
 					$params = array();
 					$params['tid'] = $log['tid'];
 					$params['user'] = $_W['openid'];
