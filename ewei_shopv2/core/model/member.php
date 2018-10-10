@@ -1228,7 +1228,7 @@ class Member_EweiShopV2Model
                 $ordercount = $order['total'];
             }
 
-            if($level == 0 && $agenttime == 0){
+            if($level == 0){
                 if(1 < $ordercount && $ordercount < 10){
                     $sqlParamArray = array(
                         'level' => 8,
@@ -1268,7 +1268,7 @@ class Member_EweiShopV2Model
                     return;
                 }
             }
-            elseif($level == 8 && $agenttime == 0){
+            elseif($level == 8){
                 if(10 <= $ordercount && $ordercount < 20){
                     $sqlParamArray = array(
                         'level' => 5,

@@ -14,6 +14,9 @@ class Down_EweiShopV2Page extends CommissionMobileLoginPage
 		$levelcount1 = $member['level1'];
 		$levelcount2 = $member['level2'];
 		$levelcount3 = $member['level3'];
+
+
+
 		$level1 = $level2 = $level3 = 0;
 		$level1 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where agentid=:agentid and uniacid=:uniacid limit 1', array(':agentid' => $member['id'], ':uniacid' => $_W['uniacid']));
 		if ((2 <= $this->set['level']) && (0 < $levelcount1)) {
