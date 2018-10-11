@@ -12,7 +12,7 @@ class Apply_EweiShopV2Page extends CommissionMobileLoginPage
 		global $_GPC;
 		$openid = $_W['openid'];
 		$level = $this->set['level'];
-		$member = $this->model->getInfo($openid, array());
+		$member = $this->model->getInfo($openid, array('ok'));
 		$become_reg = $this->set['become_reg'];
 
 		if (empty($become_reg)) {
@@ -107,45 +107,48 @@ class Apply_EweiShopV2Page extends CommissionMobileLoginPage
 			}
 		}
 
-		foreach ($orderids as $o) {
-			$goods = pdo_fetchall('SELECT ' . 'og.commission1,og.commission2,og.commission3,og.commissions,' . 'og.status1,og.status2,og.status3,' . 'og.content1,og.content2,og.content3 from ' . tablename('ewei_shop_order_goods') . ' og' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid  ' . ' where og.orderid=:orderid and og.nocommission=0 and og.uniacid = :uniacid order by og.createtime  desc ', array(':uniacid' => $_W['uniacid'], ':orderid' => $o['orderid']));
+//		foreach ($orderids as $o) {
+//			$goods = pdo_fetchall('SELECT ' . 'og.commission1,og.commission2,og.commission3,og.commissions,' . 'og.status1,og.status2,og.status3,' . 'og.content1,og.content2,og.content3 from ' . tablename('ewei_shop_order_goods') . ' og' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid  ' . ' where og.orderid=:orderid and og.nocommission=0 and og.uniacid = :uniacid order by og.createtime  desc ', array(':uniacid' => $_W['uniacid'], ':orderid' => $o['orderid']));
+//
+//			foreach ($goods as $g) {
+//				$commissions = iunserializer($g['commissions']);
+//				if (($o['level'] == 1) && ($g['status1'] == 0)) {
+//					$commission1 = iunserializer($g['commission1']);
+//
+//					if (empty($commissions)) {
+//						$commission_ok += (isset($commission1['level' . $agentLevel['id']]) ? $commission1['level' . $agentLevel['id']] : $commission1['default']);
+//					}
+//					else {
+//						$commission_ok += (isset($commissions['level1']) ? floatval($commissions['level1']) : 0);
+//					}
+//				}
+//
+//				if (($o['level'] == 2) && ($g['status2'] == 0)) {
+//					$commission2 = iunserializer($g['commission2']);
+//
+//					if (empty($commissions)) {
+//						$commission_ok += (isset($commission2['level' . $agentLevel['id']]) ? $commission2['level' . $agentLevel['id']] : $commission2['default']);
+//					}
+//					else {
+//						$commission_ok += (isset($commissions['level2']) ? floatval($commissions['level2']) : 0);
+//					}
+//				}
+//
+//				if (($o['level'] == 3) && ($g['status3'] == 0)) {
+//					$commission3 = iunserializer($g['commission3']);
+//
+//					if (empty($commissions)) {
+//						$commission_ok += (isset($commission3['level' . $agentLevel['id']]) ? $commission3['level' . $agentLevel['id']] : $commission3['default']);
+//					}
+//					else {
+//						$commission_ok += (isset($commissions['level3']) ? floatval($commissions['level3']) : 0);
+//					}
+//				}
+//			}
+//		}
 
-			foreach ($goods as $g) {
-				$commissions = iunserializer($g['commissions']);
-				if (($o['level'] == 1) && ($g['status1'] == 0)) {
-					$commission1 = iunserializer($g['commission1']);
-
-					if (empty($commissions)) {
-						$commission_ok += (isset($commission1['level' . $agentLevel['id']]) ? $commission1['level' . $agentLevel['id']] : $commission1['default']);
-					}
-					else {
-						$commission_ok += (isset($commissions['level1']) ? floatval($commissions['level1']) : 0);
-					}
-				}
-
-				if (($o['level'] == 2) && ($g['status2'] == 0)) {
-					$commission2 = iunserializer($g['commission2']);
-
-					if (empty($commissions)) {
-						$commission_ok += (isset($commission2['level' . $agentLevel['id']]) ? $commission2['level' . $agentLevel['id']] : $commission2['default']);
-					}
-					else {
-						$commission_ok += (isset($commissions['level2']) ? floatval($commissions['level2']) : 0);
-					}
-				}
-
-				if (($o['level'] == 3) && ($g['status3'] == 0)) {
-					$commission3 = iunserializer($g['commission3']);
-
-					if (empty($commissions)) {
-						$commission_ok += (isset($commission3['level' . $agentLevel['id']]) ? $commission3['level' . $agentLevel['id']] : $commission3['default']);
-					}
-					else {
-						$commission_ok += (isset($commissions['level3']) ? floatval($commissions['level3']) : 0);
-					}
-				}
-			}
-		}
+		$commission_ok = floatval($member['commission_ok']);
+		$orderids = $member['orderids'];
 
 		$withdraw = floatval($this->set['withdraw']);
 
@@ -302,7 +305,8 @@ class Apply_EweiShopV2Page extends CommissionMobileLoginPage
 			}
 
 			foreach ($orderids as $o) {
-				pdo_update('ewei_shop_order_goods', array('status' . $o['level'] => 1, 'applytime' . $o['level'] => $time), array('orderid' => $o['orderid'], 'uniacid' => $_W['uniacid']));
+//				pdo_update('ewei_shop_order_goods', array('status' . $o['level'] => 1, 'applytime' . $o['level'] => $time), array('orderid' => $o['orderid'], 'uniacid' => $_W['uniacid']));
+                pdo_update('ewei_shop_order_sub', array('status' => 1, 'applytime' => $time), array('orderid' => $o));
 			}
 
 			$applyno = m('common')->createNO('commission_apply', 'applyno', 'CA');

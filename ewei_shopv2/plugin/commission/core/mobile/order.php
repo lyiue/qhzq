@@ -28,6 +28,7 @@ class Order_EweiShopV2Page extends CommissionMobileLoginPage
 		global $_W;
 		global $_GPC;
 		$openid = $_W['openid'];
+	//    $openid = 'o-6S-0SgEsiVPH5sOSpmHKVn1-CI';
 		$member = $this->model->getInfo($openid, array('ordercount0'));
 		$agentLevel = $this->model->getLevel($openid);
 		$level = intval($this->set['level']);
@@ -46,115 +47,123 @@ class Order_EweiShopV2Page extends CommissionMobileLoginPage
 
 		if (1 <= $level) {
 			$level1_memberids = pdo_fetchall('select id from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and agentid=:agentid', array(':uniacid' => $_W['uniacid'], ':agentid' => $member['id']), 'id');
-			$level1_orders = pdo_fetchall('select commission1,o.id,o.createtime,o.price,og.commissions from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join  ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id ' . ' where o.uniacid=:uniacid and o.agentid=:agentid ' . $condition . ' and og.status1>=0 and og.nocommission=0', array(':uniacid' => $_W['uniacid'], ':agentid' => $member['id']));
-
+	//			$level1_orders = pdo_fetchall('select commission1,o.id,o.createtime,o.price,og.commissions from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join  ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id ' . ' where o.uniacid=:uniacid and o.agentid=:agentid ' . $condition . ' and og.status1>=0 and og.nocommission=0', array(':uniacid' => $_W['uniacid'], ':agentid' => $member['id']));
+			$level1_orders = pdo_fetchall('select * from ' . tablename('ewei_shop_order_sub') . ' where agent1 = :agentid and `status` = 0 ', array(':agentid' => $member['id']));
+			$commission_ok = 0;
 			foreach ($level1_orders as $o) {
 				if (empty($o['id'])) {
 					continue;
 				}
 
-				$commissions = iunserializer($o['commissions']);
-				$commission = iunserializer($o['commission1']);
+	//				$commissions = iunserializer($o['commissions']);
+	//				$commission = iunserializer($o['commission1']);
 
-				if (empty($commissions)) {
-					$commission_ok = (isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : (isset($commission['default']) ? $commission['default'] : 0));
-				}
-				else {
-					$commission_ok = (isset($commissions['level1']) ? floatval($commissions['level1']) : 0);
-				}
+	//				if (empty($commissions)) {
+	//					$commission_ok = (isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : (isset($commission['default']) ? $commission['default'] : 0));
+	//				}
+	//				else {
+	//					$commission_ok = (isset($commissions['level1']) ? floatval($commissions['level1']) : 0);
+	//				}
+
 
 				$hasorder = false;
 
-				foreach ($orders as &$or) {
-					if (($or['id'] == $o['id']) && ($or['level'] == 1)) {
-						$or['commission'] += $commission_ok;
-						$hasorder = true;
-						break;
-					}
-				}
+	//				foreach ($orders as &$or) {
+	//					if (($or['id'] == $o['id']) && ($or['level'] == 1)) {
+	//						$or['commission'] += $commission_ok;
+	//						$hasorder = true;
+	//						break;
+	//					}
+	//				}
 
-				unset($or);
+	//				unset($or);
+				$commission_ok += $o['price1'];
 
 				if (!$hasorder) {
-					$orders[] = array('id' => $o['id'], 'commission' => $commission_ok, 'createtime' => $o['createtime'], 'level' => 1);
+					$orders[] = array('id' => $o['orderid'], 'commission' => $commission_ok, 'createtime' => $o['createtime'], 'level' => 1);
 				}
 			}
 		}
 
 		if (2 <= $level) {
-			if (0 < $level1) {
-				$level2_orders = pdo_fetchall('select commission2 ,o.id,o.createtime,o.price,og.commissions   from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join  ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id ' . ' where o.uniacid=:uniacid and o.agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ')  ' . $condition . '  and og.status2>=0 and og.nocommission=0 ', array(':uniacid' => $_W['uniacid']));
+	//			if (0 < $level1) {
+	//				$level2_orders = pdo_fetchall('select commission2 ,o.id,o.createtime,o.price,og.commissions   from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join  ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id ' . ' where o.uniacid=:uniacid and o.agentid in( ' . implode(',', array_keys($member['level1_agentids'])) . ')  ' . $condition . '  and og.status2>=0 and og.nocommission=0 ', array(':uniacid' => $_W['uniacid']));
+			$level2_orders = pdo_fetchall('select * from ' . tablename('ewei_shop_order_sub') . ' where agent2 = :agentid and `status` = 0 ', array(':agentid' => $member['id']));
+			$commission_ok = 0;
+			foreach ($level2_orders as $o) {
+				if (empty($o['id'])) {
+					continue;
+				}
 
-				foreach ($level2_orders as $o) {
-					if (empty($o['id'])) {
-						continue;
-					}
+	//					$commissions = iunserializer($o['commissions']);
+	//					$commission = iunserializer($o['commission2']);
+	//
+	//					if (empty($commissions)) {
+	//						$commission_ok = (isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default']);
+	//					}
+	//					else {
+	//						$commission_ok = (isset($commissions['level2']) ? floatval($commissions['level2']) : 0);
+	//					}
 
-					$commissions = iunserializer($o['commissions']);
-					$commission = iunserializer($o['commission2']);
+				$hasorder = false;
 
-					if (empty($commissions)) {
-						$commission_ok = (isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default']);
-					}
-					else {
-						$commission_ok = (isset($commissions['level2']) ? floatval($commissions['level2']) : 0);
-					}
+	//					foreach ($orders as &$or) {
+	//						if (($or['id'] == $o['id']) && ($or['level'] == 2)) {
+	//							$or['commission'] += $commission_ok;
+	//							$hasorder = true;
+	//							break;
+	//						}
+	//					}
+	//
+	//					unset($or);
+				$commission_ok += $o['price2'];
 
-					$hasorder = false;
-
-					foreach ($orders as &$or) {
-						if (($or['id'] == $o['id']) && ($or['level'] == 2)) {
-							$or['commission'] += $commission_ok;
-							$hasorder = true;
-							break;
-						}
-					}
-
-					unset($or);
-
-					if (!$hasorder) {
-						$orders[] = array('id' => $o['id'], 'commission' => $commission_ok, 'createtime' => $o['createtime'], 'level' => 2);
-					}
+				if (!$hasorder) {
+					$orders[] = array('id' => $o['orderid'], 'commission' => $commission_ok, 'createtime' => $o['createtime'], 'level' => 2);
 				}
 			}
+	//			}
 		}
 
 		if (3 <= $level) {
-			if (0 < $level2) {
-				$level3_orders = pdo_fetchall('select commission3 ,o.id,o.createtime,o.price,og.commissions  from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join  ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id ' . ' where o.uniacid=:uniacid and o.agentid in( ' . implode(',', array_keys($member['level2_agentids'])) . ')  ' . $condition . ' and og.status3>=0 and og.nocommission=0', array(':uniacid' => $_W['uniacid']));
+	//			if (0 < $level2) {
+	//				$level3_orders = pdo_fetchall('select commission3 ,o.id,o.createtime,o.price,og.commissions  from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join  ' . tablename('ewei_shop_order') . ' o on og.orderid=o.id ' . ' where o.uniacid=:uniacid and o.agentid in( ' . implode(',', array_keys($member['level2_agentids'])) . ')  ' . $condition . ' and og.status3>=0 and og.nocommission=0', array(':uniacid' => $_W['uniacid']));
+			$level3_orders = pdo_fetchall('select * from ' . tablename('ewei_shop_order_sub') . ' where agent3 = :agentid and `status` = 0 ', array(':agentid' => $member['id']));
+			$commission_ok = 0;
+			foreach ($level3_orders as $o) {
+				if (empty($o['id'])) {
+					continue;
+				}
 
-				foreach ($level3_orders as $o) {
-					if (empty($o['id'])) {
-						continue;
-					}
+	//					$commissions = iunserializer($o['commissions']);
+	//					$commission = iunserializer($o['commission3']);
+	//
+	//					if (empty($commissions)) {
+	//						$commission_ok = (isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default']);
+	//					}
+	//					else {
+	//						$commission_ok = (isset($commissions['level3']) ? floatval($commissions['level3']) : 0);
+	//					}
 
-					$commissions = iunserializer($o['commissions']);
-					$commission = iunserializer($o['commission3']);
+				$hasorder = false;
 
-					if (empty($commissions)) {
-						$commission_ok = (isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default']);
-					}
-					else {
-						$commission_ok = (isset($commissions['level3']) ? floatval($commissions['level3']) : 0);
-					}
+	//					foreach ($orders as &$or) {
+	//						if (($or['id'] == $o['id']) && ($or['level'] == 3)) {
+	//							$or['commission'] += $commission_ok;
+	//							$hasorder = true;
+	//							break;
+	//						}
+	//					}
+	//
+	//					unset($or);
 
-					$hasorder = false;
+				$commission_ok += $o['price3'];
 
-					foreach ($orders as &$or) {
-						if (($or['id'] == $o['id']) && ($or['level'] == 3)) {
-							$or['commission'] += $commission_ok;
-							$hasorder = true;
-							break;
-						}
-					}
-
-					unset($or);
-
-					if (!$hasorder) {
-						$orders[] = array('id' => $o['id'], 'commission' => $commission_ok, 'createtime' => $o['createtime'], 'level' => 3);
-					}
+				if (!$hasorder) {
+					$orders[] = array('id' => $o['orderid'], 'commission' => $commission_ok, 'createtime' => $o['createtime'], 'level' => 3);
 				}
 			}
+	//			}
 		}
 
 		if ($orders) {
@@ -173,10 +182,11 @@ class Order_EweiShopV2Page extends CommissionMobileLoginPage
 		$list = array();
 
 		if (!empty($orderids)) {
-			$list = pdo_fetchall('select id,ordersn,openid,createtime,status from ' . tablename('ewei_shop_order') . '  where uniacid =' . $_W['uniacid'] . ' and id in ( ' . implode(',', array_keys($orderids)) . ') order by id desc');
+			$list = pdo_fetchall('select m.*,o.id,o.ordersn,o.openid,o.createtime,o.`status` from (select os.* from' . tablename('ewei_shop_order_sub') . ' os where os.orderid in ( ' . implode(',', array_keys($orderids)) . ')) m left join ims_ewei_shop_order o on m.orderid = o.id order by o.id desc');
 
 			foreach ($list as &$row) {
 				$row['commission'] = number_format((double) $orderids[$row['id']]['commission'], 2);
+
 				$row['createtime'] = date('Y-m-d H:i', $row['createtime']);
 
 				if ($row['status'] == 0) {
@@ -194,16 +204,15 @@ class Order_EweiShopV2Page extends CommissionMobileLoginPage
 					}
 				}
 
-				if ($orderids[$row['id']]['level'] == 1) {
+				$memberLevel = m('member')->getMember($row['contributor'])['level'];
+				if ($memberLevel == 5) {
 					$row['level'] = $this->set['texts']['c1'];
 				}
-				else if ($orderids[$row['id']]['level'] == 2) {
+				else if ($memberLevel == 6) {
 					$row['level'] = $this->set['texts']['c2'];
 				}
-				else {
-					if ($orderids[$row['id']]['level'] == 3) {
-						$row['level'] = $this->set['texts']['c3'];
-					}
+				else if ($memberLevel == 7) {
+					$row['level'] = $this->set['texts']['c3'];
 				}
 
 				if (!empty($this->set['openorderdetail'])) {
@@ -214,35 +223,38 @@ class Order_EweiShopV2Page extends CommissionMobileLoginPage
 						$commissions = iunserializer($g['commissions']);
 
 						if ($orderids[$row['id']]['level'] == 1) {
-							$commission = iunserializer($g['commission1']);
-
-							if (empty($commissions)) {
-								$g['commission'] = isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default'];
-							}
-							else {
-								$g['commission'] = isset($commissions['level1']) ? floatval($commissions['level1']) : 0;
-							}
+	//							$commission = iunserializer($g['commission1']);
+	//
+	//							if (empty($commissions)) {
+	//								$g['commission'] = isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default'];
+	//							}
+	//							else {
+	//								$g['commission'] = isset($commissions['level1']) ? floatval($commissions['level1']) : 0;
+	//							}
+							$g['commission'] = $row['price1'];
 						}
 						else if ($orderids[$row['id']]['level'] == 2) {
-							$commission = iunserializer($g['commission2']);
-
-							if (empty($commissions)) {
-								$g['commission'] = isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default'];
-							}
-							else {
-								$g['commission'] = isset($commissions['level2']) ? floatval($commissions['level2']) : 0;
-							}
+	//							$commission = iunserializer($g['commission2']);
+	//
+	//							if (empty($commissions)) {
+	//								$g['commission'] = isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default'];
+	//							}
+	//							else {
+	//								$g['commission'] = isset($commissions['level2']) ? floatval($commissions['level2']) : 0;
+	//							}
+							$g['commission'] = $row['price2'];
 						}
 						else {
 							if ($orderids[$row['id']]['level'] == 3) {
-								$commission = iunserializer($g['commission3']);
-
-								if (empty($commissions)) {
-									$g['commission'] = isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default'];
-								}
-								else {
-									$g['commission'] = isset($commissions['level3']) ? floatval($commissions['level3']) : 0;
-								}
+	//								$commission = iunserializer($g['commission3']);
+	//
+	//								if (empty($commissions)) {
+	//									$g['commission'] = isset($commission['level' . $agentLevel['id']]) ? $commission['level' . $agentLevel['id']] : $commission['default'];
+	//								}
+	//								else {
+	//									$g['commission'] = isset($commissions['level3']) ? floatval($commissions['level3']) : 0;
+	//								}
+								$g['commission'] = $row['price3'];
 							}
 						}
 					}

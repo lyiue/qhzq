@@ -2160,11 +2160,16 @@ class Order_EweiShopV2Model
         $agent2 = (int)$find['agent2'];
         $agent3 = (int)$find['agent3'];
 
+        //直接返现的钱
+        $price1 = (int)$find['price'] - (int)$find['price1'];
+        $price2 = (int)$find['price'] - (int)$find['price2'];
+        $price3 = (int)$find['price'] - (int)$find['price3'];
+
         if($agent1 > 0){
 		    $agent1Info = m('member')->getMember($agent1);
 		    if(!empty($agent1Info)){
                 $uid1 = $agent1Info['uid'];
-                $this->updateCredit2($uid1,$find['price1']);
+                $this->updateCredit2($uid1,$price1);
             }
         }
 
@@ -2172,7 +2177,7 @@ class Order_EweiShopV2Model
             $agent2Info = m('member')->getMember($agent2);
             if(!empty($agent2Info)){
                 $uid2 = $agent2Info['uid'];
-                $this->updateCredit2($uid2,$find['price2']);
+                $this->updateCredit2($uid2,$price2);
             }
         }
 
@@ -2180,7 +2185,7 @@ class Order_EweiShopV2Model
             $agent3Info = m('member')->getMember($agent3);
             if(!empty($agent3Info)){
                 $uid3 = $agent3Info['uid'];
-                $this->updateCredit2($uid3,$find['price3']);
+                $this->updateCredit2($uid3,$price3);
             }
         }
         return true;

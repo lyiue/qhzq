@@ -39,7 +39,7 @@
 						{php echo empty($level) ? ( empty($this->set['levelname'])?'普通等级':$this->set['levelname'] ) : $level['levelname']}
 						{if $this->set['levelurl']!=''}<i class='icon icon-question' style='font-size:8px;'></i>{/if}
 					</div>
-					<span style="color: #fff;position: absolute;margin-top: 0.4rem;margin-left: .2rem;line-height: 0;">{if $member['level'] >= 5 && $member['level'] <= 7} 库存：{$member['stock']}{/if}</span>
+					<span style="color: #fff;position: absolute;margin-top: 12px;margin-left: .2rem;line-height: 0;">{if $member['level'] >= 5 && $member['level'] <= 7} 库存：{$member['stock']}{/if}</span>
 				</div>
 			</div>
 		{if empty($this->set['closemyshop'])}

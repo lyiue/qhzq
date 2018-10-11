@@ -460,6 +460,7 @@ if (!(class_exists('CommissionModel'))) {
 			$order13money = 0;
 			$order23money = 0;
 			$order33money = 0;
+            $orderids = array();
 
 			if (1 <= $level) {
 				if (in_array('ordercount0', $options)) {
@@ -523,10 +524,11 @@ if (!(class_exists('CommissionModel'))) {
 //							$commission_ok += ((isset($commissions['level1']) ? $commissions['level1'] : 0));
 //						}
 //					}
-                    $level1_commissions = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent1 = :agentid and `status` = 0 (' . $time . ' - createtime > ' . $day_times . ')', array(':agentid' => $member['id']));
+                    $level1_commissions = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent1 = :agentid and `status` = 0 and (' . $time . ' - createtime > ' . $day_times . ')', array(':agentid' => $member['id']));
                     foreach ($level1_commissions as $c ) {
                         if (!empty($c)) {
                             $commission_ok += $c['price1'];
+                            array_push($orderids,$c['orderid']);
                         }
                     }
 				}
@@ -546,7 +548,7 @@ if (!(class_exists('CommissionModel'))) {
 //							$commission_lock += ((isset($commissions['level1']) ? $commissions['level1'] : 0));
 //						}
 //					}
-                    $level1_commissions1 = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent1 = :agentid and `status` = 0 (' . $time . ' - createtime <= ' . $day_times . ')', array(':agentid' => $member['id']));
+                    $level1_commissions1 = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent1 = :agentid and `status` = 0 and (' . $time . ' - createtime <= ' . $day_times . ')', array(':agentid' => $member['id']));
                     foreach ($level1_commissions1 as $c ) {
                         if (!empty($c)) {
                             $commission_lock += $c['price1'];
@@ -710,10 +712,11 @@ if (!(class_exists('CommissionModel'))) {
 //								$commission_ok += ((isset($commissions['level2']) ? $commissions['level2'] : 0));
 //							}
 //						}
-                        $level2_commissions = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent2 = :agentid and `status` = 0 (' . $time . ' - createtime > ' . $day_times . ')', array(':agentid' => $member['id']));
+                        $level2_commissions = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent2 = :agentid and `status` = 0 and (' . $time . ' - createtime > ' . $day_times . ')', array(':agentid' => $member['id']));
                         foreach ($level2_commissions as $c ) {
                             if (!empty($c)) {
                                 $commission_ok += $c['price2'];
+                                array_push($orderids,$c['orderid']);
                             }
                         }
 					}
@@ -733,7 +736,7 @@ if (!(class_exists('CommissionModel'))) {
 //								$commission_lock += ((isset($commissions['level2']) ? $commissions['level2'] : 0));
 //							}
 //						}
-                        $level2_commissions1 = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent2 = :agentid and `status` = 0 (' . $time . ' - createtime <= ' . $day_times . ')', array(':agentid' => $member['id']));
+                        $level2_commissions1 = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent2 = :agentid and `status` = 0 and (' . $time . ' - createtime <= ' . $day_times . ')', array(':agentid' => $member['id']));
                         foreach ($level2_commissions1 as $c ) {
                             if (!empty($c)) {
                                 $commission_lock += $c['price2'];
@@ -899,10 +902,11 @@ if (!(class_exists('CommissionModel'))) {
 //								$commission_ok += ((isset($commissions['level3']) ? $commissions['level3'] : 0));
 //							}
 //						}
-                        $level3_commissions = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent3 = :agentid and `status` = 0 (' . $time . ' - createtime > ' . $day_times . ')', array(':agentid' => $member['id']));
+                        $level3_commissions = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent3 = :agentid and `status` = 0 and (' . $time . ' - createtime > ' . $day_times . ')', array(':agentid' => $member['id']));
                         foreach ($level3_commissions as $c ) {
                             if (!empty($c)) {
                                 $commission_ok += $c['price3'];
+                                array_push($orderids,$c['orderid']);
                             }
                         }
 					}
@@ -922,7 +926,7 @@ if (!(class_exists('CommissionModel'))) {
 //								$commission_lock += ((isset($commissions['level3']) ? $commissions['level3'] : 0));
 //							}
 //						}
-                        $level3_commissions1 = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent3 = :agentid and `status` = 0 (' . $time . ' - createtime <= ' . $day_times . ')', array(':agentid' => $member['id']));
+                        $level3_commissions1 = pdo_fetchall('select *  from ' . tablename('ewei_shop_order_sub') . ' where agent3 = :agentid and `status` = 0 and (' . $time . ' - createtime <= ' . $day_times . ')', array(':agentid' => $member['id']));
                         foreach ($level3_commissions1 as $c ) {
                             if (!empty($c)) {
                                 $commission_lock += $c['price3'];
@@ -1058,6 +1062,7 @@ if (!(class_exists('CommissionModel'))) {
 			$member['level3'] = $level3;
 			$member['level3_agentids'] = $level3_agentids;
 			$member['agenttime'] = date('Y-m-d H:i', $member['agenttime']);
+			$member['orderids'] = $orderids;
 			$this->getInfo = $member;
 			return $this->getInfo;
 		}
