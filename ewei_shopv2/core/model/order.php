@@ -2777,13 +2777,19 @@ class Order_EweiShopV2Model
             return;
         }
 
-        $res = false;
+        $res = false; //返回level
         $levelStock = pdo_fetchall('SELECT stock FROM ' . tablename('ewei_shop_member_level') . '  where enabled = 1');
 		
         if(!empty($levelStock)){
             foreach($levelStock as $key => $v){
                 if($num == $v['stock']){
-                    $res = true;
+                    if($num == 10){
+                        $res = 5;
+                    }elseif($num == 20){
+                        $res = 6;
+                    }elseif($num == 50){
+                        $res = 7;
+                    }
                     break;
                 }
             }
